@@ -18,10 +18,10 @@ function update() {
         name,
         max: Math.max(1, ...Object.values(props.result.contributions)),
       })),
-      axisName: { color: '#334155', fontSize: 12 },
+      axisName: { color: '#5a625d', fontSize: 12 },
       splitArea: { show: false },
-      splitLine: { lineStyle: { color: '#d5dfe4' } },
-      axisLine: { lineStyle: { color: '#d5dfe4' } },
+      splitLine: { lineStyle: { color: '#dcdcd6' } },
+      axisLine: { lineStyle: { color: '#dcdcd6' } },
     },
     series: [
       {
@@ -34,9 +34,9 @@ function update() {
             name: 'Score contributions',
           },
         ],
-        lineStyle: { color: '#0f766e', width: 2 },
-        itemStyle: { color: '#0f766e' },
-        areaStyle: { color: '#0f766e', opacity: 0.09 },
+        lineStyle: { color: '#1f4d3c', width: 2 },
+        itemStyle: { color: '#ad8533' },
+        areaStyle: { color: '#ad8533', opacity: 0.14 },
       },
     ],
   })

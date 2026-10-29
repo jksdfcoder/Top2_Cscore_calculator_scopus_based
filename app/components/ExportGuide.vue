@@ -9,7 +9,7 @@ const items = [
 <template>
   <UAccordion :items="items" :unmount-on-hide="false">
     <template #basic>
-      <div class="guide-copy">
+      <div class="prose pb-4">
         <p>
           You need access to Scopus exports through your own subscription or institution. No account
           or API key is needed on this site.
@@ -37,8 +37,8 @@ const items = [
             author” is a different definition.
           </li>
           <li>
-            Drop all three CSV files below. Keep their original names and contents. The same files
-            calculate both career and single-year impact.
+            Drop all three CSV files into step 1 at the top of the page. Keep their original names
+            and contents. The same files calculate both career and single-year impact.
           </li>
         </ol>
         <p class="text-muted">
@@ -48,7 +48,7 @@ const items = [
       </div>
     </template>
     <template #early>
-      <div class="guide-copy">
+      <div class="prose pb-4">
         <p>
           Career impact uses citations received in <strong>1996–2025</strong>. A nonzero “before
           2000” column cannot tell us which citations occurred before 1996.
@@ -66,7 +66,7 @@ const items = [
       </div>
     </template>
     <template #privacy>
-      <div class="guide-copy">
+      <div class="prose pb-4">
         <p>
           Your CSV files are read and calculated in this browser. They are not uploaded, logged or
           saved in browser storage. Clear your data or close the page to remove the session.

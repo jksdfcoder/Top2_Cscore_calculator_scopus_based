@@ -20,8 +20,9 @@ test('one import produces four modes, downloads a private report, then clears', 
   await expect(page.getByLabel('Scopus Author ID', { exact: true })).toContainText('123')
   await page.getByRole('button', { name: 'Confirm author & calculate' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
+  await expect(page.locator('#score')).toContainText('1.144')
+  await expect(page.locator('#score')).toContainText('1.394')
   await expect(page.locator('#results')).toContainText('1.143570')
-  await expect(page.locator('#results')).toContainText('1.394161')
   await page.getByRole('tab', { name: 'Single year · 2025', exact: true }).click()
   await expect(page.locator('.metric-table tfoot')).toContainText('1.394161')
   const downloaded = page.waitForEvent('download')
@@ -115,6 +116,8 @@ test('private input is not transmitted or persisted and narrow layout fits', asy
 })
 
 test('synthetic example and result table pass accessibility checks', async ({ page }) => {
+  // Scan content at rest; scroll reveals are mid-fade otherwise.
+  await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/')
   await page.getByRole('button', { name: 'Try a synthetic example' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
@@ -139,19 +142,14 @@ async function closeOverlays(page: Page) {
 }
 
 async function fourResultScores(page: Page) {
-  const scores = page.locator('#results .score-value')
-  const setting = page.getByLabel('Self-citation setting')
+  const scores = page.locator('#score .score-value')
   await expect(scores).toHaveCount(2)
   const excluding = await scores.allTextContents()
-  await setting.click()
-  await page.getByRole('option', { name: 'Include self-citations', exact: true }).click()
-  await expect(setting).toContainText('Include self-citations')
-  await closeOverlays(page)
+  await page.getByRole('tab', { name: 'Incl. self-citations', exact: true }).click()
+  await expect(page.locator('#results')).toContainText('Including self-citations')
   const including = await scores.allTextContents()
-  await setting.click()
-  await page.getByRole('option', { name: 'Exclude all-author self-citations', exact: true }).click()
-  await expect(setting).toContainText('Exclude all-author self-citations')
-  await closeOverlays(page)
+  await page.getByRole('tab', { name: 'Excl. self-citations', exact: true }).click()
+  await expect(page.locator('#results')).toContainText('Excluding all-author self-citations')
   return [...excluding, ...including]
 }
 
@@ -165,6 +163,7 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
     .find((subfield) => subfield.name === 'Epidemiology')!
     .top2['with-self'].toFixed(3)
 
+  await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/')
   await page.getByRole('button', { name: 'Try a synthetic example' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')

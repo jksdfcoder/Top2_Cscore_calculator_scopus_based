@@ -10,28 +10,17 @@ import {
 import { reference, metricLabels, selfLabel, scopeLabel } from '~/lib/reference'
 
 const props = defineProps<{ analysis: Analysis; files: ParsedFile[]; isDemo: boolean }>()
-const selfMode = ref<SelfMode>('without-self')
+const selfMode = defineModel<SelfMode>('selfMode', { required: true })
 const selectedScope = ref('career')
 const tabs = [
   { label: 'Career', value: 'career' },
   { label: 'Single year · 2025', value: 'single-year' },
 ]
-const selfOptions = [
-  { label: 'Exclude all-author self-citations', value: 'without-self' },
-  { label: 'Include self-citations', value: 'with-self' },
-]
-const summaries = computed(() => props.analysis.modes.filter((m) => m.selfMode === selfMode.value))
-watch(
-  () => props.analysis,
-  (value) => {
-    if (!value.modes.some((m) => m.selfMode === selfMode.value && m.ready)) {
-      const available = value.modes.find((m) => m.ready)
-      if (available) selfMode.value = available.selfMode
-    }
-  },
-  { immediate: true },
+const detail = computed(() =>
+  props.analysis.modes.find(
+    (m) => m.selfMode === selfMode.value && m.scope === selectedScope.value,
+  ),
 )
-const detail = computed(() => summaries.value.find((m) => m.scope === selectedScope.value))
 const rows = computed(() =>
   detail.value?.result
     ? metricNames.map((key) => ({
@@ -69,57 +58,16 @@ function download(kind: 'json' | 'csv') {
 </script>
 
 <template>
-  <section id="results" aria-labelledby="results-heading" class="page-section">
-    <div class="section-heading">
-      <div>
-        <h2 id="results-heading">Your results</h2>
-        <p class="text-muted">
-          {{
-            isDemo
-              ? 'Synthetic example · not a real researcher'
-              : 'Calculated from your export snapshot'
-          }}
-          · V9 normalization
-        </p>
-      </div>
-      <USelect
-        v-model="selfMode"
-        :items="selfOptions"
-        value-key="value"
-        aria-label="Self-citation setting"
-        class="mode-select"
-      />
+  <section id="results" aria-labelledby="results-heading" class="chapter reveal">
+    <div class="chapter-head">
+      <h2 id="results-heading">What drives your score.</h2>
+      <p>
+        Each indicator adds ln(1 + value) ÷ the V9 reference maximum. {{ selfLabel(selfMode) }}.
+      </p>
     </div>
-    <div class="summary-container">
-      <div class="score-grid">
-        <div v-for="mode in summaries" :key="mode.scope" class="score-summary">
-          <h3>{{ scopeLabel(mode.scope) }}</h3>
-          <p class="score-value">
-            {{ mode.result ? mode.result.cScore.toFixed(6) : 'Incomplete' }}
-          </p>
-          <p class="text-muted">
-            {{
-              mode.scope === 'career'
-                ? 'Citations received 1996–2025'
-                : 'Citations received during 2025'
-            }}
-          </p>
-          <p v-if="mode.result" class="text-muted">
-            {{ number(mode.result.paperCount) }} publications through 2025
-          </p>
-          <p v-else class="text-warning">
-            {{ mode.issues[0]?.message || 'More input is needed.' }}
-          </p>
-        </div>
-      </div>
-    </div>
-    <p class="result-note">
-      These are reference scores, not confirmation of Top 2% selection. The official V9 database
-      uses a frozen Scopus snapshot; later exports can produce different results.
-    </p>
-    <UTabs v-model="selectedScope" :items="tabs" :content="false" class="detail-tabs" />
-    <div v-if="detail?.result" class="metric-container">
-      <div class="metric-grid">
+    <UTabs v-model="selectedScope" :items="tabs" :content="false" class="max-w-sm" />
+    <div v-if="detail?.result" class="chapter-body">
+      <div class="detail-grid">
         <div class="table-scroll" tabindex="0" role="region" aria-label="Citation metric details">
           <table class="metric-table">
             <caption class="sr-only">
@@ -135,7 +83,7 @@ function download(kind: 'json' | 'csv') {
               <tr>
                 <th scope="col">Indicator</th>
                 <th scope="col">Value</th>
-                <th scope="col">Score contribution</th>
+                <th scope="col">Contribution</th>
               </tr>
             </thead>
             <tbody>
@@ -164,28 +112,18 @@ function download(kind: 'json' | 'csv') {
       v-else
       color="warning"
       variant="subtle"
-      title="This result needs more data"
+      title="Incomplete — this result needs more data"
       :description="detail?.issues[0]?.message"
-      class="mt-4"
+      class="mt-6"
     />
-    <div class="download-actions">
-      <UButton
-        variant="outline"
-        color="neutral"
-        :disabled="!analysis.modes.some((m) => m.ready)"
-        @click="download('json')"
+    <div v-if="analysis.modes.some((m) => m.ready)" class="chapter-actions">
+      <UButton variant="outline" color="neutral" icon="i-lucide-download" @click="download('json')"
         >Download audit JSON</UButton
       >
-      <UButton
-        variant="ghost"
-        color="neutral"
-        :disabled="!analysis.modes.some((m) => m.ready)"
-        @click="download('csv')"
+      <UButton variant="ghost" color="neutral" @click="download('csv')"
         >Download metrics CSV</UButton
       >
-      <span class="text-muted text-sm"
-        >Includes available modes; incomplete modes are identified in the audit.</span
-      >
+      <span class="muted">Created on your device. No titles or author IDs included.</span>
     </div>
   </section>
 </template>
