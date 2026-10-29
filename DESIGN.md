@@ -8,4 +8,4 @@ Palette: light warm gray content column (`#f3f3f0`) on a barely deeper page edge
 
 Use Nuxt UI controls and the system sans stack. Scores use tabular numerals: 3 decimals in the hero, 6 in the breakdown table. Only the score panel is a card. Do not add a sidebar, gradients, decorative cards or icons beside headings. Graphical data always has an equivalent table. Warnings name the missing input and the next action.
 
-Disclaimers sit where they matter: "Calculated estimate · not an official result" under the score, local processing in the drop zone, "does not confirm official inclusion" under the bar, and full limitations, attribution and licences in the Methodology dialog.
+Short disclaimers sit where they matter: "Calculated estimate · not an official result" under the score, local processing in the drop zone, "does not confirm official inclusion" under the bar, and the full limitations, attribution and licences as unabridged small print in the page footer. Under each score, the calculation plays formula, then six labelled contributions (indicator, value, bar), then the total.

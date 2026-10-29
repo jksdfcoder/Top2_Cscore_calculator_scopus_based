@@ -218,6 +218,8 @@ test('export guide and methodology open as dialogs', async ({ page }) => {
   await page.keyboard.press('Escape')
   await page.getByRole('button', { name: 'Methodology' }).click()
   await expect(page.getByRole('dialog')).toContainText('the formula is the same in every field')
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('contentinfo')).toContainText('Not an official service of')
 })
 
 test('clearing while a demo is fetching cancels the old request intent', async ({ page }) => {

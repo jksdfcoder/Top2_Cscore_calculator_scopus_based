@@ -134,7 +134,7 @@ const latestStatus = computed(() =>
             href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based"
             target="_blank"
             rel="noopener noreferrer"
-            >Source</a
+            >GitHub</a
           >
         </nav>
       </header>
@@ -281,17 +281,16 @@ const latestStatus = computed(() =>
                 <div v-for="s in scores" :key="s.scope" class="score">
                   <dt>{{ s.label }}</dt>
                   <dd>
-                    <span v-if="s.state === 'ready'" class="score-strip" aria-hidden="true">
-                      <i
+                    <ol v-if="s.state === 'ready'" class="score-terms" aria-hidden="true">
+                      <li
                         v-for="(p, i) in s.parts"
                         :key="p.k"
-                        :title="`${p.k} ${p.v.toFixed(3)}`"
-                        :style="{
-                          width: `${(p.v / 6) * 100}%`,
-                          animationDelay: `${180 + i * 70}ms`,
-                        }"
-                      />
-                    </span>
+                        :style="{ animationDelay: `${200 + i * 90}ms` }"
+                      >
+                        {{ p.k }} <b>{{ p.v.toFixed(3) }}</b
+                        ><i :style="{ width: `${p.v * 100}%` }" />
+                      </li>
+                    </ol>
                     <span
                       class="score-value"
                       :class="{ empty: s.state === 'empty', incomplete: s.state === 'incomplete' }"
@@ -415,54 +414,55 @@ const latestStatus = computed(() =>
               2025. Excluding self-citations removes any citation sharing an author with the cited
               paper.
             </p>
-            <h3>Limitations</h3>
-            <p>
-              This is a calculated estimate, not an official result. It uses your current Scopus
-              exports with the published method and the V9 normalization parameters; the official
-              database is frozen at the Scopus snapshot of 1 August 2026. Snapshot dates, record
-              updates, incomplete exports, author identification and undisclosed implementation
-              details can all make results differ. Crossing a displayed line does not confirm
-              inclusion in the official Top 2% database.
-            </p>
-            <p>
-              Your chosen field or subfield is a comparison, not an official classification.
-              Citation indicators capture only part of research impact and should not be used alone
-              for hiring, promotion, funding or similar decisions. The tool is provided as is,
-              without warranty of accuracy or completeness.
-            </p>
-            <p>
-              Independent open-source tool. Not an official service of, or endorsed by, Stanford
-              University, Elsevier, Scopus or HKU.
-            </p>
-            <h3>Data and licence</h3>
-            <p class="muted">
-              Reference data: J. P. A. Ioannidis,
-              <a
-                href="https://doi.org/10.17632/btchxktzyw.9"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Updated science-wide author databases of standardized citation indicators, V9</a
-              >, licensed under
-              <a
-                href="https://creativecommons.org/licenses/by-nc/3.0/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >CC BY-NC 3.0</a
-              >; values are extracted and transformed for this tool. Method:
-              <a
-                href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000918"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Ioannidis et al. 2020</a
-              >. Application code: MIT licence.
-            </p>
           </div>
         </template>
       </UModal>
 
       <footer class="site-footer">
-        <span>Independent estimate · not an official result · files stay in your browser</span
-        ><a href="#page-title">Back to top</a>
+        <div class="disclaimer">
+          <h2>Limitations</h2>
+          <p>
+            This is a calculated estimate, not an official result. It uses your current Scopus
+            exports with the published method and the V9 normalization parameters; the official
+            database is frozen at the Scopus snapshot of 1 August 2026. Snapshot dates, record
+            updates, incomplete exports, author identification and undisclosed implementation
+            details can all make results differ. Crossing a displayed line does not confirm
+            inclusion in the official Top 2% database.
+          </p>
+          <p>
+            Your chosen field or subfield is a comparison, not an official classification. Citation
+            indicators capture only part of research impact and should not be used alone for hiring,
+            promotion, funding or similar decisions. The tool is provided as is, without warranty of
+            accuracy or completeness.
+          </p>
+          <p>
+            Independent open-source tool. Not an official service of, or endorsed by, Stanford
+            University, Elsevier, Scopus or HKU.
+          </p>
+          <h2>Data and licence</h2>
+          <p>
+            Reference data: J. P. A. Ioannidis,
+            <a
+              href="https://doi.org/10.17632/btchxktzyw.9"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Updated science-wide author databases of standardized citation indicators, V9</a
+            >, licensed under
+            <a
+              href="https://creativecommons.org/licenses/by-nc/3.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >CC BY-NC 3.0</a
+            >; values are extracted and transformed for this tool. Method:
+            <a
+              href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000918"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Ioannidis et al. 2020</a
+            >. Application code: MIT licence.
+          </p>
+        </div>
+        <a href="#page-title">Back to top</a>
       </footer>
     </div>
   </div>
