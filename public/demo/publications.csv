@@ -1,0 +1,4 @@
+EID,Title,Year,Author(s) ID,Author full names,Source title,ISSN,Volume,Issue
+2-s2.0-1,A synthetic solitary paper,2020,123,Synthetic Person (123),Example Journal,12345678,1,1
+2-s2.0-2,A synthetic collaborative paper,2021,123;456,Synthetic Person (123); Example Person (456),Example Journal,12345678,2,1
+2-s2.0-3,A synthetic final author paper,2022,456;789;987;123,Example (456); Example (789); Example (987); Synthetic Person (123),Example Journal,12345678,3,1

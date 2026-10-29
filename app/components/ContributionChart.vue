@@ -1,0 +1,79 @@
+<script setup lang="ts">
+import type { CalculationResult } from '~/lib/cscore'
+import { metricNames } from '~/lib/cscore'
+const props = defineProps<{ result: CalculationResult }>()
+const element = ref<HTMLDivElement>()
+let chart: import('echarts/core').ECharts | undefined
+let observer: ResizeObserver | undefined
+let disposed = false
+function update() {
+  chart?.setOption({
+    animation: false,
+    aria: { enabled: true },
+    tooltip: { show: false },
+    radar: {
+      radius: '64%',
+      center: ['50%', '50%'],
+      indicator: metricNames.map((name) => ({
+        name,
+        max: Math.max(1, ...Object.values(props.result.contributions)),
+      })),
+      axisName: { color: '#334155', fontSize: 12 },
+      splitArea: { show: false },
+      splitLine: { lineStyle: { color: '#d5dfe4' } },
+      axisLine: { lineStyle: { color: '#d5dfe4' } },
+    },
+    series: [
+      {
+        type: 'radar',
+        symbol: 'circle',
+        symbolSize: 5,
+        data: [
+          {
+            value: metricNames.map((key) => props.result.contributions[key]),
+            name: 'Score contributions',
+          },
+        ],
+        lineStyle: { color: '#0f766e', width: 2 },
+        itemStyle: { color: '#0f766e' },
+        areaStyle: { color: '#0f766e', opacity: 0.09 },
+      },
+    ],
+  })
+}
+onMounted(async () => {
+  const [{ init, use }, { RadarChart }, { RadarComponent, AriaComponent }, { SVGRenderer }] =
+    await Promise.all([
+      import('echarts/core'),
+      import('echarts/charts'),
+      import('echarts/components'),
+      import('echarts/renderers'),
+    ])
+  if (disposed || !element.value) return
+  use([RadarChart, RadarComponent, AriaComponent, SVGRenderer])
+  chart = init(element.value, undefined, { renderer: 'svg' })
+  update()
+  observer = new ResizeObserver(() => chart?.resize())
+  observer.observe(element.value)
+})
+watch(() => props.result, update)
+onBeforeUnmount(() => {
+  disposed = true
+  observer?.disconnect()
+  chart?.dispose()
+})
+</script>
+<template>
+  <figure class="contribution-chart">
+    <div
+      ref="element"
+      class="chart-canvas"
+      role="img"
+      aria-label="Radar chart of six score contributions. Exact values are in the adjacent indicator table."
+    />
+    <figcaption>
+      Six contributions to the composite score. Each axis uses the same reference scale; this is not
+      a percentile.
+    </figcaption>
+  </figure>
+</template>

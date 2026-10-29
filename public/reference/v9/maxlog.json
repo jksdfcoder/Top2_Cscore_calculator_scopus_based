@@ -1,0 +1,66 @@
+{
+  "dataset": "https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/9",
+  "formula": "sum(log1p(indicator) / denominator)",
+  "indicator_order": [
+    "NC",
+    "H",
+    "Hm",
+    "NCS",
+    "NCSF",
+    "NCSFL"
+  ],
+  "modes": {
+    "singleyr_with_self": {
+      "denominators": {
+        "NC": 11.39843450448303,
+        "H": 4.709530201312334,
+        "Hm": 3.824237870579323,
+        "NCS": 9.93056755693987,
+        "NCSF": 10.90240841105723,
+        "NCSFL": 11.03219248151141
+      },
+      "source_file": "Table_3_maxlog_singleyr_2025_pubs_since_1788_wopp_extracted_202608.xlsx",
+      "source_url": "https://data.mendeley.com/public-files/datasets/btchxktzyw/files/86301b34-74c6-40ac-b84c-b3bf5f620e14/file_downloaded",
+      "sha256": "1984c751770840bd98e0ee06634135a4d7fc7afe09181cb6ac1eb809df088766"
+    },
+    "singleyr_without_self": {
+      "denominators": {
+        "NC": 11.38883507973918,
+        "H": 4.672828834461906,
+        "Hm": 3.743018746735687,
+        "NCS": 9.93056755693987,
+        "NCSF": 10.9020769071314,
+        "NCSFL": 11.03165864344578
+      },
+      "source_file": "Table_3_maxlog_singleyr_2025_pubs_since_1788_wopp_extracted_202608.xlsx",
+      "source_url": "https://data.mendeley.com/public-files/datasets/btchxktzyw/files/86301b34-74c6-40ac-b84c-b3bf5f620e14/file_downloaded",
+      "sha256": "1984c751770840bd98e0ee06634135a4d7fc7afe09181cb6ac1eb809df088766"
+    },
+    "career_with_self": {
+      "denominators": {
+        "NC": 13.4989597651097,
+        "H": 5.820082930352362,
+        "Hm": 5.058238672559136,
+        "NCS": 12.15790603690957,
+        "NCSF": 12.70202419669671,
+        "NCSFL": 13.05810215115031
+      },
+      "source_file": "Table_3_maxlog_career_2025_pubs_since_1788_wopp_extracted_202608.xlsx",
+      "source_url": "https://data.mendeley.com/public-files/datasets/btchxktzyw/files/54ecce6c-9d67-42df-a3db-ea84e1ddcf32/file_downloaded",
+      "sha256": "fcd805c5b3743a72b2b606e5d935a8d8679b8138f5cb2eb4029f587920899c6f"
+    },
+    "career_without_self": {
+      "denominators": {
+        "NC": 13.47337511562236,
+        "H": 5.774551545544409,
+        "Hm": 4.988377577090866,
+        "NCS": 12.15790603690957,
+        "NCSF": 12.69560925787822,
+        "NCSFL": 13.05292326306206
+      },
+      "source_file": "Table_3_maxlog_career_2025_pubs_since_1788_wopp_extracted_202608.xlsx",
+      "source_url": "https://data.mendeley.com/public-files/datasets/btchxktzyw/files/54ecce6c-9d67-42df-a3db-ea84e1ddcf32/file_downloaded",
+      "sha256": "fcd805c5b3743a72b2b606e5d935a8d8679b8138f5cb2eb4029f587920899c6f"
+    }
+  }
+}
