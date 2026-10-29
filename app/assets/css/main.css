@@ -313,6 +313,37 @@ figcaption {
   max-width: 75ch;
   margin-bottom: 1rem;
 }
+.comparison-picks {
+  container-type: inline-size;
+}
+.comparison-pick-row {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  margin-bottom: 1rem;
+}
+.comparison-pick-row > * {
+  min-width: 0;
+}
+.comparison-pick-row [data-slot='placeholder'] {
+  color: var(--ui-text-muted);
+}
+.comparison-note caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0 0 0.75rem;
+  font-weight: 600;
+  color: var(--ui-text-highlighted);
+}
+.comparison-note .table-scroll {
+  margin-bottom: 1rem;
+}
+.comparison-note a {
+  text-decoration: underline;
+}
+.metric-table td.band {
+  text-align: left;
+}
 .method-links {
   display: flex;
   flex-wrap: wrap;
@@ -341,6 +372,11 @@ figcaption {
 }
 .skip-link:focus {
   top: 1rem;
+}
+@container (min-width: 36rem) {
+  .comparison-pick-row {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 @container (min-width: 42rem) {
   .identity-row {

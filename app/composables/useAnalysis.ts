@@ -38,7 +38,6 @@ export function useAnalysis() {
     busy.value = true
     error.value = ''
     invalidate()
-    decisions.value = {}
     try {
       const parsed: ParsedFile[] = []
       for (const file of incoming) {
@@ -78,7 +77,6 @@ export function useAnalysis() {
 
   function removeFile(id: string) {
     files.value = files.value.filter((f) => f.id !== id)
-    decisions.value = {}
     invalidate()
   }
   function calculate() {

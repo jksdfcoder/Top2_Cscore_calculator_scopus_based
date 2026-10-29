@@ -1,0 +1,6871 @@
+{
+ "version": "v9",
+ "citationYear": 2025,
+ "snapshot": "2026-08-01",
+ "license": "CC BY-NC 3.0",
+ "dataset": "https://doi.org/10.17632/btchxktzyw.9",
+ "sources": [
+  {
+   "file": "Table_1_Authors_career_2025_pubs_since_1788_wopp_extracted_202608.xlsx",
+   "sha256": "cf5fd523dcb369b066a41b901f861c703d696ca7d3be907a94ff6ec0f59e4ec1"
+  },
+  {
+   "file": "Table_2_field_subfield_thresholds_career_2025_pubs_since_1788_wopp_extracted_202608.xlsx",
+   "sha256": "ec2751aa8e458686083461043498c65824811cbc04e4055cfaa0268b674fe66a"
+  },
+  {
+   "file": "Table_1_Authors_singleyr_2025_pubs_since_1788_wopp_extracted_202608.xlsx",
+   "sha256": "8bd46b5cbdc4de05ea09afc662623ca3059b4d705d4582045c5244edf94b02f5"
+  },
+  {
+   "file": "Table_2_field_subfield_thresholds_singleyr_2025_pubs_since_1788_wopp_extracted_202608.xlsx",
+   "sha256": "ef13877d0e84b4c88610c8a138fc9cb969d8c21be740bb95bc2d54a7fb482cae"
+  }
+ ],
+ "scopes": {
+  "career": {
+   "top100k": {
+    "with-self": 3.530566867255172,
+    "without-self": 3.480989747141274
+   },
+   "fields": [
+    {
+     "name": "Agriculture, Fisheries & Forestry",
+     "domain": "Applied Sciences",
+     "authors": 434489,
+     "listed": 8588,
+     "c": {
+      "25": 1.023,
+      "50": 1.44,
+      "75": 1.897,
+      "90": 2.375,
+      "95": 2.681,
+      "99": 3.271
+     }
+    },
+    {
+     "name": "Biology",
+     "domain": "Natural Sciences",
+     "authors": 445736,
+     "listed": 9461,
+     "c": {
+      "25": 1.125,
+      "50": 1.558,
+      "75": 2.045,
+      "90": 2.565,
+      "95": 2.916,
+      "99": 3.577
+     }
+    },
+    {
+     "name": "Biomedical Research",
+     "domain": "Health Sciences",
+     "authors": 897823,
+     "listed": 18486,
+     "c": {
+      "25": 1.069,
+      "50": 1.546,
+      "75": 2.026,
+      "90": 2.537,
+      "95": 2.891,
+      "99": 3.602
+     }
+    },
+    {
+     "name": "Built Environment & Design",
+     "domain": "Applied Sciences",
+     "authors": 73753,
+     "listed": 1526,
+     "c": {
+      "25": 1.024,
+      "50": 1.444,
+      "75": 1.912,
+      "90": 2.417,
+      "95": 2.749,
+      "99": 3.352
+     }
+    },
+    {
+     "name": "Chemistry",
+     "domain": "Natural Sciences",
+     "authors": 804950,
+     "listed": 16730,
+     "c": {
+      "25": 1.097,
+      "50": 1.504,
+      "75": 1.93,
+      "90": 2.407,
+      "95": 2.727,
+      "99": 3.384
+     }
+    },
+    {
+     "name": "Clinical Medicine",
+     "domain": "Health Sciences",
+     "authors": 3599268,
+     "listed": 74888,
+     "c": {
+      "25": 0.886,
+      "50": 1.364,
+      "75": 1.889,
+      "90": 2.427,
+      "95": 2.791,
+      "99": 3.524
+     }
+    },
+    {
+     "name": "Communication & Textual Studies",
+     "domain": "Arts & Humanities",
+     "authors": 63964,
+     "listed": 1311,
+     "c": {
+      "25": 1.022,
+      "50": 1.525,
+      "75": 2.054,
+      "90": 2.548,
+      "95": 2.855,
+      "99": 3.403
+     }
+    },
+    {
+     "name": "Earth & Environmental Sciences",
+     "domain": "Natural Sciences",
+     "authors": 399932,
+     "listed": 8272,
+     "c": {
+      "25": 1.119,
+      "50": 1.561,
+      "75": 2.073,
+      "90": 2.622,
+      "95": 2.971,
+      "99": 3.61
+     }
+    },
+    {
+     "name": "Economics & Business",
+     "domain": "Economic & Social Sciences",
+     "authors": 227917,
+     "listed": 4838,
+     "c": {
+      "25": 1.221,
+      "50": 1.67,
+      "75": 2.187,
+      "90": 2.712,
+      "95": 3.029,
+      "99": 3.615
+     }
+    },
+    {
+     "name": "Enabling & Strategic Technologies",
+     "domain": "Applied Sciences",
+     "authors": 1074096,
+     "listed": 21525,
+     "c": {
+      "25": 0.904,
+      "50": 1.364,
+      "75": 1.841,
+      "90": 2.322,
+      "95": 2.63,
+      "99": 3.242
+     }
+    },
+    {
+     "name": "Engineering",
+     "domain": "Applied Sciences",
+     "authors": 910141,
+     "listed": 19516,
+     "c": {
+      "25": 0.936,
+      "50": 1.356,
+      "75": 1.813,
+      "90": 2.304,
+      "95": 2.633,
+      "99": 3.284
+     }
+    },
+    {
+     "name": "Historical Studies",
+     "domain": "Arts & Humanities",
+     "authors": 59008,
+     "listed": 1232,
+     "c": {
+      "25": 1.072,
+      "50": 1.554,
+      "75": 2.06,
+      "90": 2.506,
+      "95": 2.764,
+      "99": 3.277
+     }
+    },
+    {
+     "name": "Information & Communication Technologies",
+     "domain": "Applied Sciences",
+     "authors": 910811,
+     "listed": 18087,
+     "c": {
+      "25": 0.93,
+      "50": 1.33,
+      "75": 1.779,
+      "90": 2.259,
+      "95": 2.588,
+      "99": 3.248
+     }
+    },
+    {
+     "name": "Mathematics & Statistics",
+     "domain": "Natural Sciences",
+     "authors": 138254,
+     "listed": 2971,
+     "c": {
+      "25": 1.132,
+      "50": 1.583,
+      "75": 2.139,
+      "90": 2.67,
+      "95": 2.978,
+      "99": 3.512
+     }
+    },
+    {
+     "name": "Philosophy & Theology",
+     "domain": "Arts & Humanities",
+     "authors": 30497,
+     "listed": 612,
+     "c": {
+      "25": 1.072,
+      "50": 1.582,
+      "75": 2.103,
+      "90": 2.575,
+      "95": 2.844,
+      "99": 3.341
+     }
+    },
+    {
+     "name": "Physics & Astronomy",
+     "domain": "Natural Sciences",
+     "authors": 912046,
+     "listed": 21480,
+     "c": {
+      "25": 1.029,
+      "50": 1.477,
+      "75": 1.992,
+      "90": 2.553,
+      "95": 2.911,
+      "99": 3.57
+     }
+    },
+    {
+     "name": "Psychology & Cognitive Sciences",
+     "domain": "Health Sciences",
+     "authors": 141053,
+     "listed": 4007,
+     "c": {
+      "25": 1.228,
+      "50": 1.651,
+      "75": 2.179,
+      "90": 2.787,
+      "95": 3.19,
+      "99": 3.856
+     }
+    },
+    {
+     "name": "Public Health & Health Services",
+     "domain": "Health Sciences",
+     "authors": 223175,
+     "listed": 4440,
+     "c": {
+      "25": 0.967,
+      "50": 1.414,
+      "75": 1.919,
+      "90": 2.467,
+      "95": 2.817,
+      "99": 3.447
+     }
+    },
+    {
+     "name": "Social Sciences",
+     "domain": "Economic & Social Sciences",
+     "authors": 265152,
+     "listed": 5871,
+     "c": {
+      "25": 1.158,
+      "50": 1.631,
+      "75": 2.162,
+      "90": 2.663,
+      "95": 2.964,
+      "99": 3.499
+     }
+    },
+    {
+     "name": "Visual & Performing Arts",
+     "domain": "Arts & Humanities",
+     "authors": 7188,
+     "listed": 108,
+     "c": {
+      "25": 0.753,
+      "50": 1.27,
+      "75": 1.762,
+      "90": 2.157,
+      "95": 2.401,
+      "99": 2.799
+     }
+    }
+   ],
+   "subfields": [
+    {
+     "name": "Accounting",
+     "field": "Economics & Business",
+     "authors": 7240,
+     "listed": 146,
+     "c": {
+      "25": 1.378,
+      "50": 1.806,
+      "75": 2.294,
+      "90": 2.753,
+      "95": 3.042,
+      "99": 3.588
+     },
+     "top2": {
+      "with-self": 3.378752919687287,
+      "without-self": 3.36220291580703
+     }
+    },
+    {
+     "name": "Acoustics",
+     "field": "Physics & Astronomy",
+     "authors": 38987,
+     "listed": 820,
+     "c": {
+      "25": 0.962,
+      "50": 1.371,
+      "75": 1.828,
+      "90": 2.34,
+      "95": 2.7,
+      "99": 3.369
+     },
+     "top2": {
+      "with-self": 3.1202517970815,
+      "without-self": 3.051215919061542
+     }
+    },
+    {
+     "name": "Aerospace & Aeronautics",
+     "field": "Engineering",
+     "authors": 66382,
+     "listed": 1416,
+     "c": {
+      "25": 0.867,
+      "50": 1.25,
+      "75": 1.673,
+      "90": 2.131,
+      "95": 2.453,
+      "99": 3.104
+     },
+     "top2": {
+      "with-self": 2.839336353515391,
+      "without-self": 2.749869354604149
+     }
+    },
+    {
+     "name": "Agricultural Economics & Policy",
+     "field": "Economics & Business",
+     "authors": 6741,
+     "listed": 140,
+     "c": {
+      "25": 1.235,
+      "50": 1.696,
+      "75": 2.229,
+      "90": 2.763,
+      "95": 3.066,
+      "99": 3.61
+     },
+     "top2": {
+      "with-self": 3.376438148679781,
+      "without-self": 3.347950213186351
+     }
+    },
+    {
+     "name": "Agronomy & Agriculture",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 95377,
+     "listed": 1978,
+     "c": {
+      "25": 1.049,
+      "50": 1.448,
+      "75": 1.909,
+      "90": 2.393,
+      "95": 2.709,
+      "99": 3.336
+     },
+     "top2": {
+      "with-self": 3.078367088737422,
+      "without-self": 3.028639566257446
+     }
+    },
+    {
+     "name": "Allergy",
+     "field": "Clinical Medicine",
+     "authors": 19768,
+     "listed": 409,
+     "c": {
+      "25": 0.939,
+      "50": 1.401,
+      "75": 1.922,
+      "90": 2.502,
+      "95": 2.897,
+      "99": 3.674
+     },
+     "top2": {
+      "with-self": 3.395770858906317,
+      "without-self": 3.324136916920343
+     }
+    },
+    {
+     "name": "Analytical Chemistry",
+     "field": "Chemistry",
+     "authors": 137328,
+     "listed": 2878,
+     "c": {
+      "25": 1.114,
+      "50": 1.515,
+      "75": 1.936,
+      "90": 2.401,
+      "95": 2.711,
+      "99": 3.323
+     },
+     "top2": {
+      "with-self": 3.078781285862686,
+      "without-self": 3.017576920034414
+     }
+    },
+    {
+     "name": "Anatomy & Morphology",
+     "field": "Biomedical Research",
+     "authors": 8297,
+     "listed": 175,
+     "c": {
+      "25": 0.85,
+      "50": 1.245,
+      "75": 1.686,
+      "90": 2.131,
+      "95": 2.446,
+      "99": 3.052
+     },
+     "top2": {
+      "with-self": 2.766824355858635,
+      "without-self": 2.744331711513455
+     }
+    },
+    {
+     "name": "Anesthesiology",
+     "field": "Clinical Medicine",
+     "authors": 59383,
+     "listed": 1218,
+     "c": {
+      "25": 0.862,
+      "50": 1.285,
+      "75": 1.791,
+      "90": 2.314,
+      "95": 2.668,
+      "99": 3.363
+     },
+     "top2": {
+      "with-self": 3.096696421955848,
+      "without-self": 3.063704667992171
+     }
+    },
+    {
+     "name": "Anthropology",
+     "field": "Historical Studies",
+     "authors": 10039,
+     "listed": 212,
+     "c": {
+      "25": 1.185,
+      "50": 1.735,
+      "75": 2.304,
+      "90": 2.765,
+      "95": 3.073,
+      "99": 3.584
+     },
+     "top2": {
+      "with-self": 3.389192495220115,
+      "without-self": 3.352787878404361
+     }
+    },
+    {
+     "name": "Applied Ethics",
+     "field": "Philosophy & Theology",
+     "authors": 6701,
+     "listed": 138,
+     "c": {
+      "25": 1.185,
+      "50": 1.684,
+      "75": 2.233,
+      "90": 2.761,
+      "95": 3.052,
+      "99": 3.564
+     },
+     "top2": {
+      "with-self": 3.354846470647329,
+      "without-self": 3.314904119933371
+     }
+    },
+    {
+     "name": "Applied Mathematics",
+     "field": "Mathematics & Statistics",
+     "authors": 23982,
+     "listed": 516,
+     "c": {
+      "25": 1.107,
+      "50": 1.5,
+      "75": 2.004,
+      "90": 2.567,
+      "95": 2.907,
+      "99": 3.534
+     },
+     "top2": {
+      "with-self": 3.308952865500264,
+      "without-self": 3.216748784516945
+     }
+    },
+    {
+     "name": "Applied Physics",
+     "field": "Physics & Astronomy",
+     "authors": 323282,
+     "listed": 6852,
+     "c": {
+      "25": 1.042,
+      "50": 1.486,
+      "75": 1.983,
+      "90": 2.5,
+      "95": 2.821,
+      "99": 3.46
+     },
+     "top2": {
+      "with-self": 3.204821363599422,
+      "without-self": 3.130968131770941
+     }
+    },
+    {
+     "name": "Archaeology",
+     "field": "Historical Studies",
+     "authors": 21336,
+     "listed": 452,
+     "c": {
+      "25": 1.057,
+      "50": 1.49,
+      "75": 2.003,
+      "90": 2.49,
+      "95": 2.765,
+      "99": 3.295
+     },
+     "top2": {
+      "with-self": 3.094207602589985,
+      "without-self": 3.023896690519103
+     }
+    },
+    {
+     "name": "Architecture",
+     "field": "Built Environment & Design",
+     "authors": 1981,
+     "listed": 40,
+     "c": {
+      "25": 0.625,
+      "50": 1.121,
+      "75": 1.56,
+      "90": 2.017,
+      "95": 2.239,
+      "99": 2.716
+     },
+     "top2": {
+      "with-self": 2.508204197721685,
+      "without-self": 2.50878964462439
+     }
+    },
+    {
+     "name": "Art Practice, History & Theory",
+     "field": "Visual & Performing Arts",
+     "authors": 2788,
+     "listed": 56,
+     "c": {
+      "25": 0.667,
+      "50": 1.153,
+      "75": 1.622,
+      "90": 2.028,
+      "95": 2.232,
+      "99": 2.593
+     },
+     "top2": {
+      "with-self": 2.46199609169479,
+      "without-self": 2.454227729098774
+     }
+    },
+    {
+     "name": "Arthritis & Rheumatology",
+     "field": "Clinical Medicine",
+     "authors": 45980,
+     "listed": 943,
+     "c": {
+      "25": 0.891,
+      "50": 1.328,
+      "75": 1.86,
+      "90": 2.436,
+      "95": 2.844,
+      "99": 3.666
+     },
+     "top2": {
+      "with-self": 3.325990669193756,
+      "without-self": 3.289041628886998
+     }
+    },
+    {
+     "name": "Artificial Intelligence & Image Processing",
+     "field": "Information & Communication Technologies",
+     "authors": 517648,
+     "listed": 10979,
+     "c": {
+      "25": 0.927,
+      "50": 1.333,
+      "75": 1.788,
+      "90": 2.262,
+      "95": 2.582,
+      "99": 3.229
+     },
+     "top2": {
+      "with-self": 2.965136376664205,
+      "without-self": 2.901316990521654
+     }
+    },
+    {
+     "name": "Astronomy & Astrophysics",
+     "field": "Physics & Astronomy",
+     "authors": 58202,
+     "listed": 1649,
+     "c": {
+      "25": 1.219,
+      "50": 1.74,
+      "75": 2.397,
+      "90": 2.989,
+      "95": 3.315,
+      "99": 3.834
+     },
+     "top2": {
+      "with-self": 3.644971565527204,
+      "without-self": 3.531765676453663
+     }
+    },
+    {
+     "name": "Automobile Design & Engineering",
+     "field": "Engineering",
+     "authors": 2238,
+     "listed": 47,
+     "c": {
+      "25": 0.757,
+      "50": 1.07,
+      "75": 1.455,
+      "90": 1.858,
+      "95": 2.161,
+      "99": 2.759
+     },
+     "top2": {
+      "with-self": 2.542499105582924,
+      "without-self": 2.47954093734059
+     }
+    },
+    {
+     "name": "Behavioral Science & Comparative Psychology",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 13044,
+     "listed": 381,
+     "c": {
+      "25": 1.298,
+      "50": 1.699,
+      "75": 2.235,
+      "90": 2.903,
+      "95": 3.291,
+      "99": 3.822
+     },
+     "top2": {
+      "with-self": 3.648855059621265,
+      "without-self": 3.582226578806203
+     }
+    },
+    {
+     "name": "Biochemistry & Molecular Biology",
+     "field": "Biomedical Research",
+     "authors": 216826,
+     "listed": 4497,
+     "c": {
+      "25": 1.216,
+      "50": 1.661,
+      "75": 2.146,
+      "90": 2.668,
+      "95": 3.023,
+      "99": 3.704
+     },
+     "top2": {
+      "with-self": 3.450442073435793,
+      "without-self": 3.39859287947807
+     }
+    },
+    {
+     "name": "Bioinformatics",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 24357,
+     "listed": 503,
+     "c": {
+      "25": 1.074,
+      "50": 1.478,
+      "75": 1.921,
+      "90": 2.439,
+      "95": 2.801,
+      "99": 3.519
+     },
+     "top2": {
+      "with-self": 3.222753994768356,
+      "without-self": 3.174173724050096
+     }
+    },
+    {
+     "name": "Biomedical Engineering",
+     "field": "Engineering",
+     "authors": 74543,
+     "listed": 1554,
+     "c": {
+      "25": 0.988,
+      "50": 1.438,
+      "75": 1.869,
+      "90": 2.334,
+      "95": 2.662,
+      "99": 3.338
+     },
+     "top2": {
+      "with-self": 3.058423784704583,
+      "without-self": 2.993913487356483
+     }
+    },
+    {
+     "name": "Biophysics",
+     "field": "Biomedical Research",
+     "authors": 21025,
+     "listed": 443,
+     "c": {
+      "25": 1.023,
+      "50": 1.44,
+      "75": 1.83,
+      "90": 2.28,
+      "95": 2.649,
+      "99": 3.429
+     },
+     "top2": {
+      "with-self": 3.136291103314201,
+      "without-self": 3.050687870190004
+     }
+    },
+    {
+     "name": "Biotechnology",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 69700,
+     "listed": 1466,
+     "c": {
+      "25": 1.105,
+      "50": 1.516,
+      "75": 1.915,
+      "90": 2.361,
+      "95": 2.659,
+      "99": 3.241
+     },
+     "top2": {
+      "with-self": 2.994009391502089,
+      "without-self": 2.938057430078761
+     }
+    },
+    {
+     "name": "Building & Construction",
+     "field": "Built Environment & Design",
+     "authors": 56454,
+     "listed": 1173,
+     "c": {
+      "25": 1.018,
+      "50": 1.441,
+      "75": 1.901,
+      "90": 2.386,
+      "95": 2.694,
+      "99": 3.304
+     },
+     "top2": {
+      "with-self": 3.058101471389159,
+      "without-self": 3.008536761279502
+     }
+    },
+    {
+     "name": "Business & Management",
+     "field": "Economics & Business",
+     "authors": 68786,
+     "listed": 1406,
+     "c": {
+      "25": 1.167,
+      "50": 1.628,
+      "75": 2.166,
+      "90": 2.71,
+      "95": 3.053,
+      "99": 3.672
+     },
+     "top2": {
+      "with-self": 3.423353453741866,
+      "without-self": 3.409692122792188
+     }
+    },
+    {
+     "name": "Cardiovascular System & Hematology",
+     "field": "Clinical Medicine",
+     "authors": 249410,
+     "listed": 5100,
+     "c": {
+      "25": 0.864,
+      "50": 1.336,
+      "75": 1.894,
+      "90": 2.46,
+      "95": 2.846,
+      "99": 3.631
+     },
+     "top2": {
+      "with-self": 3.324344916720576,
+      "without-self": 3.279542567399537
+     }
+    },
+    {
+     "name": "Chemical Engineering",
+     "field": "Engineering",
+     "authors": 97821,
+     "listed": 2054,
+     "c": {
+      "25": 1.04,
+      "50": 1.464,
+      "75": 1.899,
+      "90": 2.391,
+      "95": 2.704,
+      "99": 3.313
+     },
+     "top2": {
+      "with-self": 3.063856958169191,
+      "without-self": 3.01062189485053
+     }
+    },
+    {
+     "name": "Chemical Physics",
+     "field": "Physics & Astronomy",
+     "authors": 121889,
+     "listed": 2575,
+     "c": {
+      "25": 1.203,
+      "50": 1.603,
+      "75": 2.065,
+      "90": 2.626,
+      "95": 3.004,
+      "99": 3.711
+     },
+     "top2": {
+      "with-self": 3.439166213016411,
+      "without-self": 3.361419850912693
+     }
+    },
+    {
+     "name": "Civil Engineering",
+     "field": "Engineering",
+     "authors": 67736,
+     "listed": 1427,
+     "c": {
+      "25": 0.946,
+      "50": 1.341,
+      "75": 1.793,
+      "90": 2.281,
+      "95": 2.595,
+      "99": 3.202
+     },
+     "top2": {
+      "with-self": 2.962346927603813,
+      "without-self": 2.889315195975392
+     }
+    },
+    {
+     "name": "Classics",
+     "field": "Historical Studies",
+     "authors": 3682,
+     "listed": 76,
+     "c": {
+      "25": 1.125,
+      "50": 1.629,
+      "75": 2.135,
+      "90": 2.552,
+      "95": 2.776,
+      "99": 3.16
+     },
+     "top2": {
+      "with-self": 2.99888388803074,
+      "without-self": 2.998969139257982
+     }
+    },
+    {
+     "name": "Clinical Psychology",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 19306,
+     "listed": 397,
+     "c": {
+      "25": 1.195,
+      "50": 1.6,
+      "75": 2.078,
+      "90": 2.641,
+      "95": 3.05,
+      "99": 3.796
+     },
+     "top2": {
+      "with-self": 3.493905638093939,
+      "without-self": 3.445109798063471
+     }
+    },
+    {
+     "name": "Communication & Media Studies",
+     "field": "Communication & Textual Studies",
+     "authors": 16468,
+     "listed": 343,
+     "c": {
+      "25": 1.321,
+      "50": 1.795,
+      "75": 2.289,
+      "90": 2.77,
+      "95": 3.056,
+      "99": 3.551
+     },
+     "top2": {
+      "with-self": 3.355739315346264,
+      "without-self": 3.33871617546722
+     }
+    },
+    {
+     "name": "Complementary & Alternative Medicine",
+     "field": "Clinical Medicine",
+     "authors": 14206,
+     "listed": 297,
+     "c": {
+      "25": 0.785,
+      "50": 1.141,
+      "75": 1.538,
+      "90": 1.943,
+      "95": 2.258,
+      "99": 2.871
+     },
+     "top2": {
+      "with-self": 2.607419660714216,
+      "without-self": 2.57411286225616
+     }
+    },
+    {
+     "name": "Computation Theory & Mathematics",
+     "field": "Information & Communication Technologies",
+     "authors": 20721,
+     "listed": 434,
+     "c": {
+      "25": 0.983,
+      "50": 1.391,
+      "75": 1.968,
+      "90": 2.612,
+      "95": 2.966,
+      "99": 3.592
+     },
+     "top2": {
+      "with-self": 3.348761576190868,
+      "without-self": 3.292067804765298
+     }
+    },
+    {
+     "name": "Computer Hardware & Architecture",
+     "field": "Information & Communication Technologies",
+     "authors": 21014,
+     "listed": 436,
+     "c": {
+      "25": 1.075,
+      "50": 1.438,
+      "75": 1.834,
+      "90": 2.274,
+      "95": 2.614,
+      "99": 3.248
+     },
+     "top2": {
+      "with-self": 2.998134924074024,
+      "without-self": 2.934653425175726
+     }
+    },
+    {
+     "name": "Criminology",
+     "field": "Social Sciences",
+     "authors": 14394,
+     "listed": 298,
+     "c": {
+      "25": 1.299,
+      "50": 1.755,
+      "75": 2.296,
+      "90": 2.791,
+      "95": 3.086,
+      "99": 3.6
+     },
+     "top2": {
+      "with-self": 3.410976997375742,
+      "without-self": 3.363930358954928
+     }
+    },
+    {
+     "name": "Cultural Studies",
+     "field": "Social Sciences",
+     "authors": 8723,
+     "listed": 184,
+     "c": {
+      "25": 1.289,
+      "50": 1.76,
+      "75": 2.2,
+      "90": 2.582,
+      "95": 2.803,
+      "99": 3.199
+     },
+     "top2": {
+      "with-self": 3.050778953360951,
+      "without-self": 3.03608202301332
+     }
+    },
+    {
+     "name": "Dairy & Animal Science",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 78455,
+     "listed": 1635,
+     "c": {
+      "25": 0.968,
+      "50": 1.384,
+      "75": 1.83,
+      "90": 2.286,
+      "95": 2.589,
+      "99": 3.207
+     },
+     "top2": {
+      "with-self": 2.962293509725722,
+      "without-self": 2.90252931623845
+     }
+    },
+    {
+     "name": "Demography",
+     "field": "Social Sciences",
+     "authors": 3977,
+     "listed": 81,
+     "c": {
+      "25": 1.232,
+      "50": 1.723,
+      "75": 2.258,
+      "90": 2.788,
+      "95": 3.077,
+      "99": 3.592
+     },
+     "top2": {
+      "with-self": 3.40129013726512,
+      "without-self": 3.378565846851671
+     }
+    },
+    {
+     "name": "Dentistry",
+     "field": "Clinical Medicine",
+     "authors": 101728,
+     "listed": 2104,
+     "c": {
+      "25": 0.947,
+      "50": 1.383,
+      "75": 1.853,
+      "90": 2.346,
+      "95": 2.665,
+      "99": 3.314
+     },
+     "top2": {
+      "with-self": 3.056323010580326,
+      "without-self": 3.026029563950345
+     }
+    },
+    {
+     "name": "Dermatology & Venereal Diseases",
+     "field": "Clinical Medicine",
+     "authors": 64751,
+     "listed": 1331,
+     "c": {
+      "25": 0.954,
+      "50": 1.402,
+      "75": 1.865,
+      "90": 2.389,
+      "95": 2.772,
+      "99": 3.495
+     },
+     "top2": {
+      "with-self": 3.219205523537761,
+      "without-self": 3.187010566515374
+     }
+    },
+    {
+     "name": "Design Practice & Management",
+     "field": "Built Environment & Design",
+     "authors": 11980,
+     "listed": 257,
+     "c": {
+      "25": 0.981,
+      "50": 1.345,
+      "75": 1.737,
+      "90": 2.211,
+      "95": 2.61,
+      "99": 3.282
+     },
+     "top2": {
+      "with-self": 3.048473901015045,
+      "without-self": 2.954355879325155
+     }
+    },
+    {
+     "name": "Development Studies",
+     "field": "Economics & Business",
+     "authors": 5287,
+     "listed": 107,
+     "c": {
+      "25": 1.339,
+      "50": 1.795,
+      "75": 2.271,
+      "90": 2.746,
+      "95": 3.028,
+      "99": 3.596
+     },
+     "top2": {
+      "with-self": 3.353335898038733,
+      "without-self": 3.342093996428924
+     }
+    },
+    {
+     "name": "Developmental & Child Psychology",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 25365,
+     "listed": 654,
+     "c": {
+      "25": 1.136,
+      "50": 1.608,
+      "75": 2.148,
+      "90": 2.766,
+      "95": 3.185,
+      "99": 3.862
+     },
+     "top2": {
+      "with-self": 3.61822007856362,
+      "without-self": 3.580513395146525
+     }
+    },
+    {
+     "name": "Developmental Biology",
+     "field": "Biomedical Research",
+     "authors": 167121,
+     "listed": 3426,
+     "c": {
+      "25": 1.226,
+      "50": 1.666,
+      "75": 2.118,
+      "90": 2.613,
+      "95": 2.983,
+      "99": 3.727
+     },
+     "top2": {
+      "with-self": 3.440236345059205,
+      "without-self": 3.404818795049209
+     }
+    },
+    {
+     "name": "Distributed Computing",
+     "field": "Information & Communication Technologies",
+     "authors": 9369,
+     "listed": 193,
+     "c": {
+      "25": 1.014,
+      "50": 1.356,
+      "75": 1.748,
+      "90": 2.188,
+      "95": 2.493,
+      "99": 3.071
+     },
+     "top2": {
+      "with-self": 2.858133990318834,
+      "without-self": 2.791627193382721
+     }
+    },
+    {
+     "name": "Drama & Theater",
+     "field": "Visual & Performing Arts",
+     "authors": 1418,
+     "listed": 29,
+     "c": {
+      "25": 1.124,
+      "50": 1.524,
+      "75": 1.905,
+      "90": 2.239,
+      "95": 2.455,
+      "99": 2.9
+     },
+     "top2": {
+      "with-self": 2.713571974535415,
+      "without-self": 2.705861573363557
+     }
+    },
+    {
+     "name": "Ecology",
+     "field": "Biology",
+     "authors": 82882,
+     "listed": 1770,
+     "c": {
+      "25": 1.2,
+      "50": 1.641,
+      "75": 2.172,
+      "90": 2.765,
+      "95": 3.146,
+      "99": 3.78
+     },
+     "top2": {
+      "with-self": 3.546789475155658,
+      "without-self": 3.491261291335185
+     }
+    },
+    {
+     "name": "Econometrics",
+     "field": "Economics & Business",
+     "authors": 1427,
+     "listed": 76,
+     "c": {
+      "25": 1.403,
+      "50": 1.89,
+      "75": 2.536,
+      "90": 3.152,
+      "95": 3.542,
+      "99": 4.124
+     },
+     "top2": {
+      "with-self": 3.990110509198991,
+      "without-self": 3.969095670340794
+     }
+    },
+    {
+     "name": "Economic Theory",
+     "field": "Economics & Business",
+     "authors": 1802,
+     "listed": 37,
+     "c": {
+      "25": 1.361,
+      "50": 1.832,
+      "75": 2.344,
+      "90": 2.839,
+      "95": 3.115,
+      "99": 3.583
+     },
+     "top2": {
+      "with-self": 3.409625603701655,
+      "without-self": 3.402770016090924
+     }
+    },
+    {
+     "name": "Economics",
+     "field": "Economics & Business",
+     "authors": 54592,
+     "listed": 1129,
+     "c": {
+      "25": 1.239,
+      "50": 1.696,
+      "75": 2.223,
+      "90": 2.748,
+      "95": 3.059,
+      "99": 3.659
+     },
+     "top2": {
+      "with-self": 3.421489352760307,
+      "without-self": 3.401930329514372
+     }
+    },
+    {
+     "name": "Education",
+     "field": "Social Sciences",
+     "authors": 115687,
+     "listed": 2407,
+     "c": {
+      "25": 1.054,
+      "50": 1.481,
+      "75": 1.968,
+      "90": 2.46,
+      "95": 2.771,
+      "99": 3.363
+     },
+     "top2": {
+      "with-self": 3.129069850802477,
+      "without-self": 3.091194605305763
+     }
+    },
+    {
+     "name": "Electrical & Electronic Engineering",
+     "field": "Engineering",
+     "authors": 133072,
+     "listed": 2806,
+     "c": {
+      "25": 0.834,
+      "50": 1.223,
+      "75": 1.655,
+      "90": 2.091,
+      "95": 2.386,
+      "99": 3.01
+     },
+     "top2": {
+      "with-self": 2.753077038668668,
+      "without-self": 2.68269290447552
+     }
+    },
+    {
+     "name": "Emergency & Critical Care Medicine",
+     "field": "Clinical Medicine",
+     "authors": 44281,
+     "listed": 909,
+     "c": {
+      "25": 0.911,
+      "50": 1.322,
+      "75": 1.818,
+      "90": 2.353,
+      "95": 2.715,
+      "99": 3.425
+     },
+     "top2": {
+      "with-self": 3.135459791201155,
+      "without-self": 3.099012348162789
+     }
+    },
+    {
+     "name": "Endocrinology & Metabolism",
+     "field": "Clinical Medicine",
+     "authors": 100693,
+     "listed": 2070,
+     "c": {
+      "25": 1.034,
+      "50": 1.527,
+      "75": 2.049,
+      "90": 2.626,
+      "95": 3.033,
+      "99": 3.785
+     },
+     "top2": {
+      "with-self": 3.524727874599003,
+      "without-self": 3.484451165091636
+     }
+    },
+    {
+     "name": "Energy",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 371959,
+     "listed": 7825,
+     "c": {
+      "25": 0.867,
+      "50": 1.323,
+      "75": 1.808,
+      "90": 2.289,
+      "95": 2.603,
+      "99": 3.215
+     },
+     "top2": {
+      "with-self": 2.968688050180933,
+      "without-self": 2.912629735068851
+     }
+    },
+    {
+     "name": "Entomology",
+     "field": "Biology",
+     "authors": 40595,
+     "listed": 860,
+     "c": {
+      "25": 1.127,
+      "50": 1.53,
+      "75": 1.993,
+      "90": 2.498,
+      "95": 2.83,
+      "99": 3.442
+     },
+     "top2": {
+      "with-self": 3.202655200219463,
+      "without-self": 3.12559550137735
+     }
+    },
+    {
+     "name": "Environmental & Occupational Health",
+     "field": "Clinical Medicine",
+     "authors": 15550,
+     "listed": 320,
+     "c": {
+      "25": 0.804,
+      "50": 1.254,
+      "75": 1.782,
+      "90": 2.346,
+      "95": 2.706,
+      "99": 3.324
+     },
+     "top2": {
+      "with-self": 3.102447059850321,
+      "without-self": 3.047413775405456
+     }
+    },
+    {
+     "name": "Environmental Engineering",
+     "field": "Engineering",
+     "authors": 68664,
+     "listed": 1439,
+     "c": {
+      "25": 1.036,
+      "50": 1.472,
+      "75": 1.939,
+      "90": 2.453,
+      "95": 2.793,
+      "99": 3.424
+     },
+     "top2": {
+      "with-self": 3.174430123990192,
+      "without-self": 3.121620823910378
+     }
+    },
+    {
+     "name": "Environmental Sciences",
+     "field": "Earth & Environmental Sciences",
+     "authors": 140934,
+     "listed": 2938,
+     "c": {
+      "25": 1.102,
+      "50": 1.54,
+      "75": 2.004,
+      "90": 2.475,
+      "95": 2.767,
+      "99": 3.347
+     },
+     "top2": {
+      "with-self": 3.109786271449114,
+      "without-self": 3.062649226390131
+     }
+    },
+    {
+     "name": "Epidemiology",
+     "field": "Public Health & Health Services",
+     "authors": 10334,
+     "listed": 209,
+     "c": {
+      "25": 0.901,
+      "50": 1.284,
+      "75": 1.786,
+      "90": 2.41,
+      "95": 2.859,
+      "99": 3.783
+     },
+     "top2": {
+      "with-self": 3.443674054041231,
+      "without-self": 3.413007687024225
+     }
+    },
+    {
+     "name": "Evolutionary Biology",
+     "field": "Biology",
+     "authors": 31128,
+     "listed": 809,
+     "c": {
+      "25": 1.216,
+      "50": 1.664,
+      "75": 2.211,
+      "90": 2.833,
+      "95": 3.227,
+      "99": 3.872
+     },
+     "top2": {
+      "with-self": 3.639325376226311,
+      "without-self": 3.579284883241774
+     }
+    },
+    {
+     "name": "Experimental Psychology",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 37808,
+     "listed": 1200,
+     "c": {
+      "25": 1.274,
+      "50": 1.696,
+      "75": 2.257,
+      "90": 2.911,
+      "95": 3.316,
+      "99": 3.924
+     },
+     "top2": {
+      "with-self": 3.694850417404608,
+      "without-self": 3.649674608966836
+     }
+    },
+    {
+     "name": "Family Studies",
+     "field": "Social Sciences",
+     "authors": 4074,
+     "listed": 86,
+     "c": {
+      "25": 1.248,
+      "50": 1.634,
+      "75": 2.13,
+      "90": 2.658,
+      "95": 2.974,
+      "99": 3.52
+     },
+     "top2": {
+      "with-self": 3.319136927889678,
+      "without-self": 3.299749456414288
+     }
+    },
+    {
+     "name": "Finance",
+     "field": "Economics & Business",
+     "authors": 16367,
+     "listed": 338,
+     "c": {
+      "25": 1.293,
+      "50": 1.714,
+      "75": 2.191,
+      "90": 2.672,
+      "95": 2.977,
+      "99": 3.535
+     },
+     "top2": {
+      "with-self": 3.310117119402099,
+      "without-self": 3.296760710912322
+     }
+    },
+    {
+     "name": "Fisheries",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 47614,
+     "listed": 1002,
+     "c": {
+      "25": 1.097,
+      "50": 1.519,
+      "75": 1.994,
+      "90": 2.474,
+      "95": 2.779,
+      "99": 3.334
+     },
+     "top2": {
+      "with-self": 3.13550329589416,
+      "without-self": 3.065858696647379
+     }
+    },
+    {
+     "name": "Fluids & Plasmas",
+     "field": "Physics & Astronomy",
+     "authors": 58297,
+     "listed": 1240,
+     "c": {
+      "25": 1.078,
+      "50": 1.523,
+      "75": 2.058,
+      "90": 2.675,
+      "95": 3.064,
+      "99": 3.682
+     },
+     "top2": {
+      "with-self": 3.441154508041834,
+      "without-self": 3.353894839113186
+     }
+    },
+    {
+     "name": "Folklore",
+     "field": "Visual & Performing Arts",
+     "authors": 762,
+     "listed": 16,
+     "c": {
+      "25": 0.815,
+      "50": 1.205,
+      "75": 1.689,
+      "90": 2.097,
+      "95": 2.314,
+      "99": 2.711
+     },
+     "top2": {
+      "with-self": 2.613519777178962,
+      "without-self": 2.564523955113203
+     }
+    },
+    {
+     "name": "Food Science",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 107913,
+     "listed": 2235,
+     "c": {
+      "25": 1.063,
+      "50": 1.519,
+      "75": 1.985,
+      "90": 2.451,
+      "95": 2.737,
+      "99": 3.315
+     },
+     "top2": {
+      "with-self": 3.064381221643997,
+      "without-self": 3.02336769663756
+     }
+    },
+    {
+     "name": "Forestry",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 36413,
+     "listed": 770,
+     "c": {
+      "25": 1.015,
+      "50": 1.409,
+      "75": 1.857,
+      "90": 2.335,
+      "95": 2.64,
+      "99": 3.205
+     },
+     "top2": {
+      "with-self": 2.97528353556193,
+      "without-self": 2.902518294689825
+     }
+    },
+    {
+     "name": "Gastroenterology & Hepatology",
+     "field": "Clinical Medicine",
+     "authors": 113536,
+     "listed": 2313,
+     "c": {
+      "25": 0.85,
+      "50": 1.32,
+      "75": 1.848,
+      "90": 2.414,
+      "95": 2.811,
+      "99": 3.602
+     },
+     "top2": {
+      "with-self": 3.289752816007841,
+      "without-self": 3.250490149105613
+     }
+    },
+    {
+     "name": "Gender Studies",
+     "field": "Social Sciences",
+     "authors": 2687,
+     "listed": 54,
+     "c": {
+      "25": 1.369,
+      "50": 1.831,
+      "75": 2.279,
+      "90": 2.699,
+      "95": 2.968,
+      "99": 3.519
+     },
+     "top2": {
+      "with-self": 3.318256370792443,
+      "without-self": 3.286399896336499
+     }
+    },
+    {
+     "name": "General & Internal Medicine",
+     "field": "Clinical Medicine",
+     "authors": 360081,
+     "listed": 7413,
+     "c": {
+      "25": 0.49,
+      "50": 0.953,
+      "75": 1.478,
+      "90": 2.029,
+      "95": 2.386,
+      "99": 3.106
+     },
+     "top2": {
+      "with-self": 2.808754107851254,
+      "without-self": 2.781725943387289
+     }
+    },
+    {
+     "name": "General Chemistry",
+     "field": "Chemistry",
+     "authors": 57505,
+     "listed": 1209,
+     "c": {
+      "25": 1.024,
+      "50": 1.404,
+      "75": 1.784,
+      "90": 2.178,
+      "95": 2.465,
+      "99": 3.172
+     },
+     "top2": {
+      "with-self": 2.856773916170805,
+      "without-self": 2.814003489271929
+     }
+    },
+    {
+     "name": "General Clinical Medicine",
+     "field": "Clinical Medicine",
+     "authors": 24038,
+     "listed": 499,
+     "c": {
+      "25": 0.739,
+      "50": 1.094,
+      "75": 1.539,
+      "90": 2.015,
+      "95": 2.331,
+      "99": 3.037
+     },
+     "top2": {
+      "with-self": 2.748306125237906,
+      "without-self": 2.702972827910397
+     }
+    },
+    {
+     "name": "General Mathematics",
+     "field": "Mathematics & Statistics",
+     "authors": 76268,
+     "listed": 1656,
+     "c": {
+      "25": 1.108,
+      "50": 1.595,
+      "75": 2.154,
+      "90": 2.66,
+      "95": 2.947,
+      "99": 3.449
+     },
+     "top2": {
+      "with-self": 3.248226031172689,
+      "without-self": 3.171979996058105
+     }
+    },
+    {
+     "name": "General Physics",
+     "field": "Physics & Astronomy",
+     "authors": 87024,
+     "listed": 1865,
+     "c": {
+      "25": 0.944,
+      "50": 1.361,
+      "75": 1.846,
+      "90": 2.379,
+      "95": 2.737,
+      "99": 3.441
+     },
+     "top2": {
+      "with-self": 3.170325885253359,
+      "without-self": 3.076264536492149
+     }
+    },
+    {
+     "name": "General Psychology & Cognitive Sciences",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 4120,
+     "listed": 86,
+     "c": {
+      "25": 1.141,
+      "50": 1.514,
+      "75": 1.976,
+      "90": 2.504,
+      "95": 2.859,
+      "99": 3.493
+     },
+     "top2": {
+      "with-self": 3.210768857124916,
+      "without-self": 3.189209211510407
+     }
+    },
+    {
+     "name": "Genetics & Heredity",
+     "field": "Biomedical Research",
+     "authors": 42273,
+     "listed": 872,
+     "c": {
+      "25": 0.956,
+      "50": 1.429,
+      "75": 1.959,
+      "90": 2.51,
+      "95": 2.891,
+      "99": 3.594
+     },
+     "top2": {
+      "with-self": 3.313549712285027,
+      "without-self": 3.271085908940559
+     }
+    },
+    {
+     "name": "Geochemistry & Geophysics",
+     "field": "Earth & Environmental Sciences",
+     "authors": 108013,
+     "listed": 2265,
+     "c": {
+      "25": 1.079,
+      "50": 1.53,
+      "75": 2.076,
+      "90": 2.666,
+      "95": 3.046,
+      "99": 3.698
+     },
+     "top2": {
+      "with-self": 3.457831455392714,
+      "without-self": 3.39412971329597
+     }
+    },
+    {
+     "name": "Geography",
+     "field": "Social Sciences",
+     "authors": 21559,
+     "listed": 448,
+     "c": {
+      "25": 1.199,
+      "50": 1.67,
+      "75": 2.242,
+      "90": 2.815,
+      "95": 3.149,
+      "99": 3.702
+     },
+     "top2": {
+      "with-self": 3.498665342592988,
+      "without-self": 3.468465123297279
+     }
+    },
+    {
+     "name": "Geological & Geomatics Engineering",
+     "field": "Engineering",
+     "authors": 82760,
+     "listed": 1724,
+     "c": {
+      "25": 1.022,
+      "50": 1.436,
+      "75": 1.904,
+      "90": 2.407,
+      "95": 2.719,
+      "99": 3.373
+     },
+     "top2": {
+      "with-self": 3.099861577730751,
+      "without-self": 3.038892709053679
+     }
+    },
+    {
+     "name": "Geology",
+     "field": "Earth & Environmental Sciences",
+     "authors": 17936,
+     "listed": 379,
+     "c": {
+      "25": 1.063,
+      "50": 1.473,
+      "75": 1.959,
+      "90": 2.482,
+      "95": 2.849,
+      "99": 3.471
+     },
+     "top2": {
+      "with-self": 3.243295466921298,
+      "without-self": 3.187085760029989
+     }
+    },
+    {
+     "name": "Geriatrics",
+     "field": "Clinical Medicine",
+     "authors": 14240,
+     "listed": 293,
+     "c": {
+      "25": 0.87,
+      "50": 1.296,
+      "75": 1.8,
+      "90": 2.383,
+      "95": 2.791,
+      "99": 3.546
+     },
+     "top2": {
+      "with-self": 3.280042216924396,
+      "without-self": 3.239470233687642
+     }
+    },
+    {
+     "name": "Gerontology",
+     "field": "Public Health & Health Services",
+     "authors": 13096,
+     "listed": 271,
+     "c": {
+      "25": 0.979,
+      "50": 1.436,
+      "75": 1.953,
+      "90": 2.554,
+      "95": 2.921,
+      "99": 3.571
+     },
+     "top2": {
+      "with-self": 3.328816473186561,
+      "without-self": 3.289710566626899
+     }
+    },
+    {
+     "name": "Health Policy & Services",
+     "field": "Public Health & Health Services",
+     "authors": 23941,
+     "listed": 490,
+     "c": {
+      "25": 0.963,
+      "50": 1.423,
+      "75": 1.94,
+      "90": 2.507,
+      "95": 2.893,
+      "99": 3.537
+     },
+     "top2": {
+      "with-self": 3.288517462509808,
+      "without-self": 3.258320994509359
+     }
+    },
+    {
+     "name": "History",
+     "field": "Historical Studies",
+     "authors": 20299,
+     "listed": 428,
+     "c": {
+      "25": 0.988,
+      "50": 1.489,
+      "75": 1.976,
+      "90": 2.371,
+      "95": 2.602,
+      "99": 2.979
+     },
+     "top2": {
+      "with-self": 2.847242986113463,
+      "without-self": 2.8262470328087
+     }
+    },
+    {
+     "name": "History of Science, Technology & Medicine",
+     "field": "Historical Studies",
+     "authors": 3157,
+     "listed": 66,
+     "c": {
+      "25": 1.157,
+      "50": 1.644,
+      "75": 2.106,
+      "90": 2.524,
+      "95": 2.743,
+      "99": 3.175
+     },
+     "top2": {
+      "with-self": 2.975528497853583,
+      "without-self": 2.927833275914741
+     }
+    },
+    {
+     "name": "History of Social Sciences",
+     "field": "Historical Studies",
+     "authors": 2425,
+     "listed": 49,
+     "c": {
+      "25": 1.376,
+      "50": 1.806,
+      "75": 2.242,
+      "90": 2.631,
+      "95": 2.889,
+      "99": 3.411
+     },
+     "top2": {
+      "with-self": 3.203915573976804,
+      "without-self": 3.179461920643116
+     }
+    },
+    {
+     "name": "Horticulture",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 5982,
+     "listed": 122,
+     "c": {
+      "25": 1.054,
+      "50": 1.416,
+      "75": 1.817,
+      "90": 2.267,
+      "95": 2.58,
+      "99": 3.175
+     },
+     "top2": {
+      "with-self": 2.958262038054649,
+      "without-self": 2.887674313536229
+     }
+    },
+    {
+     "name": "Human Factors",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 16381,
+     "listed": 337,
+     "c": {
+      "25": 1.156,
+      "50": 1.552,
+      "75": 2.019,
+      "90": 2.548,
+      "95": 2.905,
+      "99": 3.56
+     },
+     "top2": {
+      "with-self": 3.313124443555548,
+      "without-self": 3.27118140625793
+     }
+    },
+    {
+     "name": "Immunology",
+     "field": "Clinical Medicine",
+     "authors": 176292,
+     "listed": 3613,
+     "c": {
+      "25": 1.026,
+      "50": 1.524,
+      "75": 2.035,
+      "90": 2.571,
+      "95": 2.939,
+      "99": 3.675
+     },
+     "top2": {
+      "with-self": 3.401602250802096,
+      "without-self": 3.356863391322712
+     }
+    },
+    {
+     "name": "Industrial Engineering & Automation",
+     "field": "Engineering",
+     "authors": 131085,
+     "listed": 2750,
+     "c": {
+      "25": 0.996,
+      "50": 1.386,
+      "75": 1.833,
+      "90": 2.326,
+      "95": 2.666,
+      "99": 3.342
+     },
+     "top2": {
+      "with-self": 3.073808198450418,
+      "without-self": 2.998033494891176
+     }
+    },
+    {
+     "name": "Industrial Relations",
+     "field": "Economics & Business",
+     "authors": 2573,
+     "listed": 53,
+     "c": {
+      "25": 1.434,
+      "50": 1.852,
+      "75": 2.371,
+      "90": 2.767,
+      "95": 3.043,
+      "99": 3.45
+     },
+     "top2": {
+      "with-self": 3.303290905357861,
+      "without-self": 3.276469248022693
+     }
+    },
+    {
+     "name": "Information & Library Sciences",
+     "field": "Social Sciences",
+     "authors": 15996,
+     "listed": 331,
+     "c": {
+      "25": 0.987,
+      "50": 1.383,
+      "75": 1.814,
+      "90": 2.273,
+      "95": 2.567,
+      "99": 3.171
+     },
+     "top2": {
+      "with-self": 2.933783505094918,
+      "without-self": 2.893735511115123
+     }
+    },
+    {
+     "name": "Information Systems",
+     "field": "Information & Communication Technologies",
+     "authors": 19463,
+     "listed": 400,
+     "c": {
+      "25": 1.15,
+      "50": 1.567,
+      "75": 2.086,
+      "90": 2.635,
+      "95": 2.973,
+      "99": 3.58
+     },
+     "top2": {
+      "with-self": 3.350786766416468,
+      "without-self": 3.334518283694072
+     }
+    },
+    {
+     "name": "Inorganic & Nuclear Chemistry",
+     "field": "Chemistry",
+     "authors": 86991,
+     "listed": 1866,
+     "c": {
+      "25": 1.096,
+      "50": 1.486,
+      "75": 1.928,
+      "90": 2.43,
+      "95": 2.762,
+      "99": 3.414
+     },
+     "top2": {
+      "with-self": 3.14204797238474,
+      "without-self": 3.053580010940217
+     }
+    },
+    {
+     "name": "International Relations",
+     "field": "Social Sciences",
+     "authors": 9646,
+     "listed": 198,
+     "c": {
+      "25": 1.448,
+      "50": 1.942,
+      "75": 2.411,
+      "90": 2.825,
+      "95": 3.067,
+      "99": 3.553
+     },
+     "top2": {
+      "with-self": 3.373441655593953,
+      "without-self": 3.355761178384191
+     }
+    },
+    {
+     "name": "Languages & Linguistics",
+     "field": "Communication & Textual Studies",
+     "authors": 25930,
+     "listed": 536,
+     "c": {
+      "25": 1.04,
+      "50": 1.536,
+      "75": 2.111,
+      "90": 2.638,
+      "95": 2.941,
+      "99": 3.502
+     },
+     "top2": {
+      "with-self": 3.281037938130129,
+      "without-self": 3.247715207521907
+     }
+    },
+    {
+     "name": "Law",
+     "field": "Social Sciences",
+     "authors": 18707,
+     "listed": 384,
+     "c": {
+      "25": 1.009,
+      "50": 1.532,
+      "75": 2.082,
+      "90": 2.543,
+      "95": 2.809,
+      "99": 3.285
+     },
+     "top2": {
+      "with-self": 3.09319552742131,
+      "without-self": 3.073324735625071
+     }
+    },
+    {
+     "name": "Legal & Forensic Medicine",
+     "field": "Clinical Medicine",
+     "authors": 15674,
+     "listed": 328,
+     "c": {
+      "25": 0.74,
+      "50": 1.199,
+      "75": 1.686,
+      "90": 2.164,
+      "95": 2.458,
+      "99": 3.06
+     },
+     "top2": {
+      "with-self": 2.8235380704673,
+      "without-self": 2.769701411112174
+     }
+    },
+    {
+     "name": "Literary Studies",
+     "field": "Communication & Textual Studies",
+     "authors": 21141,
+     "listed": 444,
+     "c": {
+      "25": 0.758,
+      "50": 1.27,
+      "75": 1.781,
+      "90": 2.185,
+      "95": 2.413,
+      "99": 2.841
+     },
+     "top2": {
+      "with-self": 2.663930190634572,
+      "without-self": 2.64976539888564
+     }
+    },
+    {
+     "name": "Logistics & Transportation",
+     "field": "Economics & Business",
+     "authors": 32287,
+     "listed": 671,
+     "c": {
+      "25": 1.021,
+      "50": 1.434,
+      "75": 1.892,
+      "90": 2.384,
+      "95": 2.711,
+      "99": 3.328
+     },
+     "top2": {
+      "with-self": 3.075404848124876,
+      "without-self": 3.035638185318419
+     }
+    },
+    {
+     "name": "Marine Biology & Hydrobiology",
+     "field": "Biology",
+     "authors": 54545,
+     "listed": 1146,
+     "c": {
+      "25": 1.262,
+      "50": 1.685,
+      "75": 2.197,
+      "90": 2.741,
+      "95": 3.088,
+      "99": 3.648
+     },
+     "top2": {
+      "with-self": 3.440291187785478,
+      "without-self": 3.374651068331151
+     }
+    },
+    {
+     "name": "Marketing",
+     "field": "Economics & Business",
+     "authors": 15920,
+     "listed": 326,
+     "c": {
+      "25": 1.484,
+      "50": 1.903,
+      "75": 2.394,
+      "90": 2.886,
+      "95": 3.177,
+      "99": 3.655
+     },
+     "top2": {
+      "with-self": 3.45795553612572,
+      "without-self": 3.448431741259117
+     }
+    },
+    {
+     "name": "Materials",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 330896,
+     "listed": 6943,
+     "c": {
+      "25": 0.879,
+      "50": 1.338,
+      "75": 1.82,
+      "90": 2.307,
+      "95": 2.618,
+      "99": 3.24
+     },
+     "top2": {
+      "with-self": 2.980582921325902,
+      "without-self": 2.917699113714831
+     }
+    },
+    {
+     "name": "Mathematical Physics",
+     "field": "Physics & Astronomy",
+     "authors": 6761,
+     "listed": 145,
+     "c": {
+      "25": 1.147,
+      "50": 1.545,
+      "75": 2.103,
+      "90": 2.678,
+      "95": 3.018,
+      "99": 3.502
+     },
+     "top2": {
+      "with-self": 3.337092780278137,
+      "without-self": 3.262535496477917
+     }
+    },
+    {
+     "name": "Mechanical Engineering & Transports",
+     "field": "Engineering",
+     "authors": 157792,
+     "listed": 3359,
+     "c": {
+      "25": 0.876,
+      "50": 1.283,
+      "75": 1.742,
+      "90": 2.24,
+      "95": 2.581,
+      "99": 3.271
+     },
+     "top2": {
+      "with-self": 2.993424669591537,
+      "without-self": 2.916165518410168
+     }
+    },
+    {
+     "name": "Medical Informatics",
+     "field": "Information & Communication Technologies",
+     "authors": 22436,
+     "listed": 463,
+     "c": {
+      "25": 0.858,
+      "50": 1.258,
+      "75": 1.702,
+      "90": 2.193,
+      "95": 2.539,
+      "99": 3.257
+     },
+     "top2": {
+      "with-self": 2.968987551948971,
+      "without-self": 2.922425025539964
+     }
+    },
+    {
+     "name": "Medicinal & Biomolecular Chemistry",
+     "field": "Chemistry",
+     "authors": 120621,
+     "listed": 2531,
+     "c": {
+      "25": 0.979,
+      "50": 1.406,
+      "75": 1.851,
+      "90": 2.298,
+      "95": 2.583,
+      "99": 3.147
+     },
+     "top2": {
+      "with-self": 2.907586351828743,
+      "without-self": 2.852776056967048
+     }
+    },
+    {
+     "name": "Meteorology & Atmospheric Sciences",
+     "field": "Earth & Environmental Sciences",
+     "authors": 84638,
+     "listed": 1775,
+     "c": {
+      "25": 1.228,
+      "50": 1.684,
+      "75": 2.23,
+      "90": 2.799,
+      "95": 3.148,
+      "99": 3.747
+     },
+     "top2": {
+      "with-self": 3.523235633203477,
+      "without-self": 3.451266075812463
+     }
+    },
+    {
+     "name": "Microbiology",
+     "field": "Biomedical Research",
+     "authors": 232186,
+     "listed": 4788,
+     "c": {
+      "25": 0.982,
+      "50": 1.488,
+      "75": 1.997,
+      "90": 2.506,
+      "95": 2.845,
+      "99": 3.546
+     },
+     "top2": {
+      "with-self": 3.269173762283367,
+      "without-self": 3.223077502294444
+     }
+    },
+    {
+     "name": "Microscopy",
+     "field": "Biomedical Research",
+     "authors": 4178,
+     "listed": 87,
+     "c": {
+      "25": 0.856,
+      "50": 1.273,
+      "75": 1.679,
+      "90": 2.179,
+      "95": 2.601,
+      "99": 3.363
+     },
+     "top2": {
+      "with-self": 3.069245564062522,
+      "without-self": 2.992144724456756
+     }
+    },
+    {
+     "name": "Mining & Metallurgy",
+     "field": "Engineering",
+     "authors": 37230,
+     "listed": 790,
+     "c": {
+      "25": 0.643,
+      "50": 1.029,
+      "75": 1.474,
+      "90": 1.934,
+      "95": 2.238,
+      "99": 2.835
+     },
+     "top2": {
+      "with-self": 2.601817598132745,
+      "without-self": 2.538793293874895
+     }
+    },
+    {
+     "name": "Music",
+     "field": "Visual & Performing Arts",
+     "authors": 3762,
+     "listed": 78,
+     "c": {
+      "25": 0.881,
+      "50": 1.451,
+      "75": 1.928,
+      "90": 2.314,
+      "95": 2.517,
+      "99": 2.909
+     },
+     "top2": {
+      "with-self": 2.744488940459089,
+      "without-self": 2.713737242604763
+     }
+    },
+    {
+     "name": "Mycology & Parasitology",
+     "field": "Biomedical Research",
+     "authors": 29175,
+     "listed": 622,
+     "c": {
+      "25": 1.051,
+      "50": 1.486,
+      "75": 1.95,
+      "90": 2.463,
+      "95": 2.795,
+      "99": 3.439
+     },
+     "top2": {
+      "with-self": 3.180133075266904,
+      "without-self": 3.096509252996627
+     }
+    },
+    {
+     "name": "Nanoscience & Nanotechnology",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 177859,
+     "listed": 3678,
+     "c": {
+      "25": 1.184,
+      "50": 1.606,
+      "75": 2.057,
+      "90": 2.517,
+      "95": 2.807,
+      "99": 3.403
+     },
+     "top2": {
+      "with-self": 3.154638994557681,
+      "without-self": 3.115740961570361
+     }
+    },
+    {
+     "name": "Networking & Telecommunications",
+     "field": "Information & Communication Technologies",
+     "authors": 228312,
+     "listed": 4818,
+     "c": {
+      "25": 0.938,
+      "50": 1.34,
+      "75": 1.781,
+      "90": 2.25,
+      "95": 2.565,
+      "99": 3.22
+     },
+     "top2": {
+      "with-self": 2.946886956677682,
+      "without-self": 2.882747205985517
+     }
+    },
+    {
+     "name": "Neurology & Neurosurgery",
+     "field": "Clinical Medicine",
+     "authors": 379830,
+     "listed": 7826,
+     "c": {
+      "25": 0.999,
+      "50": 1.518,
+      "75": 2.052,
+      "90": 2.611,
+      "95": 2.99,
+      "99": 3.715
+     },
+     "top2": {
+      "with-self": 3.440818529035464,
+      "without-self": 3.39635042263768
+     }
+    },
+    {
+     "name": "Nuclear & Particle Physics",
+     "field": "Physics & Astronomy",
+     "authors": 164120,
+     "listed": 3519,
+     "c": {
+      "25": 0.926,
+      "50": 1.371,
+      "75": 1.926,
+      "90": 2.529,
+      "95": 2.892,
+      "99": 3.554
+     },
+     "top2": {
+      "with-self": 3.298768198940142,
+      "without-self": 3.184176964800125
+     }
+    },
+    {
+     "name": "Nuclear Medicine & Medical Imaging",
+     "field": "Clinical Medicine",
+     "authors": 129561,
+     "listed": 2682,
+     "c": {
+      "25": 0.922,
+      "50": 1.371,
+      "75": 1.87,
+      "90": 2.387,
+      "95": 2.72,
+      "99": 3.376
+     },
+     "top2": {
+      "with-self": 3.12199695651722,
+      "without-self": 3.078175220665685
+     }
+    },
+    {
+     "name": "Numerical & Computational Mathematics",
+     "field": "Mathematics & Statistics",
+     "authors": 17431,
+     "listed": 369,
+     "c": {
+      "25": 1.121,
+      "50": 1.524,
+      "75": 2.073,
+      "90": 2.639,
+      "95": 3.001,
+      "99": 3.541
+     },
+     "top2": {
+      "with-self": 3.35793813841861,
+      "without-self": 3.275558645193024
+     }
+    },
+    {
+     "name": "Nursing",
+     "field": "Public Health & Health Services",
+     "authors": 73697,
+     "listed": 1519,
+     "c": {
+      "25": 0.891,
+      "50": 1.332,
+      "75": 1.814,
+      "90": 2.301,
+      "95": 2.62,
+      "99": 3.184
+     },
+     "top2": {
+      "with-self": 2.971592705688418,
+      "without-self": 2.93969867527059
+     }
+    },
+    {
+     "name": "Nutrition & Dietetics",
+     "field": "Biomedical Research",
+     "authors": 59506,
+     "listed": 1219,
+     "c": {
+      "25": 0.985,
+      "50": 1.432,
+      "75": 1.921,
+      "90": 2.449,
+      "95": 2.814,
+      "99": 3.575
+     },
+     "top2": {
+      "with-self": 3.290118909660744,
+      "without-self": 3.250378328936648
+     }
+    },
+    {
+     "name": "Obstetrics & Reproductive Medicine",
+     "field": "Clinical Medicine",
+     "authors": 105735,
+     "listed": 2176,
+     "c": {
+      "25": 0.894,
+      "50": 1.363,
+      "75": 1.871,
+      "90": 2.395,
+      "95": 2.76,
+      "99": 3.472
+     },
+     "top2": {
+      "with-self": 3.201262017899801,
+      "without-self": 3.161668978029914
+     }
+    },
+    {
+     "name": "Oceanography",
+     "field": "Earth & Environmental Sciences",
+     "authors": 16622,
+     "listed": 350,
+     "c": {
+      "25": 1.067,
+      "50": 1.482,
+      "75": 1.983,
+      "90": 2.564,
+      "95": 2.953,
+      "99": 3.559
+     },
+     "top2": {
+      "with-self": 3.341157844847074,
+      "without-self": 3.281691967438404
+     }
+    },
+    {
+     "name": "Oncology & Carcinogenesis",
+     "field": "Clinical Medicine",
+     "authors": 377791,
+     "listed": 7751,
+     "c": {
+      "25": 0.987,
+      "50": 1.461,
+      "75": 1.956,
+      "90": 2.461,
+      "95": 2.803,
+      "99": 3.522
+     },
+     "top2": {
+      "with-self": 3.231781063818604,
+      "without-self": 3.196267372802255
+     }
+    },
+    {
+     "name": "Operations Research",
+     "field": "Engineering",
+     "authors": 31951,
+     "listed": 667,
+     "c": {
+      "25": 1.145,
+      "50": 1.582,
+      "75": 2.121,
+      "90": 2.672,
+      "95": 2.99,
+      "99": 3.572
+     },
+     "top2": {
+      "with-self": 3.330633936267342,
+      "without-self": 3.29855330282102
+     }
+    },
+    {
+     "name": "Ophthalmology & Optometry",
+     "field": "Clinical Medicine",
+     "authors": 86157,
+     "listed": 1783,
+     "c": {
+      "25": 0.896,
+      "50": 1.366,
+      "75": 1.857,
+      "90": 2.375,
+      "95": 2.736,
+      "99": 3.451
+     },
+     "top2": {
+      "with-self": 3.185777770041762,
+      "without-self": 3.145886516359696
+     }
+    },
+    {
+     "name": "Optics",
+     "field": "Physics & Astronomy",
+     "authors": 83504,
+     "listed": 1767,
+     "c": {
+      "25": 0.872,
+      "50": 1.299,
+      "75": 1.757,
+      "90": 2.248,
+      "95": 2.579,
+      "99": 3.271
+     },
+     "top2": {
+      "with-self": 2.985374857031284,
+      "without-self": 2.889445836506187
+     }
+    },
+    {
+     "name": "Optoelectronics & Photonics",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 140272,
+     "listed": 3023,
+     "c": {
+      "25": 0.772,
+      "50": 1.177,
+      "75": 1.659,
+      "90": 2.148,
+      "95": 2.456,
+      "99": 3.069
+     },
+     "top2": {
+      "with-self": 2.82171166119445,
+      "without-self": 2.72045777132191
+     }
+    },
+    {
+     "name": "Organic Chemistry",
+     "field": "Chemistry",
+     "authors": 188664,
+     "listed": 3963,
+     "c": {
+      "25": 1.197,
+      "50": 1.577,
+      "75": 1.993,
+      "90": 2.484,
+      "95": 2.821,
+      "99": 3.518
+     },
+     "top2": {
+      "with-self": 3.229437384187774,
+      "without-self": 3.163914552992873
+     }
+    },
+    {
+     "name": "Ornithology",
+     "field": "Biology",
+     "authors": 5121,
+     "listed": 107,
+     "c": {
+      "25": 1.101,
+      "50": 1.479,
+      "75": 1.929,
+      "90": 2.427,
+      "95": 2.72,
+      "99": 3.29
+     },
+     "top2": {
+      "with-self": 3.044045854151124,
+      "without-self": 2.992047317057297
+     }
+    },
+    {
+     "name": "Orthopedics",
+     "field": "Clinical Medicine",
+     "authors": 98781,
+     "listed": 2026,
+     "c": {
+      "25": 0.963,
+      "50": 1.424,
+      "75": 1.909,
+      "90": 2.407,
+      "95": 2.743,
+      "99": 3.396
+     },
+     "top2": {
+      "with-self": 3.148659603270938,
+      "without-self": 3.121535094895051
+     }
+    },
+    {
+     "name": "Otorhinolaryngology",
+     "field": "Clinical Medicine",
+     "authors": 54521,
+     "listed": 1128,
+     "c": {
+      "25": 0.856,
+      "50": 1.319,
+      "75": 1.812,
+      "90": 2.318,
+      "95": 2.67,
+      "99": 3.298
+     },
+     "top2": {
+      "with-self": 3.064961299529697,
+      "without-self": 3.030094279684904
+     }
+    },
+    {
+     "name": "Paleontology",
+     "field": "Earth & Environmental Sciences",
+     "authors": 23292,
+     "listed": 503,
+     "c": {
+      "25": 1.317,
+      "50": 1.788,
+      "75": 2.366,
+      "90": 2.907,
+      "95": 3.223,
+      "99": 3.714
+     },
+     "top2": {
+      "with-self": 3.529329807195682,
+      "without-self": 3.434710758524583
+     }
+    },
+    {
+     "name": "Pathology",
+     "field": "Clinical Medicine",
+     "authors": 26003,
+     "listed": 535,
+     "c": {
+      "25": 0.965,
+      "50": 1.401,
+      "75": 1.873,
+      "90": 2.432,
+      "95": 2.81,
+      "99": 3.531
+     },
+     "top2": {
+      "with-self": 3.274774700822425,
+      "without-self": 3.237832097193577
+     }
+    },
+    {
+     "name": "Pediatrics",
+     "field": "Clinical Medicine",
+     "authors": 81129,
+     "listed": 1671,
+     "c": {
+      "25": 0.805,
+      "50": 1.239,
+      "75": 1.764,
+      "90": 2.302,
+      "95": 2.668,
+      "99": 3.372
+     },
+     "top2": {
+      "with-self": 3.104051567583102,
+      "without-self": 3.073143659290593
+     }
+    },
+    {
+     "name": "Pharmacology & Pharmacy",
+     "field": "Clinical Medicine",
+     "authors": 166116,
+     "listed": 3462,
+     "c": {
+      "25": 0.94,
+      "50": 1.393,
+      "75": 1.858,
+      "90": 2.331,
+      "95": 2.651,
+      "99": 3.306
+     },
+     "top2": {
+      "with-self": 3.039410472758158,
+      "without-self": 2.993065183674375
+     }
+    },
+    {
+     "name": "Philosophy",
+     "field": "Philosophy & Theology",
+     "authors": 14569,
+     "listed": 305,
+     "c": {
+      "25": 1.054,
+      "50": 1.59,
+      "75": 2.16,
+      "90": 2.657,
+      "95": 2.93,
+      "99": 3.436
+     },
+     "top2": {
+      "with-self": 3.222557938148176,
+      "without-self": 3.203350979510834
+     }
+    },
+    {
+     "name": "Physical Chemistry",
+     "field": "Chemistry",
+     "authors": 44088,
+     "listed": 909,
+     "c": {
+      "25": 1.139,
+      "50": 1.536,
+      "75": 1.946,
+      "90": 2.433,
+      "95": 2.775,
+      "99": 3.433
+     },
+     "top2": {
+      "with-self": 3.169625370146671,
+      "without-self": 3.122499116760441
+     }
+    },
+    {
+     "name": "Physiology",
+     "field": "Biomedical Research",
+     "authors": 26472,
+     "listed": 552,
+     "c": {
+      "25": 1.123,
+      "50": 1.544,
+      "75": 2.036,
+      "90": 2.658,
+      "95": 3.053,
+      "99": 3.696
+     },
+     "top2": {
+      "with-self": 3.460040685690332,
+      "without-self": 3.402151000911545
+     }
+    },
+    {
+     "name": "Plant Biology & Botany",
+     "field": "Biology",
+     "authors": 204373,
+     "listed": 4226,
+     "c": {
+      "25": 1.074,
+      "50": 1.519,
+      "75": 1.984,
+      "90": 2.45,
+      "95": 2.758,
+      "99": 3.407
+     },
+     "top2": {
+      "with-self": 3.140087465169931,
+      "without-self": 3.089617111653422
+     }
+    },
+    {
+     "name": "Political Science & Public Administration",
+     "field": "Social Sciences",
+     "authors": 27183,
+     "listed": 557,
+     "c": {
+      "25": 1.412,
+      "50": 1.92,
+      "75": 2.435,
+      "90": 2.895,
+      "95": 3.165,
+      "99": 3.644
+     },
+     "top2": {
+      "with-self": 3.448477234354776,
+      "without-self": 3.435321361182281
+     }
+    },
+    {
+     "name": "Polymers",
+     "field": "Chemistry",
+     "authors": 133253,
+     "listed": 2797,
+     "c": {
+      "25": 1.034,
+      "50": 1.479,
+      "75": 1.918,
+      "90": 2.411,
+      "95": 2.733,
+      "99": 3.399
+     },
+     "top2": {
+      "with-self": 3.119953207154751,
+      "without-self": 3.057194163033951
+     }
+    },
+    {
+     "name": "Psychiatry",
+     "field": "Clinical Medicine",
+     "authors": 90846,
+     "listed": 1870,
+     "c": {
+      "25": 1.026,
+      "50": 1.508,
+      "75": 2.049,
+      "90": 2.638,
+      "95": 3.042,
+      "99": 3.797
+     },
+     "top2": {
+      "with-self": 3.504116846210577,
+      "without-self": 3.462807741252037
+     }
+    },
+    {
+     "name": "Psychoanalysis",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 3511,
+     "listed": 75,
+     "c": {
+      "25": 1.124,
+      "50": 1.573,
+      "75": 2.035,
+      "90": 2.557,
+      "95": 2.837,
+      "99": 3.297
+     },
+     "top2": {
+      "with-self": 3.141707212511165,
+      "without-self": 3.098257229234218
+     }
+    },
+    {
+     "name": "Public Health",
+     "field": "Public Health & Health Services",
+     "authors": 82273,
+     "listed": 1692,
+     "c": {
+      "25": 1.02,
+      "50": 1.485,
+      "75": 2.028,
+      "90": 2.596,
+      "95": 2.949,
+      "99": 3.566
+     },
+     "top2": {
+      "with-self": 3.327898183292484,
+      "without-self": 3.291639135094975
+     }
+    },
+    {
+     "name": "Rehabilitation",
+     "field": "Public Health & Health Services",
+     "authors": 31889,
+     "listed": 659,
+     "c": {
+      "25": 1.07,
+      "50": 1.497,
+      "75": 1.979,
+      "90": 2.475,
+      "95": 2.801,
+      "99": 3.4
+     },
+     "top2": {
+      "with-self": 3.172433156446727,
+      "without-self": 3.125659496580349
+     }
+    },
+    {
+     "name": "Religions & Theology",
+     "field": "Philosophy & Theology",
+     "authors": 11748,
+     "listed": 246,
+     "c": {
+      "25": 1.044,
+      "50": 1.503,
+      "75": 1.953,
+      "90": 2.348,
+      "95": 2.577,
+      "99": 2.993
+     },
+     "top2": {
+      "with-self": 2.83043986047738,
+      "without-self": 2.79594372723126
+     }
+    },
+    {
+     "name": "Respiratory System",
+     "field": "Clinical Medicine",
+     "authors": 71926,
+     "listed": 1477,
+     "c": {
+      "25": 0.915,
+      "50": 1.391,
+      "75": 1.924,
+      "90": 2.5,
+      "95": 2.9,
+      "99": 3.619
+     },
+     "top2": {
+      "with-self": 3.349291944552822,
+      "without-self": 3.307226208161976
+     }
+    },
+    {
+     "name": "Science Studies",
+     "field": "Social Sciences",
+     "authors": 5303,
+     "listed": 109,
+     "c": {
+      "25": 1.345,
+      "50": 1.814,
+      "75": 2.347,
+      "90": 2.849,
+      "95": 3.148,
+      "99": 3.679
+     },
+     "top2": {
+      "with-self": 3.459118879387328,
+      "without-self": 3.438830823601272
+     }
+    },
+    {
+     "name": "Social Psychology",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 27908,
+     "listed": 858,
+     "c": {
+      "25": 1.229,
+      "50": 1.695,
+      "75": 2.266,
+      "90": 2.865,
+      "95": 3.252,
+      "99": 3.962
+     },
+     "top2": {
+      "with-self": 3.702048301284117,
+      "without-self": 3.670885149114734
+     }
+    },
+    {
+     "name": "Social Sciences Methods",
+     "field": "Social Sciences",
+     "authors": 3363,
+     "listed": 118,
+     "c": {
+      "25": 1.192,
+      "50": 1.65,
+      "75": 2.231,
+      "90": 2.886,
+      "95": 3.311,
+      "99": 3.962
+     },
+     "top2": {
+      "with-self": 3.732764490792478,
+      "without-self": 3.722500640181651
+     }
+    },
+    {
+     "name": "Social Work",
+     "field": "Social Sciences",
+     "authors": 9659,
+     "listed": 209,
+     "c": {
+      "25": 1.25,
+      "50": 1.679,
+      "75": 2.165,
+      "90": 2.601,
+      "95": 2.837,
+      "99": 3.269
+     },
+     "top2": {
+      "with-self": 3.116093412507263,
+      "without-self": 3.062044641213866
+     }
+    },
+    {
+     "name": "Sociology",
+     "field": "Social Sciences",
+     "authors": 12471,
+     "listed": 293,
+     "c": {
+      "25": 1.449,
+      "50": 1.946,
+      "75": 2.486,
+      "90": 2.964,
+      "95": 3.249,
+      "99": 3.769
+     },
+     "top2": {
+      "with-self": 3.553628910238547,
+      "without-self": 3.535596297255132
+     }
+    },
+    {
+     "name": "Software Engineering",
+     "field": "Information & Communication Technologies",
+     "authors": 24083,
+     "listed": 497,
+     "c": {
+      "25": 1.124,
+      "50": 1.505,
+      "75": 1.95,
+      "90": 2.482,
+      "95": 2.85,
+      "99": 3.487
+     },
+     "top2": {
+      "with-self": 3.239685236722256,
+      "without-self": 3.195593948330886
+     }
+    },
+    {
+     "name": "Speech-Language Pathology & Audiology",
+     "field": "Public Health & Health Services",
+     "authors": 13500,
+     "listed": 283,
+     "c": {
+      "25": 1.131,
+      "50": 1.535,
+      "75": 2.023,
+      "90": 2.552,
+      "95": 2.883,
+      "99": 3.457
+     },
+     "top2": {
+      "with-self": 3.232561771987335,
+      "without-self": 3.176516041988728
+     }
+    },
+    {
+     "name": "Sport Sciences",
+     "field": "Clinical Medicine",
+     "authors": 41112,
+     "listed": 852,
+     "c": {
+      "25": 1.028,
+      "50": 1.462,
+      "75": 1.968,
+      "90": 2.485,
+      "95": 2.817,
+      "99": 3.477
+     },
+     "top2": {
+      "with-self": 3.220422198882229,
+      "without-self": 3.16677905212128
+     }
+    },
+    {
+     "name": "Sport, Leisure & Tourism",
+     "field": "Economics & Business",
+     "authors": 11605,
+     "listed": 239,
+     "c": {
+      "25": 1.35,
+      "50": 1.79,
+      "75": 2.316,
+      "90": 2.833,
+      "95": 3.131,
+      "99": 3.645
+     },
+     "top2": {
+      "with-self": 3.454983702690476,
+      "without-self": 3.427076264130713
+     }
+    },
+    {
+     "name": "Statistics & Probability",
+     "field": "Mathematics & Statistics",
+     "authors": 24695,
+     "listed": 513,
+     "c": {
+      "25": 1.22,
+      "50": 1.673,
+      "75": 2.247,
+      "90": 2.819,
+      "95": 3.145,
+      "99": 3.709
+     },
+     "top2": {
+      "with-self": 3.48570647146252,
+      "without-self": 3.448226964282277
+     }
+    },
+    {
+     "name": "Strategic, Defence & Security Studies",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 32161,
+     "listed": 672,
+     "c": {
+      "25": 0.853,
+      "50": 1.251,
+      "75": 1.659,
+      "90": 2.135,
+      "95": 2.473,
+      "99": 3.173
+     },
+     "top2": {
+      "with-self": 2.884753027987076,
+      "without-self": 2.833272496696888
+     }
+    },
+    {
+     "name": "Substance Abuse",
+     "field": "Public Health & Health Services",
+     "authors": 18209,
+     "listed": 376,
+     "c": {
+      "25": 1.057,
+      "50": 1.52,
+      "75": 2.079,
+      "90": 2.721,
+      "95": 3.072,
+      "99": 3.724
+     },
+     "top2": {
+      "with-self": 3.501960048111515,
+      "without-self": 3.459415167022991
+     }
+    },
+    {
+     "name": "Surgery",
+     "field": "Clinical Medicine",
+     "authors": 146713,
+     "listed": 3025,
+     "c": {
+      "25": 0.774,
+      "50": 1.214,
+      "75": 1.764,
+      "90": 2.294,
+      "95": 2.636,
+      "99": 3.315
+     },
+     "top2": {
+      "with-self": 3.052358192588551,
+      "without-self": 3.022097908888219
+     }
+    },
+    {
+     "name": "Toxicology",
+     "field": "Biomedical Research",
+     "authors": 69049,
+     "listed": 1438,
+     "c": {
+      "25": 0.945,
+      "50": 1.403,
+      "75": 1.869,
+      "90": 2.373,
+      "95": 2.711,
+      "99": 3.374
+     },
+     "top2": {
+      "with-self": 3.122454019921319,
+      "without-self": 3.070353098358933
+     }
+    },
+    {
+     "name": "Tropical Medicine",
+     "field": "Clinical Medicine",
+     "authors": 39335,
+     "listed": 823,
+     "c": {
+      "25": 0.908,
+      "50": 1.326,
+      "75": 1.8,
+      "90": 2.306,
+      "95": 2.647,
+      "99": 3.327
+     },
+     "top2": {
+      "with-self": 3.054825856318561,
+      "without-self": 2.984552614049232
+     }
+    },
+    {
+     "name": "Urban & Regional Planning",
+     "field": "Built Environment & Design",
+     "authors": 15338,
+     "listed": 315,
+     "c": {
+      "25": 1.204,
+      "50": 1.658,
+      "75": 2.182,
+      "90": 2.708,
+      "95": 3.006,
+      "99": 3.526
+     },
+     "top2": {
+      "with-self": 3.338297863197238,
+      "without-self": 3.309593164944499
+     }
+    },
+    {
+     "name": "Urology & Nephrology",
+     "field": "Clinical Medicine",
+     "authors": 96288,
+     "listed": 1972,
+     "c": {
+      "25": 0.878,
+      "50": 1.348,
+      "75": 1.879,
+      "90": 2.438,
+      "95": 2.817,
+      "99": 3.553
+     },
+     "top2": {
+      "with-self": 3.273149046003725,
+      "without-self": 3.233677475977931
+     }
+    },
+    {
+     "name": "Veterinary Sciences",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 72388,
+     "listed": 1507,
+     "c": {
+      "25": 1.027,
+      "50": 1.447,
+      "75": 1.909,
+      "90": 2.394,
+      "95": 2.702,
+      "99": 3.269
+     },
+     "top2": {
+      "with-self": 3.048676357324099,
+      "without-self": 3.005612997670231
+     }
+    },
+    {
+     "name": "Virology",
+     "field": "Biomedical Research",
+     "authors": 79508,
+     "listed": 1636,
+     "c": {
+      "25": 0.96,
+      "50": 1.46,
+      "75": 1.96,
+      "90": 2.484,
+      "95": 2.841,
+      "99": 3.517
+     },
+     "top2": {
+      "with-self": 3.26876456318218,
+      "without-self": 3.213960765469224
+     }
+    },
+    {
+     "name": "Zoology",
+     "field": "Biology",
+     "authors": 19073,
+     "listed": 425,
+     "c": {
+      "25": 1.029,
+      "50": 1.405,
+      "75": 1.865,
+      "90": 2.352,
+      "95": 2.661,
+      "99": 3.192
+     },
+     "top2": {
+      "with-self": 2.989779823071736,
+      "without-self": 2.854441885019237
+     }
+    }
+   ]
+  },
+  "single-year": {
+   "top100k": {
+    "with-self": 2.776858406830589,
+    "without-self": 2.741662130606465
+   },
+   "fields": [
+    {
+     "name": "Agriculture, Fisheries & Forestry",
+     "domain": "Applied Sciences",
+     "authors": 434489,
+     "listed": 8762,
+     "c": {
+      "25": 0.654,
+      "50": 1.004,
+      "75": 1.443,
+      "90": 1.872,
+      "95": 2.133,
+      "99": 2.637
+     }
+    },
+    {
+     "name": "Biology",
+     "domain": "Natural Sciences",
+     "authors": 445736,
+     "listed": 9494,
+     "c": {
+      "25": 0.73,
+      "50": 1.092,
+      "75": 1.531,
+      "90": 1.961,
+      "95": 2.235,
+      "99": 2.801
+     }
+    },
+    {
+     "name": "Biomedical Research",
+     "domain": "Health Sciences",
+     "authors": 897823,
+     "listed": 17948,
+     "c": {
+      "25": 0.619,
+      "50": 0.979,
+      "75": 1.422,
+      "90": 1.845,
+      "95": 2.114,
+      "99": 2.672
+     }
+    },
+    {
+     "name": "Built Environment & Design",
+     "domain": "Applied Sciences",
+     "authors": 73753,
+     "listed": 1562,
+     "c": {
+      "25": 0.697,
+      "50": 1.134,
+      "75": 1.607,
+      "90": 2.071,
+      "95": 2.356,
+      "99": 2.901
+     }
+    },
+    {
+     "name": "Chemistry",
+     "domain": "Natural Sciences",
+     "authors": 804950,
+     "listed": 16855,
+     "c": {
+      "25": 0.556,
+      "50": 0.945,
+      "75": 1.397,
+      "90": 1.827,
+      "95": 2.097,
+      "99": 2.619
+     }
+    },
+    {
+     "name": "Clinical Medicine",
+     "domain": "Health Sciences",
+     "authors": 3599268,
+     "listed": 76155,
+     "c": {
+      "25": 0.488,
+      "50": 0.853,
+      "75": 1.315,
+      "90": 1.78,
+      "95": 2.072,
+      "99": 2.664
+     }
+    },
+    {
+     "name": "Communication & Textual Studies",
+     "domain": "Arts & Humanities",
+     "authors": 63964,
+     "listed": 1435,
+     "c": {
+      "25": 0.585,
+      "50": 0.903,
+      "75": 1.439,
+      "90": 1.946,
+      "95": 2.277,
+      "99": 2.918
+     }
+    },
+    {
+     "name": "Earth & Environmental Sciences",
+     "domain": "Natural Sciences",
+     "authors": 399932,
+     "listed": 8545,
+     "c": {
+      "25": 0.726,
+      "50": 1.136,
+      "75": 1.608,
+      "90": 2.064,
+      "95": 2.345,
+      "99": 2.897
+     }
+    },
+    {
+     "name": "Economics & Business",
+     "domain": "Economic & Social Sciences",
+     "authors": 227917,
+     "listed": 6512,
+     "c": {
+      "25": 0.789,
+      "50": 1.252,
+      "75": 1.731,
+      "90": 2.198,
+      "95": 2.497,
+      "99": 3.098
+     }
+    },
+    {
+     "name": "Enabling & Strategic Technologies",
+     "domain": "Applied Sciences",
+     "authors": 1074096,
+     "listed": 23813,
+     "c": {
+      "25": 0.492,
+      "50": 0.949,
+      "75": 1.469,
+      "90": 1.939,
+      "95": 2.222,
+      "99": 2.753
+     }
+    },
+    {
+     "name": "Engineering",
+     "domain": "Applied Sciences",
+     "authors": 910141,
+     "listed": 19557,
+     "c": {
+      "25": 0.489,
+      "50": 0.901,
+      "75": 1.383,
+      "90": 1.84,
+      "95": 2.125,
+      "99": 2.675
+     }
+    },
+    {
+     "name": "Historical Studies",
+     "domain": "Arts & Humanities",
+     "authors": 59008,
+     "listed": 1240,
+     "c": {
+      "25": 0.585,
+      "50": 0.866,
+      "75": 1.335,
+      "90": 1.742,
+      "95": 1.993,
+      "99": 2.512
+     }
+    },
+    {
+     "name": "Information & Communication Technologies",
+     "domain": "Applied Sciences",
+     "authors": 910811,
+     "listed": 18085,
+     "c": {
+      "25": 0.446,
+      "50": 0.854,
+      "75": 1.33,
+      "90": 1.785,
+      "95": 2.078,
+      "99": 2.665
+     }
+    },
+    {
+     "name": "Mathematics & Statistics",
+     "domain": "Natural Sciences",
+     "authors": 138254,
+     "listed": 2949,
+     "c": {
+      "25": 0.585,
+      "50": 0.959,
+      "75": 1.428,
+      "90": 1.885,
+      "95": 2.177,
+      "99": 2.75
+     }
+    },
+    {
+     "name": "Philosophy & Theology",
+     "domain": "Arts & Humanities",
+     "authors": 30497,
+     "listed": 610,
+     "c": {
+      "25": 0.585,
+      "50": 0.849,
+      "75": 1.41,
+      "90": 1.892,
+      "95": 2.191,
+      "99": 2.719
+     }
+    },
+    {
+     "name": "Physics & Astronomy",
+     "domain": "Natural Sciences",
+     "authors": 912046,
+     "listed": 20385,
+     "c": {
+      "25": 0.448,
+      "50": 0.857,
+      "75": 1.35,
+      "90": 1.823,
+      "95": 2.127,
+      "99": 2.734
+     }
+    },
+    {
+     "name": "Psychology & Cognitive Sciences",
+     "domain": "Health Sciences",
+     "authors": 141053,
+     "listed": 4136,
+     "c": {
+      "25": 0.745,
+      "50": 1.157,
+      "75": 1.634,
+      "90": 2.143,
+      "95": 2.47,
+      "99": 3.145
+     }
+    },
+    {
+     "name": "Public Health & Health Services",
+     "domain": "Health Sciences",
+     "authors": 223175,
+     "listed": 4458,
+     "c": {
+      "25": 0.578,
+      "50": 0.927,
+      "75": 1.39,
+      "90": 1.856,
+      "95": 2.14,
+      "99": 2.686
+     }
+    },
+    {
+     "name": "Social Sciences",
+     "domain": "Economic & Social Sciences",
+     "authors": 265152,
+     "listed": 6698,
+     "c": {
+      "25": 0.645,
+      "50": 1.074,
+      "75": 1.574,
+      "90": 2.064,
+      "95": 2.361,
+      "99": 2.927
+     }
+    },
+    {
+     "name": "Visual & Performing Arts",
+     "domain": "Arts & Humanities",
+     "authors": 7188,
+     "listed": 111,
+     "c": {
+      "25": 0,
+      "50": 0.585,
+      "75": 0.971,
+      "90": 1.41,
+      "95": 1.642,
+      "99": 2.12
+     }
+    }
+   ],
+   "subfields": [
+    {
+     "name": "Accounting",
+     "field": "Economics & Business",
+     "authors": 7240,
+     "listed": 197,
+     "c": {
+      "25": 0.993,
+      "50": 1.401,
+      "75": 1.847,
+      "90": 2.264,
+      "95": 2.544,
+      "99": 3.096
+     },
+     "top2": {
+      "with-self": 2.853759898622712,
+      "without-self": 2.837634677197532
+     }
+    },
+    {
+     "name": "Acoustics",
+     "field": "Physics & Astronomy",
+     "authors": 38987,
+     "listed": 837,
+     "c": {
+      "25": 0.44,
+      "50": 0.823,
+      "75": 1.284,
+      "90": 1.732,
+      "95": 2.023,
+      "99": 2.59
+     },
+     "top2": {
+      "with-self": 2.366985759287649,
+      "without-self": 2.312776290903379
+     }
+    },
+    {
+     "name": "Aerospace & Aeronautics",
+     "field": "Engineering",
+     "authors": 66382,
+     "listed": 1445,
+     "c": {
+      "25": 0.383,
+      "50": 0.72,
+      "75": 1.133,
+      "90": 1.554,
+      "95": 1.827,
+      "99": 2.354
+     },
+     "top2": {
+      "with-self": 2.157151653593328,
+      "without-self": 2.086453409507247
+     }
+    },
+    {
+     "name": "Agricultural Economics & Policy",
+     "field": "Economics & Business",
+     "authors": 6741,
+     "listed": 139,
+     "c": {
+      "25": 0.703,
+      "50": 1.167,
+      "75": 1.649,
+      "90": 2.094,
+      "95": 2.394,
+      "99": 2.953
+     },
+     "top2": {
+      "with-self": 2.717195273714105,
+      "without-self": 2.70110690871468
+     }
+    },
+    {
+     "name": "Agronomy & Agriculture",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 95377,
+     "listed": 2019,
+     "c": {
+      "25": 0.657,
+      "50": 1.011,
+      "75": 1.469,
+      "90": 1.91,
+      "95": 2.176,
+      "99": 2.693
+     },
+     "top2": {
+      "with-self": 2.482531723786361,
+      "without-self": 2.443800847615418
+     }
+    },
+    {
+     "name": "Allergy",
+     "field": "Clinical Medicine",
+     "authors": 19768,
+     "listed": 414,
+     "c": {
+      "25": 0.535,
+      "50": 0.854,
+      "75": 1.307,
+      "90": 1.815,
+      "95": 2.154,
+      "99": 2.796
+     },
+     "top2": {
+      "with-self": 2.52385951313629,
+      "without-self": 2.467296370571748
+     }
+    },
+    {
+     "name": "Analytical Chemistry",
+     "field": "Chemistry",
+     "authors": 137328,
+     "listed": 2907,
+     "c": {
+      "25": 0.583,
+      "50": 0.967,
+      "75": 1.409,
+      "90": 1.826,
+      "95": 2.086,
+      "99": 2.563
+     },
+     "top2": {
+      "with-self": 2.368815585733127,
+      "without-self": 2.335387226381252
+     }
+    },
+    {
+     "name": "Anatomy & Morphology",
+     "field": "Biomedical Research",
+     "authors": 8297,
+     "listed": 184,
+     "c": {
+      "25": 0.44,
+      "50": 0.734,
+      "75": 1.092,
+      "90": 1.463,
+      "95": 1.705,
+      "99": 2.222
+     },
+     "top2": {
+      "with-self": 2.039653288975194,
+      "without-self": 1.975505344703963
+     }
+    },
+    {
+     "name": "Anesthesiology",
+     "field": "Clinical Medicine",
+     "authors": 59383,
+     "listed": 1238,
+     "c": {
+      "25": 0.465,
+      "50": 0.786,
+      "75": 1.147,
+      "90": 1.595,
+      "95": 1.884,
+      "99": 2.504
+     },
+     "top2": {
+      "with-self": 2.242052842843574,
+      "without-self": 2.207977257498149
+     }
+    },
+    {
+     "name": "Anthropology",
+     "field": "Historical Studies",
+     "authors": 10039,
+     "listed": 215,
+     "c": {
+      "25": 0.585,
+      "50": 0.993,
+      "75": 1.533,
+      "90": 2.009,
+      "95": 2.281,
+      "99": 2.797
+     },
+     "top2": {
+      "with-self": 2.628578167941813,
+      "without-self": 2.602437243193131
+     }
+    },
+    {
+     "name": "Applied Ethics",
+     "field": "Philosophy & Theology",
+     "authors": 6701,
+     "listed": 142,
+     "c": {
+      "25": 0.585,
+      "50": 1.048,
+      "75": 1.593,
+      "90": 2.098,
+      "95": 2.384,
+      "99": 2.899
+     },
+     "top2": {
+      "with-self": 2.704530316628185,
+      "without-self": 2.67794331840423
+     }
+    },
+    {
+     "name": "Applied Mathematics",
+     "field": "Mathematics & Statistics",
+     "authors": 23982,
+     "listed": 522,
+     "c": {
+      "25": 0.628,
+      "50": 1.024,
+      "75": 1.464,
+      "90": 1.924,
+      "95": 2.23,
+      "99": 2.841
+     },
+     "top2": {
+      "with-self": 2.587102053749752,
+      "without-self": 2.516912349435215
+     }
+    },
+    {
+     "name": "Applied Physics",
+     "field": "Physics & Astronomy",
+     "authors": 323282,
+     "listed": 6862,
+     "c": {
+      "25": 0.377,
+      "50": 0.769,
+      "75": 1.274,
+      "90": 1.754,
+      "95": 2.039,
+      "99": 2.597
+     },
+     "top2": {
+      "with-self": 2.366094531283526,
+      "without-self": 2.31446000420679
+     }
+    },
+    {
+     "name": "Archaeology",
+     "field": "Historical Studies",
+     "authors": 21336,
+     "listed": 469,
+     "c": {
+      "25": 0.627,
+      "50": 0.95,
+      "75": 1.371,
+      "90": 1.787,
+      "95": 2.03,
+      "99": 2.535
+     },
+     "top2": {
+      "with-self": 2.340947439969054,
+      "without-self": 2.2589424982687
+     }
+    },
+    {
+     "name": "Architecture",
+     "field": "Built Environment & Design",
+     "authors": 1981,
+     "listed": 42,
+     "c": {
+      "25": 0,
+      "50": 0.585,
+      "75": 0.973,
+      "90": 1.359,
+      "95": 1.607,
+      "99": 2.121
+     },
+     "top2": {
+      "with-self": 1.894633954058047,
+      "without-self": 1.856420475556582
+     }
+    },
+    {
+     "name": "Art Practice, History & Theory",
+     "field": "Visual & Performing Arts",
+     "authors": 2788,
+     "listed": 59,
+     "c": {
+      "25": 0,
+      "50": 0.585,
+      "75": 0.89,
+      "90": 1.323,
+      "95": 1.518,
+      "99": 1.935
+     },
+     "top2": {
+      "with-self": 1.780848739555712,
+      "without-self": 1.764458553251007
+     }
+    },
+    {
+     "name": "Arthritis & Rheumatology",
+     "field": "Clinical Medicine",
+     "authors": 45980,
+     "listed": 960,
+     "c": {
+      "25": 0.599,
+      "50": 0.899,
+      "75": 1.323,
+      "90": 1.795,
+      "95": 2.131,
+      "99": 2.791
+     },
+     "top2": {
+      "with-self": 2.51622205051106,
+      "without-self": 2.474609941642602
+     }
+    },
+    {
+     "name": "Artificial Intelligence & Image Processing",
+     "field": "Information & Communication Technologies",
+     "authors": 517648,
+     "listed": 10854,
+     "c": {
+      "25": 0.524,
+      "50": 0.924,
+      "75": 1.398,
+      "90": 1.85,
+      "95": 2.14,
+      "99": 2.732
+     },
+     "top2": {
+      "with-self": 2.485711227203798,
+      "without-self": 2.454179413792601
+     }
+    },
+    {
+     "name": "Astronomy & Astrophysics",
+     "field": "Physics & Astronomy",
+     "authors": 58202,
+     "listed": 1786,
+     "c": {
+      "25": 0.801,
+      "50": 1.261,
+      "75": 1.816,
+      "90": 2.329,
+      "95": 2.604,
+      "99": 3.113
+     },
+     "top2": {
+      "with-self": 2.905422711450631,
+      "without-self": 2.77199592799458
+     }
+    },
+    {
+     "name": "Automobile Design & Engineering",
+     "field": "Engineering",
+     "authors": 2238,
+     "listed": 48,
+     "c": {
+      "25": 0,
+      "50": 0.533,
+      "75": 0.927,
+      "90": 1.308,
+      "95": 1.566,
+      "99": 2.101
+     },
+     "top2": {
+      "with-self": 1.921038713430004,
+      "without-self": 1.879445097783397
+     }
+    },
+    {
+     "name": "Behavioral Science & Comparative Psychology",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 13044,
+     "listed": 284,
+     "c": {
+      "25": 0.7,
+      "50": 1.057,
+      "75": 1.487,
+      "90": 1.966,
+      "95": 2.318,
+      "99": 2.838
+     },
+     "top2": {
+      "with-self": 2.641229027981274,
+      "without-self": 2.586639034685925
+     }
+    },
+    {
+     "name": "Biochemistry & Molecular Biology",
+     "field": "Biomedical Research",
+     "authors": 216826,
+     "listed": 4513,
+     "c": {
+      "25": 0.526,
+      "50": 0.918,
+      "75": 1.38,
+      "90": 1.808,
+      "95": 2.07,
+      "99": 2.629
+     },
+     "top2": {
+      "with-self": 2.390050846130235,
+      "without-self": 2.363711068302094
+     }
+    },
+    {
+     "name": "Bioinformatics",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 24357,
+     "listed": 502,
+     "c": {
+      "25": 0.729,
+      "50": 1.048,
+      "75": 1.458,
+      "90": 1.896,
+      "95": 2.202,
+      "99": 2.806
+     },
+     "top2": {
+      "with-self": 2.563989144035919,
+      "without-self": 2.543738925433739
+     }
+    },
+    {
+     "name": "Biomedical Engineering",
+     "field": "Engineering",
+     "authors": 74543,
+     "listed": 1558,
+     "c": {
+      "25": 0.593,
+      "50": 0.997,
+      "75": 1.437,
+      "90": 1.843,
+      "95": 2.094,
+      "99": 2.61
+     },
+     "top2": {
+      "with-self": 2.396093145448938,
+      "without-self": 2.364418423179089
+     }
+    },
+    {
+     "name": "Biophysics",
+     "field": "Biomedical Research",
+     "authors": 21025,
+     "listed": 448,
+     "c": {
+      "25": 0.418,
+      "50": 0.788,
+      "75": 1.179,
+      "90": 1.583,
+      "95": 1.839,
+      "99": 2.399
+     },
+     "top2": {
+      "with-self": 2.180570775547528,
+      "without-self": 2.130760114746707
+     }
+    },
+    {
+     "name": "Biotechnology",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 69700,
+     "listed": 1456,
+     "c": {
+      "25": 0.684,
+      "50": 1.048,
+      "75": 1.465,
+      "90": 1.869,
+      "95": 2.121,
+      "99": 2.604
+     },
+     "top2": {
+      "with-self": 2.40015430107332,
+      "without-self": 2.369178238968864
+     }
+    },
+    {
+     "name": "Building & Construction",
+     "field": "Built Environment & Design",
+     "authors": 56454,
+     "listed": 1186,
+     "c": {
+      "25": 0.763,
+      "50": 1.197,
+      "75": 1.663,
+      "90": 2.12,
+      "95": 2.395,
+      "99": 2.919
+     },
+     "top2": {
+      "with-self": 2.711532918139229,
+      "without-self": 2.682202953543969
+     }
+    },
+    {
+     "name": "Business & Management",
+     "field": "Economics & Business",
+     "authors": 68786,
+     "listed": 2264,
+     "c": {
+      "25": 0.773,
+      "50": 1.267,
+      "75": 1.778,
+      "90": 2.269,
+      "95": 2.58,
+      "99": 3.195
+     },
+     "top2": {
+      "with-self": 2.946850681268271,
+      "without-self": 2.934134184028558
+     }
+    },
+    {
+     "name": "Cardiovascular System & Hematology",
+     "field": "Clinical Medicine",
+     "authors": 249410,
+     "listed": 5189,
+     "c": {
+      "25": 0.474,
+      "50": 0.828,
+      "75": 1.293,
+      "90": 1.792,
+      "95": 2.108,
+      "99": 2.763
+     },
+     "top2": {
+      "with-self": 2.492125549535738,
+      "without-self": 2.447650700359828
+     }
+    },
+    {
+     "name": "Chemical Engineering",
+     "field": "Engineering",
+     "authors": 97821,
+     "listed": 2050,
+     "c": {
+      "25": 0.673,
+      "50": 1.096,
+      "75": 1.545,
+      "90": 1.972,
+      "95": 2.238,
+      "99": 2.744
+     },
+     "top2": {
+      "with-self": 2.538780919718973,
+      "without-self": 2.507449038190945
+     }
+    },
+    {
+     "name": "Chemical Physics",
+     "field": "Physics & Astronomy",
+     "authors": 121889,
+     "listed": 2599,
+     "c": {
+      "25": 0.588,
+      "50": 0.986,
+      "75": 1.435,
+      "90": 1.868,
+      "95": 2.155,
+      "99": 2.756
+     },
+     "top2": {
+      "with-self": 2.506639027928116,
+      "without-self": 2.452944014410036
+     }
+    },
+    {
+     "name": "Civil Engineering",
+     "field": "Engineering",
+     "authors": 67736,
+     "listed": 1455,
+     "c": {
+      "25": 0.572,
+      "50": 0.97,
+      "75": 1.449,
+      "90": 1.91,
+      "95": 2.2,
+      "99": 2.72
+     },
+     "top2": {
+      "with-self": 2.522620736119933,
+      "without-self": 2.454521741944834
+     }
+    },
+    {
+     "name": "Classics",
+     "field": "Historical Studies",
+     "authors": 3682,
+     "listed": 77,
+     "c": {
+      "25": 0.585,
+      "50": 0.842,
+      "75": 1.333,
+      "90": 1.729,
+      "95": 1.953,
+      "99": 2.354
+     },
+     "top2": {
+      "with-self": 2.209934106237877,
+      "without-self": 2.207586014211266
+     }
+    },
+    {
+     "name": "Clinical Psychology",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 19306,
+     "listed": 403,
+     "c": {
+      "25": 0.652,
+      "50": 1.029,
+      "75": 1.488,
+      "90": 1.991,
+      "95": 2.326,
+      "99": 3.021
+     },
+     "top2": {
+      "with-self": 2.747197203503667,
+      "without-self": 2.70561282044104
+     }
+    },
+    {
+     "name": "Communication & Media Studies",
+     "field": "Communication & Textual Studies",
+     "authors": 16468,
+     "listed": 468,
+     "c": {
+      "25": 0.787,
+      "50": 1.265,
+      "75": 1.761,
+      "90": 2.25,
+      "95": 2.538,
+      "99": 3.1
+     },
+     "top2": {
+      "with-self": 2.879418517759806,
+      "without-self": 2.858162735180755
+     }
+    },
+    {
+     "name": "Complementary & Alternative Medicine",
+     "field": "Clinical Medicine",
+     "authors": 14206,
+     "listed": 292,
+     "c": {
+      "25": 0.502,
+      "50": 0.794,
+      "75": 1.153,
+      "90": 1.507,
+      "95": 1.751,
+      "99": 2.234
+     },
+     "top2": {
+      "with-self": 2.025628716310436,
+      "without-self": 2.012365091420624
+     }
+    },
+    {
+     "name": "Computation Theory & Mathematics",
+     "field": "Information & Communication Technologies",
+     "authors": 20721,
+     "listed": 443,
+     "c": {
+      "25": 0.507,
+      "50": 0.827,
+      "75": 1.276,
+      "90": 1.758,
+      "95": 2.077,
+      "99": 2.679
+     },
+     "top2": {
+      "with-self": 2.424665823091619,
+      "without-self": 2.380878318457065
+     }
+    },
+    {
+     "name": "Computer Hardware & Architecture",
+     "field": "Information & Communication Technologies",
+     "authors": 21014,
+     "listed": 451,
+     "c": {
+      "25": 0.375,
+      "50": 0.736,
+      "75": 1.196,
+      "90": 1.635,
+      "95": 1.911,
+      "99": 2.415
+     },
+     "top2": {
+      "with-self": 2.205694334081688,
+      "without-self": 2.159626872866809
+     }
+    },
+    {
+     "name": "Criminology",
+     "field": "Social Sciences",
+     "authors": 14394,
+     "listed": 308,
+     "c": {
+      "25": 0.791,
+      "50": 1.213,
+      "75": 1.68,
+      "90": 2.138,
+      "95": 2.405,
+      "99": 2.882
+     },
+     "top2": {
+      "with-self": 2.708713068454906,
+      "without-self": 2.672656119267107
+     }
+    },
+    {
+     "name": "Cultural Studies",
+     "field": "Social Sciences",
+     "authors": 8723,
+     "listed": 183,
+     "c": {
+      "25": 0.585,
+      "50": 0.987,
+      "75": 1.442,
+      "90": 1.826,
+      "95": 2.048,
+      "99": 2.475
+     },
+     "top2": {
+      "with-self": 2.318776415780122,
+      "without-self": 2.314592338107539
+     }
+    },
+    {
+     "name": "Dairy & Animal Science",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 78455,
+     "listed": 1670,
+     "c": {
+      "25": 0.581,
+      "50": 0.912,
+      "75": 1.327,
+      "90": 1.735,
+      "95": 1.978,
+      "99": 2.465
+     },
+     "top2": {
+      "with-self": 2.266198083530013,
+      "without-self": 2.222823335604508
+     }
+    },
+    {
+     "name": "Demography",
+     "field": "Social Sciences",
+     "authors": 3977,
+     "listed": 85,
+     "c": {
+      "25": 0.59,
+      "50": 1.074,
+      "75": 1.616,
+      "90": 2.116,
+      "95": 2.383,
+      "99": 2.879
+     },
+     "top2": {
+      "with-self": 2.6928755582414,
+      "without-self": 2.655258962787617
+     }
+    },
+    {
+     "name": "Dentistry",
+     "field": "Clinical Medicine",
+     "authors": 101728,
+     "listed": 2128,
+     "c": {
+      "25": 0.548,
+      "50": 0.894,
+      "75": 1.311,
+      "90": 1.721,
+      "95": 1.983,
+      "99": 2.512
+     },
+     "top2": {
+      "with-self": 2.28594048088326,
+      "without-self": 2.258425598141862
+     }
+    },
+    {
+     "name": "Dermatology & Venereal Diseases",
+     "field": "Clinical Medicine",
+     "authors": 64751,
+     "listed": 1352,
+     "c": {
+      "25": 0.489,
+      "50": 0.826,
+      "75": 1.24,
+      "90": 1.673,
+      "95": 1.969,
+      "99": 2.552
+     },
+     "top2": {
+      "with-self": 2.328757628525875,
+      "without-self": 2.292193128233518
+     }
+    },
+    {
+     "name": "Design Practice & Management",
+     "field": "Built Environment & Design",
+     "authors": 11980,
+     "listed": 254,
+     "c": {
+      "25": 0.44,
+      "50": 0.822,
+      "75": 1.264,
+      "90": 1.696,
+      "95": 2.004,
+      "99": 2.559
+     },
+     "top2": {
+      "with-self": 2.326695934621361,
+      "without-self": 2.281058058029098
+     }
+    },
+    {
+     "name": "Development Studies",
+     "field": "Economics & Business",
+     "authors": 5287,
+     "listed": 111,
+     "c": {
+      "25": 0.767,
+      "50": 1.194,
+      "75": 1.647,
+      "90": 2.1,
+      "95": 2.373,
+      "99": 2.933
+     },
+     "top2": {
+      "with-self": 2.722399564732038,
+      "without-self": 2.708801943756678
+     }
+    },
+    {
+     "name": "Developmental & Child Psychology",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 25365,
+     "listed": 655,
+     "c": {
+      "25": 0.746,
+      "50": 1.146,
+      "75": 1.63,
+      "90": 2.14,
+      "95": 2.46,
+      "99": 3.131
+     },
+     "top2": {
+      "with-self": 2.857896045536476,
+      "without-self": 2.832712820799328
+     }
+    },
+    {
+     "name": "Developmental Biology",
+     "field": "Biomedical Research",
+     "authors": 167121,
+     "listed": 3458,
+     "c": {
+      "25": 0.856,
+      "50": 1.201,
+      "75": 1.599,
+      "90": 1.999,
+      "95": 2.266,
+      "99": 2.835
+     },
+     "top2": {
+      "with-self": 2.602735590499068,
+      "without-self": 2.582485166461288
+     }
+    },
+    {
+     "name": "Distributed Computing",
+     "field": "Information & Communication Technologies",
+     "authors": 9369,
+     "listed": 199,
+     "c": {
+      "25": 0.346,
+      "50": 0.699,
+      "75": 1.098,
+      "90": 1.466,
+      "95": 1.718,
+      "99": 2.224
+     },
+     "top2": {
+      "with-self": 2.014392877626447,
+      "without-self": 1.984533685416637
+     }
+    },
+    {
+     "name": "Drama & Theater",
+     "field": "Visual & Performing Arts",
+     "authors": 1418,
+     "listed": 30,
+     "c": {
+      "25": 0.585,
+      "50": 0.813,
+      "75": 1.242,
+      "90": 1.553,
+      "95": 1.768,
+      "99": 2.191
+     },
+     "top2": {
+      "with-self": 2.061999961700739,
+      "without-self": 2.020534767827336
+     }
+    },
+    {
+     "name": "Ecology",
+     "field": "Biology",
+     "authors": 82882,
+     "listed": 1969,
+     "c": {
+      "25": 0.838,
+      "50": 1.221,
+      "75": 1.683,
+      "90": 2.154,
+      "95": 2.469,
+      "99": 3.069
+     },
+     "top2": {
+      "with-self": 2.825295464894801,
+      "without-self": 2.786578630351171
+     }
+    },
+    {
+     "name": "Econometrics",
+     "field": "Economics & Business",
+     "authors": 1427,
+     "listed": 83,
+     "c": {
+      "25": 0.912,
+      "50": 1.335,
+      "75": 1.853,
+      "90": 2.367,
+      "95": 2.816,
+      "99": 3.626
+     },
+     "top2": {
+      "with-self": 3.41275142666354,
+      "without-self": 3.428311440011602
+     }
+    },
+    {
+     "name": "Economic Theory",
+     "field": "Economics & Business",
+     "authors": 1802,
+     "listed": 38,
+     "c": {
+      "25": 0.695,
+      "50": 1.043,
+      "75": 1.46,
+      "90": 1.881,
+      "95": 2.166,
+      "99": 2.7
+     },
+     "top2": {
+      "with-self": 2.489185769222493,
+      "without-self": 2.492976704792657
+     }
+    },
+    {
+     "name": "Economics",
+     "field": "Economics & Business",
+     "authors": 54592,
+     "listed": 1210,
+     "c": {
+      "25": 0.736,
+      "50": 1.171,
+      "75": 1.639,
+      "90": 2.108,
+      "95": 2.414,
+      "99": 3.049
+     },
+     "top2": {
+      "with-self": 2.789719811785591,
+      "without-self": 2.780673127997346
+     }
+    },
+    {
+     "name": "Education",
+     "field": "Social Sciences",
+     "authors": 115687,
+     "listed": 2432,
+     "c": {
+      "25": 0.606,
+      "50": 1.002,
+      "75": 1.469,
+      "90": 1.935,
+      "95": 2.234,
+      "99": 2.833
+     },
+     "top2": {
+      "with-self": 2.593799926939905,
+      "without-self": 2.564477543483283
+     }
+    },
+    {
+     "name": "Electrical & Electronic Engineering",
+     "field": "Engineering",
+     "authors": 133072,
+     "listed": 2812,
+     "c": {
+      "25": 0.346,
+      "50": 0.703,
+      "75": 1.143,
+      "90": 1.59,
+      "95": 1.871,
+      "99": 2.418
+     },
+     "top2": {
+      "with-self": 2.194241720364895,
+      "without-self": 2.151917024482036
+     }
+    },
+    {
+     "name": "Emergency & Critical Care Medicine",
+     "field": "Clinical Medicine",
+     "authors": 44281,
+     "listed": 927,
+     "c": {
+      "25": 0.605,
+      "50": 0.882,
+      "75": 1.274,
+      "90": 1.724,
+      "95": 2.028,
+      "99": 2.641
+     },
+     "top2": {
+      "with-self": 2.399463789566543,
+      "without-self": 2.347007372420799
+     }
+    },
+    {
+     "name": "Endocrinology & Metabolism",
+     "field": "Clinical Medicine",
+     "authors": 100693,
+     "listed": 2085,
+     "c": {
+      "25": 0.596,
+      "50": 0.95,
+      "75": 1.429,
+      "90": 1.913,
+      "95": 2.23,
+      "99": 2.876
+     },
+     "top2": {
+      "with-self": 2.610840085968941,
+      "without-self": 2.580919044217187
+     }
+    },
+    {
+     "name": "Energy",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 371959,
+     "listed": 7857,
+     "c": {
+      "25": 0.44,
+      "50": 0.895,
+      "75": 1.416,
+      "90": 1.887,
+      "95": 2.173,
+      "99": 2.717
+     },
+     "top2": {
+      "with-self": 2.497762055427688,
+      "without-self": 2.462811066310684
+     }
+    },
+    {
+     "name": "Entomology",
+     "field": "Biology",
+     "authors": 40595,
+     "listed": 867,
+     "c": {
+      "25": 0.652,
+      "50": 0.979,
+      "75": 1.388,
+      "90": 1.798,
+      "95": 2.054,
+      "99": 2.589
+     },
+     "top2": {
+      "with-self": 2.370967056343139,
+      "without-self": 2.315133155359231
+     }
+    },
+    {
+     "name": "Environmental & Occupational Health",
+     "field": "Clinical Medicine",
+     "authors": 15550,
+     "listed": 325,
+     "c": {
+      "25": 0.302,
+      "50": 0.65,
+      "75": 1.102,
+      "90": 1.595,
+      "95": 1.879,
+      "99": 2.425
+     },
+     "top2": {
+      "with-self": 2.213478765346611,
+      "without-self": 2.175682528901386
+     }
+    },
+    {
+     "name": "Environmental Engineering",
+     "field": "Engineering",
+     "authors": 68664,
+     "listed": 1448,
+     "c": {
+      "25": 0.585,
+      "50": 1.013,
+      "75": 1.474,
+      "90": 1.92,
+      "95": 2.2,
+      "99": 2.725
+     },
+     "top2": {
+      "with-self": 2.512435898134898,
+      "without-self": 2.473628674702391
+     }
+    },
+    {
+     "name": "Environmental Sciences",
+     "field": "Earth & Environmental Sciences",
+     "authors": 140934,
+     "listed": 2941,
+     "c": {
+      "25": 0.812,
+      "50": 1.246,
+      "75": 1.708,
+      "90": 2.137,
+      "95": 2.398,
+      "99": 2.915
+     },
+     "top2": {
+      "with-self": 2.704089915257973,
+      "without-self": 2.678087809232748
+     }
+    },
+    {
+     "name": "Epidemiology",
+     "field": "Public Health & Health Services",
+     "authors": 10334,
+     "listed": 211,
+     "c": {
+      "25": 0.506,
+      "50": 0.756,
+      "75": 1.145,
+      "90": 1.652,
+      "95": 2.012,
+      "99": 2.783
+     },
+     "top2": {
+      "with-self": 2.466304685326999,
+      "without-self": 2.447359028092275
+     }
+    },
+    {
+     "name": "Evolutionary Biology",
+     "field": "Biology",
+     "authors": 31128,
+     "listed": 655,
+     "c": {
+      "25": 0.744,
+      "50": 1.121,
+      "75": 1.587,
+      "90": 2.073,
+      "95": 2.372,
+      "99": 2.98
+     },
+     "top2": {
+      "with-self": 2.729654707050087,
+      "without-self": 2.679350433958967
+     }
+    },
+    {
+     "name": "Experimental Psychology",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 37808,
+     "listed": 1103,
+     "c": {
+      "25": 0.842,
+      "50": 1.244,
+      "75": 1.703,
+      "90": 2.193,
+      "95": 2.517,
+      "99": 3.151
+     },
+     "top2": {
+      "with-self": 2.905714572426437,
+      "without-self": 2.872298840775671
+     }
+    },
+    {
+     "name": "Family Studies",
+     "field": "Social Sciences",
+     "authors": 4074,
+     "listed": 87,
+     "c": {
+      "25": 0.703,
+      "50": 1.06,
+      "75": 1.497,
+      "90": 1.944,
+      "95": 2.24,
+      "99": 2.795
+     },
+     "top2": {
+      "with-self": 2.586152581227743,
+      "without-self": 2.549774852315355
+     }
+    },
+    {
+     "name": "Finance",
+     "field": "Economics & Business",
+     "authors": 16367,
+     "listed": 408,
+     "c": {
+      "25": 0.902,
+      "50": 1.3,
+      "75": 1.728,
+      "90": 2.171,
+      "95": 2.46,
+      "99": 3.071
+     },
+     "top2": {
+      "with-self": 2.825295646146741,
+      "without-self": 2.822414869666537
+     }
+    },
+    {
+     "name": "Fisheries",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 47614,
+     "listed": 1037,
+     "c": {
+      "25": 0.736,
+      "50": 1.069,
+      "75": 1.474,
+      "90": 1.869,
+      "95": 2.107,
+      "99": 2.574
+     },
+     "top2": {
+      "with-self": 2.380385245224524,
+      "without-self": 2.321706880192158
+     }
+    },
+    {
+     "name": "Fluids & Plasmas",
+     "field": "Physics & Astronomy",
+     "authors": 58297,
+     "listed": 1265,
+     "c": {
+      "25": 0.561,
+      "50": 0.968,
+      "75": 1.451,
+      "90": 1.928,
+      "95": 2.233,
+      "99": 2.823
+     },
+     "top2": {
+      "with-self": 2.585127503014698,
+      "without-self": 2.51630294553835
+     }
+    },
+    {
+     "name": "Folklore",
+     "field": "Visual & Performing Arts",
+     "authors": 762,
+     "listed": 15,
+     "c": {
+      "25": 0,
+      "50": 0.585,
+      "75": 0.985,
+      "90": 1.4,
+      "95": 1.611,
+      "99": 2.13
+     },
+     "top2": {
+      "with-self": 1.941946638781572,
+      "without-self": 1.883662180248685
+     }
+    },
+    {
+     "name": "Food Science",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 107913,
+     "listed": 2265,
+     "c": {
+      "25": 0.828,
+      "50": 1.248,
+      "75": 1.693,
+      "90": 2.114,
+      "95": 2.359,
+      "99": 2.826
+     },
+     "top2": {
+      "with-self": 2.644099692103128,
+      "without-self": 2.616020857766022
+     }
+    },
+    {
+     "name": "Forestry",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 36413,
+     "listed": 781,
+     "c": {
+      "25": 0.574,
+      "50": 0.934,
+      "75": 1.347,
+      "90": 1.743,
+      "95": 1.999,
+      "99": 2.502
+     },
+     "top2": {
+      "with-self": 2.290057547586612,
+      "without-self": 2.235312053091737
+     }
+    },
+    {
+     "name": "Gastroenterology & Hepatology",
+     "field": "Clinical Medicine",
+     "authors": 113536,
+     "listed": 2352,
+     "c": {
+      "25": 0.419,
+      "50": 0.79,
+      "75": 1.26,
+      "90": 1.764,
+      "95": 2.094,
+      "99": 2.733
+     },
+     "top2": {
+      "with-self": 2.472203203887382,
+      "without-self": 2.435466759819295
+     }
+    },
+    {
+     "name": "Gender Studies",
+     "field": "Social Sciences",
+     "authors": 2687,
+     "listed": 60,
+     "c": {
+      "25": 0.842,
+      "50": 1.278,
+      "75": 1.71,
+      "90": 2.138,
+      "95": 2.418,
+      "99": 2.983
+     },
+     "top2": {
+      "with-self": 2.75683525009562,
+      "without-self": 2.756328934054016
+     }
+    },
+    {
+     "name": "General & Internal Medicine",
+     "field": "Clinical Medicine",
+     "authors": 360081,
+     "listed": 7450,
+     "c": {
+      "25": 0,
+      "50": 0.393,
+      "75": 0.855,
+      "90": 1.315,
+      "95": 1.663,
+      "99": 2.391
+     },
+     "top2": {
+      "with-self": 2.095116515399784,
+      "without-self": 2.067825348646794
+     }
+    },
+    {
+     "name": "General Chemistry",
+     "field": "Chemistry",
+     "authors": 57505,
+     "listed": 1215,
+     "c": {
+      "25": 0.41,
+      "50": 0.764,
+      "75": 1.192,
+      "90": 1.594,
+      "95": 1.841,
+      "99": 2.382
+     },
+     "top2": {
+      "with-self": 2.143368993941353,
+      "without-self": 2.104147194503843
+     }
+    },
+    {
+     "name": "General Clinical Medicine",
+     "field": "Clinical Medicine",
+     "authors": 24038,
+     "listed": 504,
+     "c": {
+      "25": 0.309,
+      "50": 0.6,
+      "75": 0.917,
+      "90": 1.316,
+      "95": 1.576,
+      "99": 2.152
+     },
+     "top2": {
+      "with-self": 1.910196429042393,
+      "without-self": 1.871574360010358
+     }
+    },
+    {
+     "name": "General Mathematics",
+     "field": "Mathematics & Statistics",
+     "authors": 76268,
+     "listed": 1671,
+     "c": {
+      "25": 0.552,
+      "50": 0.897,
+      "75": 1.376,
+      "90": 1.834,
+      "95": 2.118,
+      "99": 2.66
+     },
+     "top2": {
+      "with-self": 2.439457312560425,
+      "without-self": 2.373234690924447
+     }
+    },
+    {
+     "name": "General Physics",
+     "field": "Physics & Astronomy",
+     "authors": 87024,
+     "listed": 1854,
+     "c": {
+      "25": 0.398,
+      "50": 0.767,
+      "75": 1.229,
+      "90": 1.699,
+      "95": 2.001,
+      "99": 2.645
+     },
+     "top2": {
+      "with-self": 2.369512801931507,
+      "without-self": 2.304867171291142
+     }
+    },
+    {
+     "name": "General Psychology & Cognitive Sciences",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 4120,
+     "listed": 84,
+     "c": {
+      "25": 0.575,
+      "50": 0.928,
+      "75": 1.36,
+      "90": 1.804,
+      "95": 2.1,
+      "99": 2.733
+     },
+     "top2": {
+      "with-self": 2.484072656536506,
+      "without-self": 2.471356726882521
+     }
+    },
+    {
+     "name": "Genetics & Heredity",
+     "field": "Biomedical Research",
+     "authors": 42273,
+     "listed": 881,
+     "c": {
+      "25": 0.553,
+      "50": 0.864,
+      "75": 1.283,
+      "90": 1.753,
+      "95": 2.038,
+      "99": 2.589
+     },
+     "top2": {
+      "with-self": 2.358607162091857,
+      "without-self": 2.319300562607389
+     }
+    },
+    {
+     "name": "Geochemistry & Geophysics",
+     "field": "Earth & Environmental Sciences",
+     "authors": 108013,
+     "listed": 2278,
+     "c": {
+      "25": 0.638,
+      "50": 1.033,
+      "75": 1.509,
+      "90": 1.977,
+      "95": 2.27,
+      "99": 2.862
+     },
+     "top2": {
+      "with-self": 2.620830630412218,
+      "without-self": 2.569713085456468
+     }
+    },
+    {
+     "name": "Geography",
+     "field": "Social Sciences",
+     "authors": 21559,
+     "listed": 541,
+     "c": {
+      "25": 0.667,
+      "50": 1.127,
+      "75": 1.661,
+      "90": 2.178,
+      "95": 2.491,
+      "99": 3.038
+     },
+     "top2": {
+      "with-self": 2.834743760889304,
+      "without-self": 2.813015117840784
+     }
+    },
+    {
+     "name": "Geological & Geomatics Engineering",
+     "field": "Engineering",
+     "authors": 82760,
+     "listed": 1733,
+     "c": {
+      "25": 0.688,
+      "50": 1.12,
+      "75": 1.594,
+      "90": 2.047,
+      "95": 2.329,
+      "99": 2.874
+     },
+     "top2": {
+      "with-self": 2.651926501667504,
+      "without-self": 2.613416719523071
+     }
+    },
+    {
+     "name": "Geology",
+     "field": "Earth & Environmental Sciences",
+     "authors": 17936,
+     "listed": 381,
+     "c": {
+      "25": 0.569,
+      "50": 0.91,
+      "75": 1.32,
+      "90": 1.731,
+      "95": 2.009,
+      "99": 2.591
+     },
+     "top2": {
+      "with-self": 2.365883239703346,
+      "without-self": 2.316201629175345
+     }
+    },
+    {
+     "name": "Geriatrics",
+     "field": "Clinical Medicine",
+     "authors": 14240,
+     "listed": 292,
+     "c": {
+      "25": 0.613,
+      "50": 0.911,
+      "75": 1.331,
+      "90": 1.803,
+      "95": 2.143,
+      "99": 2.838
+     },
+     "top2": {
+      "with-self": 2.541333511618596,
+      "without-self": 2.510786868092996
+     }
+    },
+    {
+     "name": "Gerontology",
+     "field": "Public Health & Health Services",
+     "authors": 13096,
+     "listed": 274,
+     "c": {
+      "25": 0.61,
+      "50": 0.969,
+      "75": 1.435,
+      "90": 1.932,
+      "95": 2.259,
+      "99": 2.873
+     },
+     "top2": {
+      "with-self": 2.592597156964243,
+      "without-self": 2.563715307474154
+     }
+    },
+    {
+     "name": "Health Policy & Services",
+     "field": "Public Health & Health Services",
+     "authors": 23941,
+     "listed": 501,
+     "c": {
+      "25": 0.585,
+      "50": 0.928,
+      "75": 1.392,
+      "90": 1.863,
+      "95": 2.147,
+      "99": 2.71
+     },
+     "top2": {
+      "with-self": 2.491586088890132,
+      "without-self": 2.465939263240008
+     }
+    },
+    {
+     "name": "History",
+     "field": "Historical Studies",
+     "authors": 20299,
+     "listed": 432,
+     "c": {
+      "25": 0.459,
+      "50": 0.746,
+      "75": 1.218,
+      "90": 1.571,
+      "95": 1.813,
+      "99": 2.248
+     },
+     "top2": {
+      "with-self": 2.078406996050782,
+      "without-self": 2.059617386322236
+     }
+    },
+    {
+     "name": "History of Science, Technology & Medicine",
+     "field": "Historical Studies",
+     "authors": 3157,
+     "listed": 69,
+     "c": {
+      "25": 0.54,
+      "50": 0.839,
+      "75": 1.283,
+      "90": 1.634,
+      "95": 1.894,
+      "99": 2.314
+     },
+     "top2": {
+      "with-self": 2.126352297346673,
+      "without-self": 2.119108656847703
+     }
+    },
+    {
+     "name": "History of Social Sciences",
+     "field": "Historical Studies",
+     "authors": 2425,
+     "listed": 52,
+     "c": {
+      "25": 0.658,
+      "50": 1.034,
+      "75": 1.448,
+      "90": 1.864,
+      "95": 2.107,
+      "99": 2.661
+     },
+     "top2": {
+      "with-self": 2.447966512499837,
+      "without-self": 2.398734650244127
+     }
+    },
+    {
+     "name": "Horticulture",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 5982,
+     "listed": 128,
+     "c": {
+      "25": 0.641,
+      "50": 0.934,
+      "75": 1.311,
+      "90": 1.686,
+      "95": 1.938,
+      "99": 2.417
+     },
+     "top2": {
+      "with-self": 2.273200031646284,
+      "without-self": 2.209430361657367
+     }
+    },
+    {
+     "name": "Human Factors",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 16381,
+     "listed": 336,
+     "c": {
+      "25": 0.68,
+      "50": 1.083,
+      "75": 1.562,
+      "90": 2.04,
+      "95": 2.334,
+      "99": 2.891
+     },
+     "top2": {
+      "with-self": 2.664514173636304,
+      "without-self": 2.639927720251304
+     }
+    },
+    {
+     "name": "Immunology",
+     "field": "Clinical Medicine",
+     "authors": 176292,
+     "listed": 3650,
+     "c": {
+      "25": 0.643,
+      "50": 0.994,
+      "75": 1.452,
+      "90": 1.888,
+      "95": 2.169,
+      "99": 2.764
+     },
+     "top2": {
+      "with-self": 2.513554905166405,
+      "without-self": 2.483049056514391
+     }
+    },
+    {
+     "name": "Industrial Engineering & Automation",
+     "field": "Engineering",
+     "authors": 131085,
+     "listed": 2759,
+     "c": {
+      "25": 0.515,
+      "50": 0.926,
+      "75": 1.4,
+      "90": 1.853,
+      "95": 2.141,
+      "99": 2.725
+     },
+     "top2": {
+      "with-self": 2.488670768245275,
+      "without-self": 2.446556407676828
+     }
+    },
+    {
+     "name": "Industrial Relations",
+     "field": "Economics & Business",
+     "authors": 2573,
+     "listed": 52,
+     "c": {
+      "25": 0.722,
+      "50": 1.21,
+      "75": 1.693,
+      "90": 2.104,
+      "95": 2.376,
+      "99": 2.839
+     },
+     "top2": {
+      "with-self": 2.677008812588165,
+      "without-self": 2.655246440645974
+     }
+    },
+    {
+     "name": "Information & Library Sciences",
+     "field": "Social Sciences",
+     "authors": 15996,
+     "listed": 340,
+     "c": {
+      "25": 0.344,
+      "50": 0.702,
+      "75": 1.114,
+      "90": 1.584,
+      "95": 1.929,
+      "99": 2.52
+     },
+     "top2": {
+      "with-self": 2.268132469802459,
+      "without-self": 2.239185156889814
+     }
+    },
+    {
+     "name": "Information Systems",
+     "field": "Information & Communication Technologies",
+     "authors": 19463,
+     "listed": 397,
+     "c": {
+      "25": 0.523,
+      "50": 0.977,
+      "75": 1.515,
+      "90": 2.027,
+      "95": 2.339,
+      "99": 2.938
+     },
+     "top2": {
+      "with-self": 2.711155683915695,
+      "without-self": 2.708690787148034
+     }
+    },
+    {
+     "name": "Inorganic & Nuclear Chemistry",
+     "field": "Chemistry",
+     "authors": 86991,
+     "listed": 1869,
+     "c": {
+      "25": 0.449,
+      "50": 0.835,
+      "75": 1.281,
+      "90": 1.71,
+      "95": 1.985,
+      "99": 2.523
+     },
+     "top2": {
+      "with-self": 2.308000344167371,
+      "without-self": 2.240099101617015
+     }
+    },
+    {
+     "name": "International Relations",
+     "field": "Social Sciences",
+     "authors": 9646,
+     "listed": 223,
+     "c": {
+      "25": 0.784,
+      "50": 1.292,
+      "75": 1.79,
+      "90": 2.239,
+      "95": 2.49,
+      "99": 3
+     },
+     "top2": {
+      "with-self": 2.78390329992149,
+      "without-self": 2.780997188551395
+     }
+    },
+    {
+     "name": "Languages & Linguistics",
+     "field": "Communication & Textual Studies",
+     "authors": 25930,
+     "listed": 545,
+     "c": {
+      "25": 0.585,
+      "50": 0.993,
+      "75": 1.533,
+      "90": 2.046,
+      "95": 2.37,
+      "99": 3.03
+     },
+     "top2": {
+      "with-self": 2.750814961134334,
+      "without-self": 2.726911703373517
+     }
+    },
+    {
+     "name": "Law",
+     "field": "Social Sciences",
+     "authors": 18707,
+     "listed": 395,
+     "c": {
+      "25": 0.585,
+      "50": 0.93,
+      "75": 1.427,
+      "90": 1.859,
+      "95": 2.108,
+      "99": 2.608
+     },
+     "top2": {
+      "with-self": 2.402493384024405,
+      "without-self": 2.391209595323424
+     }
+    },
+    {
+     "name": "Legal & Forensic Medicine",
+     "field": "Clinical Medicine",
+     "authors": 15674,
+     "listed": 335,
+     "c": {
+      "25": 0.332,
+      "50": 0.685,
+      "75": 1.092,
+      "90": 1.497,
+      "95": 1.771,
+      "99": 2.276
+     },
+     "top2": {
+      "with-self": 2.079616678993008,
+      "without-self": 2.025725840154367
+     }
+    },
+    {
+     "name": "Literary Studies",
+     "field": "Communication & Textual Studies",
+     "authors": 21141,
+     "listed": 439,
+     "c": {
+      "25": 0,
+      "50": 0.634,
+      "75": 0.993,
+      "90": 1.425,
+      "95": 1.645,
+      "99": 2.13
+     },
+     "top2": {
+      "with-self": 1.916262684958153,
+      "without-self": 1.907687101857204
+     }
+    },
+    {
+     "name": "Logistics & Transportation",
+     "field": "Economics & Business",
+     "authors": 32287,
+     "listed": 671,
+     "c": {
+      "25": 0.639,
+      "50": 1.08,
+      "75": 1.549,
+      "90": 1.995,
+      "95": 2.27,
+      "99": 2.818
+     },
+     "top2": {
+      "with-self": 2.584859440044553,
+      "without-self": 2.556729307979966
+     }
+    },
+    {
+     "name": "Marine Biology & Hydrobiology",
+     "field": "Biology",
+     "authors": 54545,
+     "listed": 1159,
+     "c": {
+      "25": 0.765,
+      "50": 1.125,
+      "75": 1.554,
+      "90": 1.974,
+      "95": 2.243,
+      "99": 2.763
+     },
+     "top2": {
+      "with-self": 2.554504664069209,
+      "without-self": 2.496887091811955
+     }
+    },
+    {
+     "name": "Marketing",
+     "field": "Economics & Business",
+     "authors": 15920,
+     "listed": 594,
+     "c": {
+      "25": 1.055,
+      "50": 1.495,
+      "75": 1.94,
+      "90": 2.373,
+      "95": 2.639,
+      "99": 3.18
+     },
+     "top2": {
+      "with-self": 2.958275730255134,
+      "without-self": 2.945037580933612
+     }
+    },
+    {
+     "name": "Materials",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 330896,
+     "listed": 6985,
+     "c": {
+      "25": 0.418,
+      "50": 0.883,
+      "75": 1.405,
+      "90": 1.876,
+      "95": 2.154,
+      "99": 2.675
+     },
+     "top2": {
+      "with-self": 2.464599666162929,
+      "without-self": 2.425076684727957
+     }
+    },
+    {
+     "name": "Mathematical Physics",
+     "field": "Physics & Astronomy",
+     "authors": 6761,
+     "listed": 147,
+     "c": {
+      "25": 0.585,
+      "50": 0.928,
+      "75": 1.384,
+      "90": 1.81,
+      "95": 2.086,
+      "99": 2.674
+     },
+     "top2": {
+      "with-self": 2.396951417957703,
+      "without-self": 2.343381772855153
+     }
+    },
+    {
+     "name": "Mechanical Engineering & Transports",
+     "field": "Engineering",
+     "authors": 157792,
+     "listed": 3369,
+     "c": {
+      "25": 0.435,
+      "50": 0.822,
+      "75": 1.292,
+      "90": 1.756,
+      "95": 2.044,
+      "99": 2.621
+     },
+     "top2": {
+      "with-self": 2.379273839030519,
+      "without-self": 2.326274876324388
+     }
+    },
+    {
+     "name": "Medical Informatics",
+     "field": "Information & Communication Technologies",
+     "authors": 22436,
+     "listed": 466,
+     "c": {
+      "25": 0.579,
+      "50": 0.892,
+      "75": 1.317,
+      "90": 1.745,
+      "95": 2.026,
+      "99": 2.629
+     },
+     "top2": {
+      "with-self": 2.363450204339121,
+      "without-self": 2.334679550260364
+     }
+    },
+    {
+     "name": "Medicinal & Biomolecular Chemistry",
+     "field": "Chemistry",
+     "authors": 120621,
+     "listed": 2551,
+     "c": {
+      "25": 0.615,
+      "50": 0.939,
+      "75": 1.347,
+      "90": 1.747,
+      "95": 1.991,
+      "99": 2.463
+     },
+     "top2": {
+      "with-self": 2.269408124921646,
+      "without-self": 2.238508305713188
+     }
+    },
+    {
+     "name": "Meteorology & Atmospheric Sciences",
+     "field": "Earth & Environmental Sciences",
+     "authors": 84638,
+     "listed": 1974,
+     "c": {
+      "25": 0.778,
+      "50": 1.22,
+      "75": 1.714,
+      "90": 2.186,
+      "95": 2.478,
+      "99": 3.056
+     },
+     "top2": {
+      "with-self": 2.821695398457012,
+      "without-self": 2.763936351671382
+     }
+    },
+    {
+     "name": "Microbiology",
+     "field": "Biomedical Research",
+     "authors": 232186,
+     "listed": 4837,
+     "c": {
+      "25": 0.633,
+      "50": 0.999,
+      "75": 1.457,
+      "90": 1.887,
+      "95": 2.153,
+      "99": 2.699
+     },
+     "top2": {
+      "with-self": 2.468696940448395,
+      "without-self": 2.440483955151485
+     }
+    },
+    {
+     "name": "Microscopy",
+     "field": "Biomedical Research",
+     "authors": 4178,
+     "listed": 88,
+     "c": {
+      "25": 0.377,
+      "50": 0.684,
+      "75": 1.06,
+      "90": 1.488,
+      "95": 1.795,
+      "99": 2.435
+     },
+     "top2": {
+      "with-self": 2.201283304127219,
+      "without-self": 2.131319768066216
+     }
+    },
+    {
+     "name": "Mining & Metallurgy",
+     "field": "Engineering",
+     "authors": 37230,
+     "listed": 802,
+     "c": {
+      "25": 0,
+      "50": 0.555,
+      "75": 0.994,
+      "90": 1.464,
+      "95": 1.772,
+      "99": 2.327
+     },
+     "top2": {
+      "with-self": 2.100321022609949,
+      "without-self": 2.05546160704122
+     }
+    },
+    {
+     "name": "Music",
+     "field": "Visual & Performing Arts",
+     "authors": 3762,
+     "listed": 81,
+     "c": {
+      "25": 0,
+      "50": 0.724,
+      "75": 1.114,
+      "90": 1.534,
+      "95": 1.795,
+      "99": 2.255
+     },
+     "top2": {
+      "with-self": 2.078786854131629,
+      "without-self": 2.060202513186014
+     }
+    },
+    {
+     "name": "Mycology & Parasitology",
+     "field": "Biomedical Research",
+     "authors": 29175,
+     "listed": 636,
+     "c": {
+      "25": 0.567,
+      "50": 0.899,
+      "75": 1.32,
+      "90": 1.732,
+      "95": 2.007,
+      "99": 2.577
+     },
+     "top2": {
+      "with-self": 2.326149334613381,
+      "without-self": 2.248459177530859
+     }
+    },
+    {
+     "name": "Nanoscience & Nanotechnology",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 177859,
+     "listed": 4133,
+     "c": {
+      "25": 0.99,
+      "50": 1.401,
+      "75": 1.842,
+      "90": 2.263,
+      "95": 2.514,
+      "99": 2.997
+     },
+     "top2": {
+      "with-self": 2.800545687505681,
+      "without-self": 2.779151159256673
+     }
+    },
+    {
+     "name": "Networking & Telecommunications",
+     "field": "Information & Communication Technologies",
+     "authors": 228312,
+     "listed": 4837,
+     "c": {
+      "25": 0.35,
+      "50": 0.752,
+      "75": 1.245,
+      "90": 1.708,
+      "95": 1.995,
+      "99": 2.571
+     },
+     "top2": {
+      "with-self": 2.3382856269447,
+      "without-self": 2.297189019590212
+     }
+    },
+    {
+     "name": "Neurology & Neurosurgery",
+     "field": "Clinical Medicine",
+     "authors": 379830,
+     "listed": 7932,
+     "c": {
+      "25": 0.611,
+      "50": 1.001,
+      "75": 1.475,
+      "90": 1.926,
+      "95": 2.212,
+      "99": 2.808
+     },
+     "top2": {
+      "with-self": 2.557132499013814,
+      "without-self": 2.518585017894626
+     }
+    },
+    {
+     "name": "Nuclear & Particle Physics",
+     "field": "Physics & Astronomy",
+     "authors": 164120,
+     "listed": 3575,
+     "c": {
+      "25": 0.461,
+      "50": 0.86,
+      "75": 1.348,
+      "90": 1.783,
+      "95": 2.089,
+      "99": 2.734
+     },
+     "top2": {
+      "with-self": 2.470449019799917,
+      "without-self": 2.360953826563067
+     }
+    },
+    {
+     "name": "Nuclear Medicine & Medical Imaging",
+     "field": "Clinical Medicine",
+     "authors": 129561,
+     "listed": 2743,
+     "c": {
+      "25": 0.482,
+      "50": 0.823,
+      "75": 1.258,
+      "90": 1.699,
+      "95": 1.974,
+      "99": 2.495
+     },
+     "top2": {
+      "with-self": 2.281638176304398,
+      "without-self": 2.23905496115013
+     }
+    },
+    {
+     "name": "Numerical & Computational Mathematics",
+     "field": "Mathematics & Statistics",
+     "authors": 17431,
+     "listed": 375,
+     "c": {
+      "25": 0.588,
+      "50": 0.959,
+      "75": 1.415,
+      "90": 1.87,
+      "95": 2.171,
+      "99": 2.742
+     },
+     "top2": {
+      "with-self": 2.532500432511327,
+      "without-self": 2.479776378311489
+     }
+    },
+    {
+     "name": "Nursing",
+     "field": "Public Health & Health Services",
+     "authors": 73697,
+     "listed": 1556,
+     "c": {
+      "25": 0.502,
+      "50": 0.872,
+      "75": 1.323,
+      "90": 1.745,
+      "95": 1.999,
+      "99": 2.482
+     },
+     "top2": {
+      "with-self": 2.285232208626663,
+      "without-self": 2.258384386351096
+     }
+    },
+    {
+     "name": "Nutrition & Dietetics",
+     "field": "Biomedical Research",
+     "authors": 59506,
+     "listed": 1229,
+     "c": {
+      "25": 0.646,
+      "50": 1,
+      "75": 1.457,
+      "90": 1.915,
+      "95": 2.196,
+      "99": 2.787
+     },
+     "top2": {
+      "with-self": 2.549720812397868,
+      "without-self": 2.528027815663787
+     }
+    },
+    {
+     "name": "Obstetrics & Reproductive Medicine",
+     "field": "Clinical Medicine",
+     "authors": 105735,
+     "listed": 2207,
+     "c": {
+      "25": 0.441,
+      "50": 0.804,
+      "75": 1.247,
+      "90": 1.684,
+      "95": 1.969,
+      "99": 2.558
+     },
+     "top2": {
+      "with-self": 2.306245185509008,
+      "without-self": 2.277534616469056
+     }
+    },
+    {
+     "name": "Oceanography",
+     "field": "Earth & Environmental Sciences",
+     "authors": 16622,
+     "listed": 350,
+     "c": {
+      "25": 0.571,
+      "50": 0.935,
+      "75": 1.373,
+      "90": 1.818,
+      "95": 2.093,
+      "99": 2.644
+     },
+     "top2": {
+      "with-self": 2.431954434534921,
+      "without-self": 2.390543456965678
+     }
+    },
+    {
+     "name": "Oncology & Carcinogenesis",
+     "field": "Clinical Medicine",
+     "authors": 377791,
+     "listed": 7821,
+     "c": {
+      "25": 0.665,
+      "50": 1.015,
+      "75": 1.459,
+      "90": 1.883,
+      "95": 2.147,
+      "99": 2.693
+     },
+     "top2": {
+      "with-self": 2.464852194254233,
+      "without-self": 2.440962908025667
+     }
+    },
+    {
+     "name": "Operations Research",
+     "field": "Engineering",
+     "authors": 31951,
+     "listed": 674,
+     "c": {
+      "25": 0.603,
+      "50": 1.062,
+      "75": 1.564,
+      "90": 2.016,
+      "95": 2.285,
+      "99": 2.84
+     },
+     "top2": {
+      "with-self": 2.616414683144932,
+      "without-self": 2.587893535703085
+     }
+    },
+    {
+     "name": "Ophthalmology & Optometry",
+     "field": "Clinical Medicine",
+     "authors": 86157,
+     "listed": 1804,
+     "c": {
+      "25": 0.508,
+      "50": 0.848,
+      "75": 1.278,
+      "90": 1.712,
+      "95": 2,
+      "99": 2.58
+     },
+     "top2": {
+      "with-self": 2.3356994935959,
+      "without-self": 2.297858701449371
+     }
+    },
+    {
+     "name": "Optics",
+     "field": "Physics & Astronomy",
+     "authors": 83504,
+     "listed": 1780,
+     "c": {
+      "25": 0.46,
+      "50": 0.84,
+      "75": 1.274,
+      "90": 1.704,
+      "95": 1.981,
+      "99": 2.548
+     },
+     "top2": {
+      "with-self": 2.310463336489523,
+      "without-self": 2.251275497439434
+     }
+    },
+    {
+     "name": "Optoelectronics & Photonics",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 140272,
+     "listed": 3046,
+     "c": {
+      "25": 0.268,
+      "50": 0.579,
+      "75": 1.008,
+      "90": 1.47,
+      "95": 1.754,
+      "99": 2.287
+     },
+     "top2": {
+      "with-self": 2.07138276110015,
+      "without-self": 2.004705453331277
+     }
+    },
+    {
+     "name": "Organic Chemistry",
+     "field": "Chemistry",
+     "authors": 188664,
+     "listed": 4003,
+     "c": {
+      "25": 0.557,
+      "50": 0.961,
+      "75": 1.42,
+      "90": 1.849,
+      "95": 2.116,
+      "99": 2.644
+     },
+     "top2": {
+      "with-self": 2.431375131302524,
+      "without-self": 2.387816521191696
+     }
+    },
+    {
+     "name": "Ornithology",
+     "field": "Biology",
+     "authors": 5121,
+     "listed": 111,
+     "c": {
+      "25": 0.558,
+      "50": 0.823,
+      "75": 1.157,
+      "90": 1.527,
+      "95": 1.755,
+      "99": 2.209
+     },
+     "top2": {
+      "with-self": 2.041858741150095,
+      "without-self": 1.976666087279068
+     }
+    },
+    {
+     "name": "Orthopedics",
+     "field": "Clinical Medicine",
+     "authors": 98781,
+     "listed": 2080,
+     "c": {
+      "25": 0.626,
+      "50": 0.962,
+      "75": 1.38,
+      "90": 1.799,
+      "95": 2.056,
+      "99": 2.562
+     },
+     "top2": {
+      "with-self": 2.356308821319363,
+      "without-self": 2.324113097581189
+     }
+    },
+    {
+     "name": "Otorhinolaryngology",
+     "field": "Clinical Medicine",
+     "authors": 54521,
+     "listed": 1147,
+     "c": {
+      "25": 0.404,
+      "50": 0.764,
+      "75": 1.182,
+      "90": 1.6,
+      "95": 1.875,
+      "99": 2.367
+     },
+     "top2": {
+      "with-self": 2.180780310678781,
+      "without-self": 2.142792178256254
+     }
+    },
+    {
+     "name": "Paleontology",
+     "field": "Earth & Environmental Sciences",
+     "authors": 23292,
+     "listed": 516,
+     "c": {
+      "25": 0.779,
+      "50": 1.165,
+      "75": 1.626,
+      "90": 2.065,
+      "95": 2.325,
+      "99": 2.825
+     },
+     "top2": {
+      "with-self": 2.626936506809444,
+      "without-self": 2.528446373179974
+     }
+    },
+    {
+     "name": "Pathology",
+     "field": "Clinical Medicine",
+     "authors": 26003,
+     "listed": 538,
+     "c": {
+      "25": 0.459,
+      "50": 0.749,
+      "75": 1.132,
+      "90": 1.577,
+      "95": 1.894,
+      "99": 2.53
+     },
+     "top2": {
+      "with-self": 2.27831518665808,
+      "without-self": 2.237070724191496
+     }
+    },
+    {
+     "name": "Pediatrics",
+     "field": "Clinical Medicine",
+     "authors": 81129,
+     "listed": 1702,
+     "c": {
+      "25": 0.388,
+      "50": 0.724,
+      "75": 1.126,
+      "90": 1.567,
+      "95": 1.856,
+      "99": 2.446
+     },
+     "top2": {
+      "with-self": 2.212096822027247,
+      "without-self": 2.176731982862289
+     }
+    },
+    {
+     "name": "Pharmacology & Pharmacy",
+     "field": "Clinical Medicine",
+     "authors": 166116,
+     "listed": 3495,
+     "c": {
+      "25": 0.43,
+      "50": 0.82,
+      "75": 1.293,
+      "90": 1.736,
+      "95": 2.002,
+      "99": 2.52
+     },
+     "top2": {
+      "with-self": 2.311265925519604,
+      "without-self": 2.280412691769738
+     }
+    },
+    {
+     "name": "Philosophy",
+     "field": "Philosophy & Theology",
+     "authors": 14569,
+     "listed": 306,
+     "c": {
+      "25": 0.585,
+      "50": 0.925,
+      "75": 1.501,
+      "90": 2.017,
+      "95": 2.311,
+      "99": 2.823
+     },
+     "top2": {
+      "with-self": 2.615148079594668,
+      "without-self": 2.595548256988975
+     }
+    },
+    {
+     "name": "Physical Chemistry",
+     "field": "Chemistry",
+     "authors": 44088,
+     "listed": 917,
+     "c": {
+      "25": 0.631,
+      "50": 1.016,
+      "75": 1.443,
+      "90": 1.875,
+      "95": 2.153,
+      "99": 2.683
+     },
+     "top2": {
+      "with-self": 2.469756813171869,
+      "without-self": 2.448405547641548
+     }
+    },
+    {
+     "name": "Physiology",
+     "field": "Biomedical Research",
+     "authors": 26472,
+     "listed": 560,
+     "c": {
+      "25": 0.44,
+      "50": 0.79,
+      "75": 1.243,
+      "90": 1.728,
+      "95": 2.029,
+      "99": 2.665
+     },
+     "top2": {
+      "with-self": 2.413709503966862,
+      "without-self": 2.366548175742637
+     }
+    },
+    {
+     "name": "Plant Biology & Botany",
+     "field": "Biology",
+     "authors": 204373,
+     "listed": 4272,
+     "c": {
+      "25": 0.718,
+      "50": 1.093,
+      "75": 1.531,
+      "90": 1.94,
+      "95": 2.189,
+      "99": 2.714
+     },
+     "top2": {
+      "with-self": 2.491711745217461,
+      "without-self": 2.459392469410615
+     }
+    },
+    {
+     "name": "Political Science & Public Administration",
+     "field": "Social Sciences",
+     "authors": 27183,
+     "listed": 899,
+     "c": {
+      "25": 0.802,
+      "50": 1.319,
+      "75": 1.847,
+      "90": 2.317,
+      "95": 2.602,
+      "99": 3.131
+     },
+     "top2": {
+      "with-self": 2.922606462301322,
+      "without-self": 2.90635099495405
+     }
+    },
+    {
+     "name": "Polymers",
+     "field": "Chemistry",
+     "authors": 133253,
+     "listed": 2807,
+     "c": {
+      "25": 0.521,
+      "50": 0.967,
+      "75": 1.447,
+      "90": 1.893,
+      "95": 2.17,
+      "99": 2.684
+     },
+     "top2": {
+      "with-self": 2.469509313758175,
+      "without-self": 2.437176726228055
+     }
+    },
+    {
+     "name": "Psychiatry",
+     "field": "Clinical Medicine",
+     "authors": 90846,
+     "listed": 1893,
+     "c": {
+      "25": 0.629,
+      "50": 0.996,
+      "75": 1.5,
+      "90": 2.012,
+      "95": 2.332,
+      "99": 2.968
+     },
+     "top2": {
+      "with-self": 2.71647262488952,
+      "without-self": 2.674095312022268
+     }
+    },
+    {
+     "name": "Psychoanalysis",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 3511,
+     "listed": 78,
+     "c": {
+      "25": 0,
+      "50": 0.653,
+      "75": 1.058,
+      "90": 1.535,
+      "95": 1.86,
+      "99": 2.428
+     },
+     "top2": {
+      "with-self": 2.183976678184933,
+      "without-self": 2.143346115556268
+     }
+    },
+    {
+     "name": "Public Health",
+     "field": "Public Health & Health Services",
+     "authors": 82273,
+     "listed": 1726,
+     "c": {
+      "25": 0.665,
+      "50": 1.036,
+      "75": 1.531,
+      "90": 2.013,
+      "95": 2.294,
+      "99": 2.831
+     },
+     "top2": {
+      "with-self": 2.615044032302935,
+      "without-self": 2.584238478593985
+     }
+    },
+    {
+     "name": "Rehabilitation",
+     "field": "Public Health & Health Services",
+     "authors": 31889,
+     "listed": 672,
+     "c": {
+      "25": 0.642,
+      "50": 1.003,
+      "75": 1.42,
+      "90": 1.843,
+      "95": 2.121,
+      "99": 2.622
+     },
+     "top2": {
+      "with-self": 2.409460141109256,
+      "without-self": 2.370483302486008
+     }
+    },
+    {
+     "name": "Religions & Theology",
+     "field": "Philosophy & Theology",
+     "authors": 11748,
+     "listed": 254,
+     "c": {
+      "25": 0.503,
+      "50": 0.784,
+      "75": 1.218,
+      "90": 1.559,
+      "95": 1.803,
+      "99": 2.254
+     },
+     "top2": {
+      "with-self": 2.062842174921528,
+      "without-self": 2.038706305668875
+     }
+    },
+    {
+     "name": "Respiratory System",
+     "field": "Clinical Medicine",
+     "authors": 71926,
+     "listed": 1497,
+     "c": {
+      "25": 0.5,
+      "50": 0.831,
+      "75": 1.281,
+      "90": 1.777,
+      "95": 2.095,
+      "99": 2.706
+     },
+     "top2": {
+      "with-self": 2.464373553895049,
+      "without-self": 2.421825476482813
+     }
+    },
+    {
+     "name": "Science Studies",
+     "field": "Social Sciences",
+     "authors": 5303,
+     "listed": 143,
+     "c": {
+      "25": 0.782,
+      "50": 1.262,
+      "75": 1.747,
+      "90": 2.219,
+      "95": 2.49,
+      "99": 3.126
+     },
+     "top2": {
+      "with-self": 2.862278015038556,
+      "without-self": 2.844107581923978
+     }
+    },
+    {
+     "name": "Social Psychology",
+     "field": "Psychology & Cognitive Sciences",
+     "authors": 27908,
+     "listed": 1102,
+     "c": {
+      "25": 0.793,
+      "50": 1.242,
+      "75": 1.759,
+      "90": 2.291,
+      "95": 2.631,
+      "99": 3.378
+     },
+     "top2": {
+      "with-self": 3.081039645066185,
+      "without-self": 3.063612436585075
+     }
+    },
+    {
+     "name": "Social Sciences Methods",
+     "field": "Social Sciences",
+     "authors": 3363,
+     "listed": 143,
+     "c": {
+      "25": 0.658,
+      "50": 1.069,
+      "75": 1.61,
+      "90": 2.231,
+      "95": 2.646,
+      "99": 3.411
+     },
+     "top2": {
+      "with-self": 3.161478129024688,
+      "without-self": 3.164192619083283
+     }
+    },
+    {
+     "name": "Social Work",
+     "field": "Social Sciences",
+     "authors": 9659,
+     "listed": 208,
+     "c": {
+      "25": 0.721,
+      "50": 1.086,
+      "75": 1.527,
+      "90": 1.942,
+      "95": 2.201,
+      "99": 2.619
+     },
+     "top2": {
+      "with-self": 2.434711543499273,
+      "without-self": 2.394705536618071
+     }
+    },
+    {
+     "name": "Sociology",
+     "field": "Social Sciences",
+     "authors": 12471,
+     "listed": 453,
+     "c": {
+      "25": 0.787,
+      "50": 1.305,
+      "75": 1.843,
+      "90": 2.327,
+      "95": 2.617,
+      "99": 3.197
+     },
+     "top2": {
+      "with-self": 2.959324247337642,
+      "without-self": 2.953500574147243
+     }
+    },
+    {
+     "name": "Software Engineering",
+     "field": "Information & Communication Technologies",
+     "authors": 24083,
+     "listed": 507,
+     "c": {
+      "25": 0.449,
+      "50": 0.871,
+      "75": 1.354,
+      "90": 1.818,
+      "95": 2.125,
+      "99": 2.683
+     },
+     "top2": {
+      "with-self": 2.462758325227389,
+      "without-self": 2.429302192407871
+     }
+    },
+    {
+     "name": "Speech-Language Pathology & Audiology",
+     "field": "Public Health & Health Services",
+     "authors": 13500,
+     "listed": 287,
+     "c": {
+      "25": 0.617,
+      "50": 1.008,
+      "75": 1.447,
+      "90": 1.886,
+      "95": 2.162,
+      "99": 2.657
+     },
+     "top2": {
+      "with-self": 2.478217910500401,
+      "without-self": 2.43748356181275
+     }
+    },
+    {
+     "name": "Sport Sciences",
+     "field": "Clinical Medicine",
+     "authors": 41112,
+     "listed": 872,
+     "c": {
+      "25": 0.71,
+      "50": 1.085,
+      "75": 1.538,
+      "90": 1.992,
+      "95": 2.273,
+      "99": 2.825
+     },
+     "top2": {
+      "with-self": 2.597595517167947,
+      "without-self": 2.55226089421801
+     }
+    },
+    {
+     "name": "Sport, Leisure & Tourism",
+     "field": "Economics & Business",
+     "authors": 11605,
+     "listed": 462,
+     "c": {
+      "25": 1.043,
+      "50": 1.47,
+      "75": 1.921,
+      "90": 2.397,
+      "95": 2.667,
+      "99": 3.245
+     },
+     "top2": {
+      "with-self": 3.00060906547019,
+      "without-self": 2.991591106103783
+     }
+    },
+    {
+     "name": "Statistics & Probability",
+     "field": "Mathematics & Statistics",
+     "authors": 24695,
+     "listed": 516,
+     "c": {
+      "25": 0.714,
+      "50": 1.103,
+      "75": 1.576,
+      "90": 2.053,
+      "95": 2.354,
+      "99": 2.996
+     },
+     "top2": {
+      "with-self": 2.749102346724392,
+      "without-self": 2.717349344316163
+     }
+    },
+    {
+     "name": "Strategic, Defence & Security Studies",
+     "field": "Enabling & Strategic Technologies",
+     "authors": 32161,
+     "listed": 674,
+     "c": {
+      "25": 0.586,
+      "50": 0.934,
+      "75": 1.343,
+      "90": 1.735,
+      "95": 2.011,
+      "99": 2.597
+     },
+     "top2": {
+      "with-self": 2.336432222538519,
+      "without-self": 2.302559207791278
+     }
+    },
+    {
+     "name": "Substance Abuse",
+     "field": "Public Health & Health Services",
+     "authors": 18209,
+     "listed": 389,
+     "c": {
+      "25": 0.617,
+      "50": 0.968,
+      "75": 1.488,
+      "90": 1.994,
+      "95": 2.288,
+      "99": 2.82
+     },
+     "top2": {
+      "with-self": 2.614048547827648,
+      "without-self": 2.556841526867187
+     }
+    },
+    {
+     "name": "Surgery",
+     "field": "Clinical Medicine",
+     "authors": 146713,
+     "listed": 3089,
+     "c": {
+      "25": 0.366,
+      "50": 0.723,
+      "75": 1.145,
+      "90": 1.597,
+      "95": 1.877,
+      "99": 2.417
+     },
+     "top2": {
+      "with-self": 2.202059912188406,
+      "without-self": 2.16329289810984
+     }
+    },
+    {
+     "name": "Toxicology",
+     "field": "Biomedical Research",
+     "authors": 69049,
+     "listed": 1447,
+     "c": {
+      "25": 0.553,
+      "50": 0.904,
+      "75": 1.337,
+      "90": 1.757,
+      "95": 2.027,
+      "99": 2.564
+     },
+     "top2": {
+      "with-self": 2.339341569880874,
+      "without-self": 2.306736635604755
+     }
+    },
+    {
+     "name": "Tropical Medicine",
+     "field": "Clinical Medicine",
+     "authors": 39335,
+     "listed": 831,
+     "c": {
+      "25": 0.524,
+      "50": 0.798,
+      "75": 1.194,
+      "90": 1.618,
+      "95": 1.887,
+      "99": 2.435
+     },
+     "top2": {
+      "with-self": 2.206648444328926,
+      "without-self": 2.152889007461654
+     }
+    },
+    {
+     "name": "Urban & Regional Planning",
+     "field": "Built Environment & Design",
+     "authors": 15338,
+     "listed": 321,
+     "c": {
+      "25": 0.809,
+      "50": 1.25,
+      "75": 1.69,
+      "90": 2.154,
+      "95": 2.433,
+      "99": 2.98
+     },
+     "top2": {
+      "with-self": 2.773732684787557,
+      "without-self": 2.740057892789746
+     }
+    },
+    {
+     "name": "Urology & Nephrology",
+     "field": "Clinical Medicine",
+     "authors": 96288,
+     "listed": 1996,
+     "c": {
+      "25": 0.443,
+      "50": 0.786,
+      "75": 1.238,
+      "90": 1.721,
+      "95": 2.026,
+      "99": 2.629
+     },
+     "top2": {
+      "with-self": 2.37918688875429,
+      "without-self": 2.340386623473379
+     }
+    },
+    {
+     "name": "Veterinary Sciences",
+     "field": "Agriculture, Fisheries & Forestry",
+     "authors": 72388,
+     "listed": 1539,
+     "c": {
+      "25": 0.56,
+      "50": 0.868,
+      "75": 1.252,
+      "90": 1.631,
+      "95": 1.871,
+      "99": 2.326
+     },
+     "top2": {
+      "with-self": 2.140598315876239,
+      "without-self": 2.10049375103896
+     }
+    },
+    {
+     "name": "Virology",
+     "field": "Biomedical Research",
+     "authors": 79508,
+     "listed": 1678,
+     "c": {
+      "25": 0.575,
+      "50": 0.888,
+      "75": 1.323,
+      "90": 1.752,
+      "95": 2.012,
+      "99": 2.524
+     },
+     "top2": {
+      "with-self": 2.312390450236999,
+      "without-self": 2.273443425940188
+     }
+    },
+    {
+     "name": "Zoology",
+     "field": "Biology",
+     "authors": 19073,
+     "listed": 435,
+     "c": {
+      "25": 0.616,
+      "50": 0.898,
+      "75": 1.267,
+      "90": 1.644,
+      "95": 1.906,
+      "99": 2.377
+     },
+     "top2": {
+      "with-self": 2.195452417710055,
+      "without-self": 2.057696543918722
+     }
+    }
+   ]
+  }
+ }
+}

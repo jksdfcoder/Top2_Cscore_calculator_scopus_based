@@ -60,3 +60,14 @@ test('new personal imports survive a delayed demo completion', async () => {
   scope.stop()
   vi.unstubAllGlobals()
 })
+
+test('adding a supplementary file keeps manual matching decisions', async () => {
+  const scope = effectScope()
+  const model = scope.run(() => useAnalysis())!
+  const csv = (name: string) => new File([readFileSync(`public/demo/${name}`, 'utf8')], name)
+  await model.importFiles([csv('publications.csv')])
+  model.resolve('sha256:x:7', '2-s2.0-1')
+  await model.importFiles([csv('including.csv')])
+  expect(model.decisions.value).toEqual({ 'sha256:x:7': '2-s2.0-1' })
+  scope.stop()
+})

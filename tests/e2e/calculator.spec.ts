@@ -1,5 +1,6 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
+import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 const fixture = (name: string) => resolve('tests/fixtures/public', name)
@@ -10,6 +11,9 @@ test('one import produces four modes, downloads a private report, then clears', 
 }) => {
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
+  page.on('console', (m) => {
+    if (/content security policy/i.test(m.text())) errors.push(m.text())
+  })
   await page.goto('/')
   await expect(page.locator('input[type=file]')).toBeEnabled()
   await page.locator('input[type=file]').setInputFiles(threeFiles)
@@ -94,7 +98,9 @@ test('private input is not transmitted or persisted and narrow layout fits', asy
   await page.getByRole('button', { name: 'Confirm author & calculate' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
   expect(
-    requests.every((r) => r.method === 'GET' && new URL(r.url).origin === 'http://localhost:4173'),
+    requests.every(
+      (r) => r.method === 'GET' && new URL(r.url).origin === new URL(page.url()).origin,
+    ),
   ).toBe(true)
   expect(JSON.stringify(requests)).not.toContain(canary)
   expect(
@@ -117,6 +123,78 @@ test('synthetic example and result table pass accessibility checks', async ({ pa
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
     .analyze()
   expect(accessibility.violations).toEqual([])
+})
+
+async function closeOverlays(page: Page) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const open = await page.evaluate(
+      () =>
+        document.body.style.pointerEvents === 'none' ||
+        document.querySelectorAll('[role="listbox"]').length > 0,
+    )
+    if (!open) return
+    await page.keyboard.press('Escape')
+  }
+  await expect.poll(() => page.evaluate(() => document.body.style.pointerEvents)).toBe('')
+}
+
+async function fourResultScores(page: Page) {
+  const scores = page.locator('#results .score-value')
+  const setting = page.getByLabel('Self-citation setting')
+  await expect(scores).toHaveCount(2)
+  const excluding = await scores.allTextContents()
+  await setting.click()
+  await page.getByRole('option', { name: 'Include self-citations', exact: true }).click()
+  await expect(setting).toContainText('Include self-citations')
+  await closeOverlays(page)
+  const including = await scores.allTextContents()
+  await setting.click()
+  await page.getByRole('option', { name: 'Exclude all-author self-citations', exact: true }).click()
+  await expect(setting).toContainText('Exclude all-author self-citations')
+  await closeOverlays(page)
+  return [...excluding, ...including]
+}
+
+test('J5 compares Epidemiology without changing the four results', async ({ page }) => {
+  const comparison = JSON.parse(
+    readFileSync(resolve('public/reference/v9/comparison.json'), 'utf8'),
+  ) as {
+    scopes: { career: { subfields: { name: string; top2: { 'with-self': number } }[] } }
+  }
+  const top2 = comparison.scopes.career.subfields
+    .find((subfield) => subfield.name === 'Epidemiology')!
+    .top2['with-self'].toFixed(3)
+
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Try a synthetic example' }).click()
+  await expect(page.getByRole('status').first()).toContainText('4 of 4')
+  const before = await fourResultScores(page)
+  expect(before).toHaveLength(4)
+
+  const field = page.getByRole('button', { name: 'Field', exact: true })
+  await expect(field).toBeEnabled()
+  await field.click()
+  await page.getByRole('option', { name: 'Public Health & Health Services', exact: true }).click()
+  const subfield = page.getByRole('button', { name: 'Subfield', exact: true })
+  await expect(subfield).toBeEnabled()
+  await subfield.click()
+  await page.getByRole('option', { name: 'Epidemiology', exact: true }).click()
+  await closeOverlays(page)
+
+  const table = page.locator('#comparison table')
+  await expect(table).toContainText('Epidemiology')
+  await expect(table).toContainText(top2)
+  expect(await fourResultScores(page)).toEqual(before)
+
+  const accessibility = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+    .analyze()
+  expect(accessibility.violations).toEqual([])
+
+  await page.setViewportSize({ width: 390, height: 844 })
+  await expect
+    .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+    .toBe(true)
 })
 
 test('clearing while a demo is fetching cancels the old request intent', async ({ page }) => {

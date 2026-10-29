@@ -304,24 +304,7 @@ const latestStatus = computed(() =>
 
       <ResultsPanel v-if="analysis" :analysis="analysis" :files="files" :is-demo="isDemo" />
 
-      <section
-        v-if="hasReady"
-        class="page-section comparison-note"
-        aria-labelledby="comparison-heading"
-      >
-        <h2 id="comparison-heading">Official field comparisons</h2>
-        <p>
-          The calculator currently provides your metrics and their contributions. Author-by-author
-          and subfield comparisons are not available in this preview. A c-score alone does not
-          establish Top 2% selection.
-        </p>
-        <a
-          href="https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/9"
-          target="_blank"
-          rel="noopener noreferrer"
-          >View the official V9 dataset</a
-        >
-      </section>
+      <ComparisonPanel v-if="hasReady && analysis" :analysis="analysis" />
 
       <section id="method" class="page-section method-section" aria-labelledby="method-heading">
         <h2 id="method-heading">How the score is calculated</h2>

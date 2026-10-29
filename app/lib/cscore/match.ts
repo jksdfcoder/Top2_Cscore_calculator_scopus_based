@@ -39,7 +39,7 @@ export function matchPapers(
         }
       const decisionKey = `${file.id}:${row.row}`
       const chosen = decisions[decisionKey]
-      if (chosen) {
+      if (chosen && candidates.some((p) => p.eid === chosen)) {
         candidates = candidates.filter((p) => p.eid === chosen)
         method = 'manual-confirmation'
       }

@@ -203,6 +203,8 @@ describe('parsing and constrained matching', () => {
     expect(matchPapers([p, dup], [f[1]!], { [decision]: dup.eid }).matches[0]!.paper.eid).toBe(
       dup.eid,
     )
+    const stale = matchPapers([p, dup], [f[1]!], { [decision]: '2-s2.0-gone' })
+    expect(stale.issues[0]!.candidates).toHaveLength(2)
   })
   it('rejects duplicate row reuse in one file', () => {
     const f = source()

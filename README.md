@@ -13,6 +13,10 @@ npm run dev
 
 For a static build: `npm run generate`, then `npm run preview` (http://localhost:4173). Deploy only `.output/public`; deployment is not configured in this slice.
 
+Docker (static files behind nginx with a restrictive CSP): `docker build -t cscore-calculator . && docker run -p 8080:8080 cscore-calculator`. Browser tests can target it with `BASE_URL=http://localhost:8080 npm run test:e2e`.
+
+Rebuild the official comparison data (needs the V9 Table 1 and Table 2 workbooks, not in this repo): `python3 scripts/build-reference.py --table1-dir <dir> --table2-dir <dir> --out public/reference/v9/comparison.json`.
+
 ## Current features
 
 - Publications CSV + citation overview exports; multi-file import and author confirmation.
@@ -21,7 +25,7 @@ For a static build: `npm run generate`, then `npm run preview` (http://localhost
 - Missing years, unknown exclusion settings, ambiguous matches and conflicting overlaps stop affected calculations. Additional historical windows can be added without joining spreadsheets.
 - Synthetic example, built-in export instructions and keyboard-accessible tables.
 
-V9 normalization is fixed. Current Scopus exports are not the official frozen snapshot. This preview does **not** yet include official researcher cohorts, field/subfield comparisons, rankings or selection eligibility. The radar shows a user's score contributions, not comparison to official authors.
+V9 normalization is fixed. Current Scopus exports are not the official frozen snapshot. The page compares results with official V9 subfield percentiles and derived top-2% / top-100,000 lines (no author-level lists are shipped). The radar shows a user's score contributions, not comparison to official authors.
 
 ## Verify
 
