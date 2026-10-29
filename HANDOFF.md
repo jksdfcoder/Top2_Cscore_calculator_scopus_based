@@ -17,7 +17,7 @@
 |Career|5.32473806892426|5.30644560852974|
 |2025|4.927358503034955|4.937274198692969|
 
-这验证实现一致性，不代表与官方冻结值完全相同，也不能代表所有作者/学科。仅验证了一位真实作者，应优先扩展样本。
+这验证实现一致性，不代表与官方冻结值完全相同，也不能代表所有作者/学科。原始验证只有一位；2026-10-29 追加 Schreiber 和 Jumper 两位，见下方 Hm 复核。
 
 与官方 V9 Table 1 同一作者逐指标对比（本地减官方；论文数 1488 与官方 np6025 相同）：
 
@@ -28,7 +28,7 @@
 |2025 含自引|−84|0|−0.263|−0.0030|
 |2025 排自引|−60|+1|+0.929|+0.0115|
 
-引用总量差异与快照时间差相符，但 Hm 在三种模式下系统性偏低而 NC 几乎相同，**首要怀疑作者人数口径**（官方 hm 的分母可能不是 CSV 中作者 ID 个数）。下一个真实样本应先查 Hm，再看其他指标。
+此前把作者人数口径列为首要怀疑，目前证据不足：新增 Schreiber、Jumper 的 8 种模式中，6 个 Hm 与官方一致（<1e-14）；Schreiber 两种单年 Hm 相差 +0.2，一条边界引用的假设变化即可复现。Ioannidis 的具体差异仍未定位，不应直接归因于快照或修改分母。完整六指标、排查证据和复现方式见 [Hm 复核](docs/qa/hm-validation-2026-10-29.md)。
 
 运行 `CSCORE_PRIVATE_FIXTURES=/absolute/path npm run test:private`。目录需要 `reference/maxlog.json`、`validation-report.json` 和五个原始文件：`ioannidis-publications.csv`、`ioannidis-citations-including-self-full.csv`、`ioannidis-citations-excluding-all-self.csv`、`ioannidis-citations-1996-2021-including-self.csv`、`ioannidis-citations-1996-2021-excluding-all-self.csv`。脚本只输出聚合指标。
 

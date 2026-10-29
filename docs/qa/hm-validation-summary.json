@@ -1,0 +1,261 @@
+{
+  "checkedOn": "2026-10-29",
+  "officialSource": "https://doi.org/10.17632/btchxktzyw.9",
+  "officialDataLicense": "CC BY-NC 3.0",
+  "samples": [
+    {
+      "author": "Schreiber, Michael",
+      "scopusId": "22998421900",
+      "publicationCount": 387,
+      "results": {
+        "career_inc": {
+          "metrics": {
+            "NC": 7283,
+            "H": 44,
+            "Hm": 32.67136752136752,
+            "NCS": 1526,
+            "NCSF": 2078,
+            "NCSFL": 5683
+          },
+          "cScore": 3.874622226040003,
+          "officialMetrics": {
+            "NC": 7279.0,
+            "H": 44.0,
+            "Hm": 32.67136752136752,
+            "NCS": 1526.0,
+            "NCSF": 2078.0,
+            "NCSFL": 5680.0
+          },
+          "officialCScore": 3.874541104225608,
+          "differences": {
+            "NC": 4.0,
+            "H": 0.0,
+            "Hm": 0.0,
+            "NCS": 0.0,
+            "NCSF": 0.0,
+            "NCSFL": 3.0
+          },
+          "cScoreDifference": 8.112181439523525e-05,
+          "hmStringEid": 32.67136752136752
+        },
+        "singleyr_inc": {
+          "metrics": {
+            "NC": 165,
+            "H": 5,
+            "Hm": 4.158333333333333,
+            "NCS": 49,
+            "NCSF": 62,
+            "NCSFL": 128
+          },
+          "cScore": 2.4724091601198555,
+          "officialMetrics": {
+            "NC": 163.0,
+            "H": 5.0,
+            "Hm": 3.958333333333333,
+            "NCS": 49.0,
+            "NCSF": 62.0,
+            "NCSFL": 127.0
+          },
+          "officialCScore": 2.460300007734302,
+          "differences": {
+            "NC": 2.0,
+            "H": 0.0,
+            "Hm": 0.20000000000000018,
+            "NCS": 0.0,
+            "NCSF": 0.0,
+            "NCSFL": 1.0
+          },
+          "cScoreDifference": 0.012109152385553656,
+          "hmStringEid": 4.158333333333333
+        },
+        "career_exc": {
+          "metrics": {
+            "NC": 5738,
+            "H": 40,
+            "Hm": 28.888034188034187,
+            "NCS": 1377,
+            "NCSF": 1832,
+            "NCSFL": 4471
+          },
+          "cScore": 3.796888340216643,
+          "officialMetrics": {
+            "NC": 5736.0,
+            "H": 40.0,
+            "Hm": 28.88803418803419,
+            "NCS": 1377.0,
+            "NCSF": 1832.0,
+            "NCSFL": 4470.0
+          },
+          "officialCScore": 3.796845337197993,
+          "differences": {
+            "NC": 2.0,
+            "H": 0.0,
+            "Hm": -3.552713678800501e-15,
+            "NCS": 0.0,
+            "NCSF": 0.0,
+            "NCSFL": 1.0
+          },
+          "cScoreDifference": 4.300301865001188e-05,
+          "hmStringEid": 28.888034188034187
+        },
+        "singleyr_exc": {
+          "metrics": {
+            "NC": 154,
+            "H": 5,
+            "Hm": 4.158333333333333,
+            "NCS": 49,
+            "NCSF": 62,
+            "NCSFL": 119
+          },
+          "cScore": 2.4725411955036636,
+          "officialMetrics": {
+            "NC": 152.0,
+            "H": 5.0,
+            "Hm": 3.958333333333333,
+            "NCS": 49.0,
+            "NCSF": 62.0,
+            "NCSFL": 118.0
+          },
+          "officialCScore": 2.460077585031347,
+          "differences": {
+            "NC": 2.0,
+            "H": 0.0,
+            "Hm": 0.20000000000000018,
+            "NCS": 0.0,
+            "NCSF": 0.0,
+            "NCSFL": 1.0
+          },
+          "cScoreDifference": 0.012463610472316589,
+          "hmStringEid": 4.158333333333333
+        }
+      }
+    },
+    {
+      "author": "Jumper, John M.",
+      "scopusId": "36717725300",
+      "publicationCount": 32,
+      "results": {
+        "career_inc": {
+          "metrics": {
+            "NC": 51081,
+            "H": 22,
+            "Hm": 3.753005877072878,
+            "NCS": 0,
+            "NCSF": 29402,
+            "NCSFL": 35675
+          },
+          "cScore": 3.2627704705850324,
+          "officialMetrics": {
+            "NC": 50874.0,
+            "H": 22.0,
+            "Hm": 3.753005877072878,
+            "NCS": 0.0,
+            "NCSF": 29291.0,
+            "NCSFL": 35510.0
+          },
+          "officialCScore": 3.261816893034478,
+          "differences": {
+            "NC": 207.0,
+            "H": 0.0,
+            "Hm": 0.0,
+            "NCS": 0.0,
+            "NCSF": 111.0,
+            "NCSFL": 165.0
+          },
+          "cScoreDifference": 0.0009535775505544741,
+          "hmStringEid": 3.753005877072878
+        },
+        "singleyr_inc": {
+          "metrics": {
+            "NC": 18755,
+            "H": 15,
+            "Hm": 2.3888644629314633,
+            "NCS": 0,
+            "NCSF": 9176,
+            "NCSFL": 14574
+          },
+          "cScore": 3.4770073341890013,
+          "officialMetrics": {
+            "NC": 18569.0,
+            "H": 15.0,
+            "Hm": 2.388864462931463,
+            "NCS": 0.0,
+            "NCSF": 9077.0,
+            "NCSFL": 14422.0
+          },
+          "officialCScore": 3.474187836232709,
+          "differences": {
+            "NC": 186.0,
+            "H": 0.0,
+            "Hm": 4.440892098500626e-16,
+            "NCS": 0.0,
+            "NCSF": 99.0,
+            "NCSFL": 152.0
+          },
+          "cScoreDifference": 0.0028194979562923272,
+          "hmStringEid": 2.3888644629314633
+        },
+        "career_exc": {
+          "metrics": {
+            "NC": 50793,
+            "H": 20,
+            "Hm": 3.628005877072878,
+            "NCS": 0,
+            "NCSF": 29335,
+            "NCSFL": 35600
+          },
+          "cScore": 3.2517298223430213,
+          "officialMetrics": {
+            "NC": 50588.0,
+            "H": 20.0,
+            "Hm": 3.628005877072878,
+            "NCS": 0.0,
+            "NCSF": 29224.0,
+            "NCSFL": 35437.0
+          },
+          "officialCScore": 3.25077949648779,
+          "differences": {
+            "NC": 205.0,
+            "H": 0.0,
+            "Hm": 0.0,
+            "NCS": 0.0,
+            "NCSF": 111.0,
+            "NCSFL": 163.0
+          },
+          "cScoreDifference": 0.0009503258552312488,
+          "hmStringEid": 3.628005877072878
+        },
+        "singleyr_exc": {
+          "metrics": {
+            "NC": 18710,
+            "H": 14,
+            "Hm": 2.3888644629314633,
+            "NCS": 0,
+            "NCSF": 9166,
+            "NCSFL": 14557
+          },
+          "cScore": 3.4751232980182962,
+          "officialMetrics": {
+            "NC": 18525.0,
+            "H": 14.0,
+            "Hm": 2.388864462931463,
+            "NCS": 0.0,
+            "NCSF": 9066.0,
+            "NCSFL": 14406.0
+          },
+          "officialCScore": 3.472299580905224,
+          "differences": {
+            "NC": 185.0,
+            "H": 0.0,
+            "Hm": 4.440892098500626e-16,
+            "NCS": 0.0,
+            "NCSF": 100.0,
+            "NCSFL": 151.0
+          },
+          "cScoreDifference": 0.002823717113072277,
+          "hmStringEid": 2.3888644629314633
+        }
+      }
+    }
+  ]
+}

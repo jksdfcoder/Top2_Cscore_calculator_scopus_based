@@ -16,7 +16,8 @@
     "test": "vitest run tests/unit",
     "test:private": "tsx scripts/private-parity.ts",
     "test:e2e": "playwright test",
-    "format:check": "prettier --check app tests scripts nuxt.config.ts vitest.config.ts playwright.config.ts"
+    "format:check": "prettier --check app tests scripts nuxt.config.ts vitest.config.ts playwright.config.ts",
+    "validate:sample": "tsx scripts/validate-sample.ts"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.148",
