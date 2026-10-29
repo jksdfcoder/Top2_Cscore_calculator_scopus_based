@@ -121,11 +121,9 @@ const standing = computed(() => {
 
 const blockRatio = ref(0)
 const dragging = ref(false)
-const fine = ref(false)
 const maxRatio = computed(() =>
   standing.value && peers.value.length ? standing.value.ratio(peers.value.at(-1)![0]) : 0,
 )
-const clampRatio = (r: number) => Math.min(maxRatio.value, Math.max(0, r))
 const peerIndex = computed(() => {
   const s = standing.value
   if (!s) return 0
@@ -140,12 +138,12 @@ const peerIndex = computed(() => {
   return best
 })
 const peer = computed(() => peers.value[peerIndex.value])
-function snap() {
-  if (peer.value && standing.value) blockRatio.value = standing.value.ratio(peer.value[0])
-}
+const peerAt = computed(() =>
+  peer.value && standing.value ? `${standing.value.ratio(peer.value[0]) * 100}%` : '0',
+)
 watch([peers, () => standing.value?.top2Rank], () => {
-  if (standing.value) blockRatio.value = clampRatio(standing.value.ratio(standing.value.top2Rank))
-  snap()
+  if (standing.value)
+    blockRatio.value = Math.min(maxRatio.value, standing.value.ratio(standing.value.top2Rank))
 })
 const peerContributions = computed(() => {
   const p = peer.value
@@ -160,57 +158,55 @@ const peerText = computed(() =>
     ? `${peer.value[2]}, ${peer.value[3]} · rank ${peer.value[0].toLocaleString('en')} of ${standing.value.count.toLocaleString('en')} · ${peer.value[1].toFixed(3)}`
     : '',
 )
+const track = ref<HTMLElement>()
 const near = (rank: number) =>
-  fine.value && !!standing.value && Math.abs(standing.value.ratio(rank) - blockRatio.value) < 0.14
+  dragging.value &&
+  !!standing.value &&
+  Math.abs(standing.value.ratio(rank) - blockRatio.value) < 0.14
 const fineLabels = computed(() => {
   const s = standing.value
-  if (!fine.value || !s) return []
+  if (!dragging.value || !s) return []
   const gap = 34 / (track.value?.clientWidth || 500)
   const shown: number[] = []
   for (const r of [...s.minors, ...s.majors].filter(near).sort((a, b) => a - b))
     if (shown.every((x) => Math.abs(s.ratio(x) - s.ratio(r)) >= gap)) shown.push(r)
   return shown
 })
-const track = ref<HTMLElement>()
-let lastX = 0
-let lastT = 0
+
+// Thumb tracks the pointer 1:1, keeping the grab offset; a track press jumps there first.
+let grabOffset = 0
+function moveTo(clientX: number) {
+  const box = track.value!.getBoundingClientRect()
+  const r = (clientX - grabOffset - box.left) / box.width
+  blockRatio.value = Math.min(maxRatio.value, Math.max(0, r))
+}
 function grab(event: PointerEvent) {
   if (!track.value || !peers.value.length) return
   track.value.setPointerCapture(event.pointerId)
   dragging.value = true
-  if (!(event.target as HTMLElement).closest('.standing-peer')) {
-    const box = track.value.getBoundingClientRect()
-    blockRatio.value = clampRatio((event.clientX - box.left) / box.width)
-  }
-  lastX = event.clientX
-  lastT = event.timeStamp
+  const thumb = (event.target as HTMLElement).closest('.standing-peer')
+  grabOffset = thumb
+    ? event.clientX - (thumb.getBoundingClientRect().left + thumb.clientWidth / 2)
+    : 0
+  if (!thumb) moveTo(event.clientX)
 }
 function drag(event: PointerEvent) {
-  if (!dragging.value || !track.value) return
-  const dx = event.clientX - lastX
-  const speed = Math.abs(dx) / Math.max(1, event.timeStamp - lastT)
-  // ponytail: scrub gain follows pointer speed (0.2× slow for fine steps, up to 1.6× fast); the 0.6 px/ms knee is a feel constant.
-  const gain = Math.min(1.6, Math.max(0.2, speed / 0.6))
-  fine.value = gain < 0.5
-  blockRatio.value = clampRatio(blockRatio.value + (dx * gain) / track.value.clientWidth)
-  lastX = event.clientX
-  lastT = event.timeStamp
+  if (dragging.value && track.value) moveTo(event.clientX)
 }
 function release() {
   dragging.value = false
-  fine.value = false
-  snap()
+  if (peer.value && standing.value) blockRatio.value = standing.value.ratio(peer.value[0])
 }
 function step(event: KeyboardEvent) {
   const last = peers.value.length - 1
   const i = peerIndex.value
   const next = {
     ArrowRight: i + 1,
-    ArrowUp: i - 1,
+    ArrowUp: i + 1,
     ArrowLeft: i - 1,
-    ArrowDown: i + 1,
-    PageUp: i - 10,
-    PageDown: i + 10,
+    ArrowDown: i - 1,
+    PageUp: i + 10,
+    PageDown: i - 10,
     Home: 0,
     End: last,
   }[event.key]
@@ -361,7 +357,7 @@ function download(kind: 'json' | 'csv') {
                 :aria-valuemax="peers.length"
                 :aria-valuenow="peerIndex + 1"
                 :aria-valuetext="peerText"
-                :style="{ left: `${blockRatio * 100}%` }"
+                :style="{ left: peerAt }"
                 @keydown="step"
               >
                 <span v-if="dragging" class="standing-readout"
@@ -439,8 +435,8 @@ function download(kind: 'json' | 'csv') {
           </p>
         </template>
         <p class="fine-print">
-          Rank in subfield, log scale. Drag the block to compare with a listed author; drag slowly
-          for single steps. Comparison only.
+          Rank in subfield, log scale. Drag or click to compare with a listed author; arrow keys
+          step one author. Crossing a line does not confirm official inclusion.
           <a :href="data?.dataset" target="_blank" rel="noopener noreferrer">V9 data</a>,
           {{ data?.license }}.
         </p>

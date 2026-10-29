@@ -46,7 +46,7 @@ html {
 body {
   margin: 0;
   color: var(--ui-text);
-  background: #e8e8e3;
+  background: #eeeeea;
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -58,6 +58,10 @@ body {
 a {
   color: var(--ui-primary);
   text-underline-offset: 0.2em;
+}
+button.text-secondary:hover {
+  color: var(--ui-secondary);
+  text-decoration: underline;
 }
 a:hover,
 p a,
@@ -356,6 +360,12 @@ h1 em {
 .prose {
   max-width: 68ch;
 }
+.prose h3 {
+  margin: 1.5rem 0 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ui-text-highlighted);
+}
 .prose p + p {
   margin-top: 0.75rem;
 }
@@ -545,6 +555,11 @@ h1 em {
   box-shadow: 0 1px 4px rgb(0 0 0 / 0.18);
   cursor: grab;
   transition: left 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.standing-peer::before {
+  content: '';
+  position: absolute;
+  inset: -0.5rem -1rem;
 }
 .standing-peer.dragging {
   cursor: grabbing;

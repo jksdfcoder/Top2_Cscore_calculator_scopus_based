@@ -153,7 +153,7 @@ const latestStatus = computed(() =>
                     accept=".csv,text/csv"
                     icon="i-lucide-upload"
                     label="Drop CSV files here"
-                    description="Documents + two Citation overviews · up to 30 MB each"
+                    description="Documents + two Citation overviews · processed only in your browser"
                     :disabled="busy || !mounted"
                     class="file-drop"
                     :class="{ compact: files.length }"
@@ -309,7 +309,7 @@ const latestStatus = computed(() =>
               </dl>
               <div class="score-foot">
                 <span v-if="isDemo">Synthetic example · author ID 123</span>
-                <span v-else>V9 normalization · not an official selection</span>
+                <span v-else>Calculated estimate · not an official result</span>
                 <span class="score-links">
                   <a v-if="hasReady" href="#results">Indicators &amp; comparison ↓</a>
                   <UButton variant="link" size="xs" class="p-0" @click="methodOpen = true"
@@ -415,29 +415,54 @@ const latestStatus = computed(() =>
               2025. Excluding self-citations removes any citation sharing an author with the cited
               paper.
             </p>
+            <h3>Limitations</h3>
+            <p>
+              This is a calculated estimate, not an official result. It uses your current Scopus
+              exports with the published method and the V9 normalization parameters; the official
+              database is frozen at the Scopus snapshot of 1 August 2026. Snapshot dates, record
+              updates, incomplete exports, author identification and undisclosed implementation
+              details can all make results differ. Crossing a displayed line does not confirm
+              inclusion in the official Top 2% database.
+            </p>
+            <p>
+              Your chosen field or subfield is a comparison, not an official classification.
+              Citation indicators capture only part of research impact and should not be used alone
+              for hiring, promotion, funding or similar decisions. The tool is provided as is,
+              without warranty of accuracy or completeness.
+            </p>
+            <p>
+              Independent open-source tool. Not an official service of, or endorsed by, Stanford
+              University, Elsevier, Scopus or HKU.
+            </p>
+            <h3>Data and licence</h3>
             <p class="muted">
-              Normalization uses official V9 parameters (Scopus snapshot of 1 August 2026). Your
-              later export can differ. Independent tool, not affiliated with Stanford or Elsevier.
+              Reference data: J. P. A. Ioannidis,
+              <a
+                href="https://doi.org/10.17632/btchxktzyw.9"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Updated science-wide author databases of standardized citation indicators, V9</a
+              >, licensed under
+              <a
+                href="https://creativecommons.org/licenses/by-nc/3.0/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >CC BY-NC 3.0</a
+              >; values are extracted and transformed for this tool. Method:
               <a
                 href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000918"
                 target="_blank"
                 rel="noopener noreferrer"
                 >Ioannidis et al. 2020</a
-              >
-              ·
-              <a
-                href="https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/9"
-                target="_blank"
-                rel="noopener noreferrer"
-                >V9 dataset</a
-              >
+              >. Application code: MIT licence.
             </p>
           </div>
         </template>
       </UModal>
 
       <footer class="site-footer">
-        <span>Open calculation. Local files.</span><a href="#page-title">Back to top</a>
+        <span>Independent estimate · not an official result · files stay in your browser</span
+        ><a href="#page-title">Back to top</a>
       </footer>
     </div>
   </div>

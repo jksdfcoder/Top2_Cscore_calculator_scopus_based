@@ -70,14 +70,14 @@ const items = [
         <template #privacy>
           <div class="prose pb-4">
             <p>
-              Your CSV files are read and calculated in this browser. They are not uploaded, logged
-              or saved in browser storage. Clear your data, refresh or close the page to remove the
-              session.
+              Your CSV files are read and calculated in this browser. They are not uploaded to a
+              server or saved in browser storage. Clear your data, refresh or close the page to
+              remove the session. Use only data you are authorised to access.
             </p>
             <p>
               Downloads are created on your device. Audit reports contain input fingerprints and
               calculated values, but not publication titles or author IDs. The hosting provider may
-              still record ordinary page requests.
+              process ordinary connection data, such as IP addresses.
             </p>
           </div>
         </template>
