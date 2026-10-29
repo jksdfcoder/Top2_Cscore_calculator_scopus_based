@@ -1,8 +1,23 @@
-name: Verify
-on: [push, pull_request]
+name: Verify and deploy Pages
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   verify:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -15,3 +30,53 @@ jobs:
       - run: npm run generate
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:e2e
+      - name: Configure GitHub Pages
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Generate site for the Pages base path
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: npm run generate
+        env:
+          NUXT_APP_BASE_URL: ${{ steps.pages.outputs.base_path }}/
+      - name: Smoke-test the Pages build
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          BASE_URL: http://localhost:4180
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+        run: |
+          mkdir -p "$RUNNER_TEMP/pages-smoke$PAGES_BASE_PATH"
+          cp -R .output/public/. "$RUNNER_TEMP/pages-smoke$PAGES_BASE_PATH"
+          npx serve "$RUNNER_TEMP/pages-smoke" -l 4180 > "$RUNNER_TEMP/pages-smoke.log" 2>&1 &
+          pages_server_pid=$!
+          trap 'kill "$pages_server_pid"' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent "$BASE_URL$PAGES_BASE_PATH" > /dev/null; then break; fi
+            sleep 1
+          done
+          npx playwright test tests/e2e/pages.spec.ts --project=chromium
+      - name: Include source licence and data notices
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          cp LICENSE .output/public/LICENSE-code.txt
+          cp THIRD_PARTY_NOTICES.md .output/public/THIRD_PARTY_NOTICES.md
+      - name: Upload generated calculator
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .output/public
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy calculator
+        id: deployment
+        uses: actions/deploy-pages@v4

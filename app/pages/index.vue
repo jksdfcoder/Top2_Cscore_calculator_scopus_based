@@ -17,7 +17,7 @@ const {
   resolve,
   clear,
   loadDemo,
-} = useAnalysis()
+} = useAnalysis(useRuntimeConfig().app.baseURL)
 const mounted = ref(false)
 onMounted(() => {
   mounted.value = true

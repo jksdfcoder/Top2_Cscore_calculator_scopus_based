@@ -71,3 +71,23 @@ test('adding a supplementary file keeps manual matching decisions', async () => 
   expect(model.decisions.value).toEqual({ 'sha256:x:7': '2-s2.0-1' })
   scope.stop()
 })
+
+test('synthetic example loads under a GitHub Pages project path', async () => {
+  const prefix = '/Top2_Cscore_calculator_scopus_based/'
+  const fetcher = vi.fn(async (url: string) => {
+    expect(url.startsWith(`${prefix}demo/`)).toBe(true)
+    return new Response(readFileSync(`public/${url.slice(prefix.length)}`, 'utf8'))
+  })
+  vi.stubGlobal('fetch', fetcher)
+  const scope = effectScope()
+  try {
+    const model = scope.run(() => useAnalysis(prefix))!
+    await model.loadDemo()
+    expect(fetcher).toHaveBeenCalledTimes(3)
+    expect(model.isDemo.value).toBe(true)
+    expect(model.analysis.value?.modes.every((m) => m.ready)).toBe(true)
+  } finally {
+    scope.stop()
+    vi.unstubAllGlobals()
+  }
+})

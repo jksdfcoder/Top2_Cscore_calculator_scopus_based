@@ -13,6 +13,7 @@ import {
   type SelfMode,
 } from '~/lib/cscore'
 import { reference, metricLabels, selfLabel, scopeLabel } from '~/lib/reference'
+const assetBase = useRuntimeConfig().app.baseURL.replace(/\/?$/, '/')
 
 const props = defineProps<{ analysis: Analysis; files: ParsedFile[]; isDemo: boolean }>()
 const selfMode = defineModel<SelfMode>('selfMode', { required: true })
@@ -88,7 +89,7 @@ watch(
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '')
     try {
-      const response = await fetch(`/reference/v9/peers/${s}/${slug}.json`)
+      const response = await fetch(`${assetBase}reference/v9/peers/${s}/${slug}.json`)
       const loaded = response.ok ? await response.json() : null
       if (current) peerFile.value = loaded
     } catch {

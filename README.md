@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-For a static build: `npm run generate`, then `npm run preview` (http://localhost:4173). Deploy only `.output/public`; deployment is not configured in this slice.
+For a static build: `npm run generate`, then `npm run preview` (http://localhost:4173). GitHub Actions publishes `.output/public` to [the live calculator](https://jksdfcoder.github.io/Top2_Cscore_calculator_scopus_based/) after checks pass on main. See [deployment and data-use boundaries](docs/compliance-and-deployment.md).
 
 Docker (static files behind nginx with a restrictive CSP): `docker build -t cscore-calculator . && docker run -p 8080:8080 cscore-calculator`. Browser tests can target it with `BASE_URL=http://localhost:8080 npm run test:e2e`.
 

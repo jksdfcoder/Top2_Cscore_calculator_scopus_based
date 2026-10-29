@@ -1,7 +1,8 @@
 import { analyze, parseText, type Analysis, type ParsedFile } from '../lib/cscore'
 import { reference } from '../lib/reference'
 
-export function useAnalysis() {
+export function useAnalysis(baseURL = '/') {
+  const assetBase = baseURL.replace(/\/?$/, '/')
   const files = shallowRef<ParsedFile[]>([])
   const selectedAuthor = ref('')
   const decisions = ref<Record<string, string>>({})
@@ -117,7 +118,7 @@ export function useAnalysis() {
       const names = ['publications.csv', 'including.csv', 'excluding.csv']
       const demoFiles = await Promise.all(
         names.map(async (name) => {
-          const response = await fetch(`/demo/${name}`)
+          const response = await fetch(`${assetBase}demo/${name}`)
           if (!response.ok) throw new Error('Could not load the example. Please try again.')
           return new File([await response.text()], name, { type: 'text/csv' })
         }),

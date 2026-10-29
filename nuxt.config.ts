@@ -10,6 +10,16 @@ export default defineNuxtConfig({
       title: 'C-score calculator · Scopus data, explained',
       htmlAttrs: { lang: 'en' },
       meta: [
+        { name: 'referrer', content: 'no-referrer' },
+        ...(process.env.NODE_ENV === 'production'
+          ? [
+              {
+                'http-equiv': 'Content-Security-Policy',
+                content:
+                  "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'",
+              },
+            ]
+          : []),
         {
           name: 'description',
           content:
