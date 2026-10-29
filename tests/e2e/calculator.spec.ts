@@ -330,3 +330,31 @@ test('score changes briefly show directional arrows and footer separates code fr
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     .toBe(true)
 })
+
+test('score components explain their indicators on hover and keyboard focus', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.locator('input[type=file]')).toBeEnabled()
+  await page.locator('input[type=file]').setInputFiles(threeFiles)
+  await page.getByRole('button', { name: 'Confirm author & calculate' }).click()
+  await expect(page.getByRole('status').first()).toContainText('4 of 4')
+  const definitions = {
+    NC: 'Total citations received by your publications',
+    H: 'The largest h for which h of your publications',
+    Hm: 'fractional paper counts of 1 divided by',
+    NCS: 'sole author.',
+    NCSF: 'sole author or first author.',
+    NCSFL: 'sole author, first author or last author.',
+  }
+  for (const [metric, definition] of Object.entries(definitions)) {
+    const trigger = page.getByRole('button', { name: new RegExp(`^${metric}:`) }).first()
+    await trigger.hover()
+    await expect(page.getByRole('tooltip')).toContainText(definition)
+    await expect(page.getByRole('tooltip')).toContainText('normalized c-score contribution')
+    await page.keyboard.press('Escape')
+    await expect(page.getByRole('tooltip')).toHaveCount(0)
+  }
+  await page.mouse.move(0, 0)
+  await page.keyboard.press('Tab')
+  await page.getByRole('button', { name: /^Hm:/ }).first().focus()
+  await expect(page.getByRole('tooltip')).toContainText(definitions.Hm)
+})

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Issue, SelfMode } from '~/lib/cscore'
 import { metricNames } from '~/lib/cscore'
-import { selfLabel } from '~/lib/reference'
+import { metricDescriptions, metricLabels, selfLabel } from '~/lib/reference'
 
 const {
   files,
@@ -278,14 +278,37 @@ const latestStatus = computed(() =>
                 <div v-for="s in scores" :key="s.scope" class="score">
                   <dt>{{ s.label }}</dt>
                   <dd>
-                    <ol v-if="s.state === 'ready'" class="score-terms" aria-hidden="true">
+                    <ol v-if="s.state === 'ready'" class="score-terms">
                       <li
                         v-for="(p, i) in s.parts"
                         :key="p.k"
                         :style="{ animationDelay: `${200 + i * 90}ms` }"
                       >
-                        {{ p.k }} <b><ChangingNumber :value="p.v" /></b
-                        ><i :style="{ width: `${p.v * 100}%` }" />
+                        <UTooltip
+                          :text="metricDescriptions[p.k]"
+                          :delay-duration="200"
+                          :ui="{
+                            content: 'h-auto max-w-72 whitespace-normal',
+                            text: 'whitespace-normal',
+                          }"
+                        >
+                          <button
+                            type="button"
+                            class="score-term"
+                            :aria-label="`${p.k}: ${metricLabels[p.k]}, normalized contribution ${p.v.toFixed(3)}`"
+                          >
+                            {{ p.k }} <b><ChangingNumber :value="p.v" /></b>
+                            <i :style="{ width: `${p.v * 100}%` }" />
+                          </button>
+                          <template #content>
+                            <div class="max-w-72 whitespace-normal">
+                              <p>{{ metricDescriptions[p.k] }}</p>
+                              <p class="mt-1 text-muted">
+                                Shown here as a normalized c-score contribution.
+                              </p>
+                            </div>
+                          </template>
+                        </UTooltip>
                       </li>
                     </ol>
                     <span
