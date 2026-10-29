@@ -8,7 +8,7 @@ Table 1 (the published list) gives each listed author's rank within the primary 
 subfield author count, from which the 2% inclusion line is derived. With --peers-out, a rank-spaced
 sample of listed authors per subfield is written for the radar comparison.
 """
-import argparse, hashlib, json, math, re
+import argparse, bisect, hashlib, json, math, re
 from pathlib import Path
 import openpyxl
 
@@ -17,8 +17,8 @@ PCTS = ['25', '50', '75', '90', '95', '99']
 TAIL = '2025_pubs_since_1788_wopp_extracted_202608.xlsx'
 METRICS = ['nc{y}', 'h25', 'hm25', 'ncs', 'ncsf', 'ncsfl']
 MODES = [('with-self', ''), ('without-self', ' (ns)')]
-# ponytail: 100 rank-spaced authors per subfield and mode keeps the repo small; raise for finer drag steps.
-PEER_SAMPLE = 100
+# ponytail: 160 log-rank-spaced authors per subfield and mode keeps the repo small; raise for finer drag steps.
+PEER_SAMPLE = 160
 
 
 def slug(name):
@@ -83,11 +83,15 @@ def lines(path, year, maxlog):
 
 
 def sample(authors):
+    """Authors nearest to ranks spaced evenly on a log scale, matching the log-rank bar."""
     authors.sort(key=lambda a: a[0])
     if len(authors) <= PEER_SAMPLE:
         return authors
-    step = (len(authors) - 1) / (PEER_SAMPLE - 1)
-    return [authors[round(i * step)] for i in range(PEER_SAMPLE)]
+    ranks = [a[0] for a in authors]
+    top = math.log(ranks[-1])
+    picked = {min(bisect.bisect_left(ranks, math.exp(top * i / (PEER_SAMPLE - 1))), len(ranks) - 1)
+              for i in range(PEER_SAMPLE)}
+    return [authors[i] for i in sorted(picked)]
 
 
 def build(table1_dir, table2_dir, maxlog_path, peers_out=None):

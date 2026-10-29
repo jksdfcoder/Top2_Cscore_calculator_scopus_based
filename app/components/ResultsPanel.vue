@@ -70,55 +70,83 @@ watch(
   { immediate: true },
 )
 const peers = computed(() =>
-  [...(peerFile.value?.[selfMode.value] ?? [])].sort((a, b) => a[1] - b[1]),
+  [...(peerFile.value?.[selfMode.value] ?? [])].sort((a, b) => a[0] - b[0]),
 )
+const compact = (rank: number) =>
+  rank >= 1000 ? `${Math.round(rank / 100) / 10}k`.replace('.0k', 'k') : String(Math.round(rank))
 
 const standing = computed(() => {
   const sub = data.value?.scopes[scope.value].subfields.find(
     (s) => s.field === field.value && s.name === subfieldName.value,
   )
   if (!data.value || !sub || !result.value) return null
+  const count = sub.authors
   const c = result.value.cScore
   const placed = compare(c, data.value, scope.value, selfMode.value, sub)
-  const ticks =
-    selfMode.value === 'with-self' ? percentiles.map((p) => ({ label: p, value: sub.c[p] })) : []
-  const values = [
-    c,
-    ...ticks.map((t) => t.value),
-    ...(placed.top2 === null ? [] : [placed.top2]),
-    ...peers.value.map((p) => p[1]),
-  ]
-  const lo = Math.min(...values) * 0.9
-  const hi = Math.max(...values) * 1.03
-  const ratio = (v: number) => (v - lo) / (hi - lo)
-  const at = (v: number) => `${(ratio(v) * 100).toFixed(2)}%`
-  const align = (v: number) => ({
-    transform: `translateX(${ratio(v) < 0.15 ? -2 : ratio(v) > 0.85 ? -98 : -50}%)`,
+  const top2Rank = Math.floor(0.02 * count)
+  const ratio = (rank: number) => Math.log(Math.max(1, rank)) / Math.log(count)
+  const at = (rank: number) => `${(ratio(rank) * 100).toFixed(2)}%`
+  const align = (rank: number) => ({
+    transform: `translateX(${ratio(rank) < 0.1 ? -4 : ratio(rank) > 0.9 ? -96 : -50}%)`,
   })
+  // Your rank: interpolated in log rank between listed authors, else between the published
+  // all-author percentiles (with self-citations only). Without either, it is not placed.
+  const points: [number, number][] = peers.value.map((p) => [p[1], p[0]])
+  if (selfMode.value === 'with-self')
+    points.push(
+      ...percentiles.map((p): [number, number] => [sub.c[p], (1 - Number(p) / 100) * count]),
+      [0, count],
+    )
+  points.sort((a, b) => b[0] - a[0])
+  const listedFloor = peers.value.at(-1)?.[1] ?? Infinity
+  let you: { rank: number; listed: boolean } | null = null
+  if (points.length && c >= points[0]![0]) you = { rank: 1, listed: true }
+  for (let i = 1; !you && i < points.length; i++) {
+    const [hiC, hiRank] = points[i - 1]!
+    const [loC, loRank] = points[i]!
+    if (c < loC || loRank < hiRank) continue
+    const t = hiC === loC ? 0 : (hiC - c) / (hiC - loC)
+    const rank = Math.exp(Math.log(hiRank) + t * (Math.log(loRank) - Math.log(hiRank)))
+    you = { rank, listed: c >= listedFloor }
+  }
   const band = placed.band
     ?.replace(/^Between the (\w+) and (\w+) percentiles$/, '$1–$2 percentile')
     .replace(/^At or above/, '≥')
-  let last = -1
-  const labels = ticks.filter((t) => {
-    const keep = ratio(t.value) - last > 0.08
-    if (keep) last = ratio(t.value)
-    return keep
-  })
-  return { sub, c, placed, ticks, labels, band, lo, hi, at, align }
+  const majors = [1, 10, 100, 1000, 10000, 100000].filter((r) => ratio(r) < 0.88)
+  const minors = majors
+    .flatMap((d) => [2, 3, 4, 5, 6, 7, 8, 9].map((m) => m * d))
+    .filter((r) => r < count)
+  return { sub, count, c, placed, top2Rank, ratio, at, align, you, band, majors, minors }
 })
 
-const peerIndex = ref(0)
-function nearest(c: number) {
+const blockRatio = ref(0)
+const dragging = ref(false)
+const fine = ref(false)
+const maxRatio = computed(() =>
+  standing.value && peers.value.length ? standing.value.ratio(peers.value.at(-1)![0]) : 0,
+)
+const clampRatio = (r: number) => Math.min(maxRatio.value, Math.max(0, r))
+const peerIndex = computed(() => {
+  const s = standing.value
+  if (!s) return 0
   let best = 0
   peers.value.forEach((p, i) => {
-    if (Math.abs(p[1] - c) < Math.abs(peers.value[best]![1] - c)) best = i
+    if (
+      Math.abs(s.ratio(p[0]) - blockRatio.value) <
+      Math.abs(s.ratio(peers.value[best]![0]) - blockRatio.value)
+    )
+      best = i
   })
   return best
-}
-watch([peers, () => standing.value?.placed.top2], () => {
-  peerIndex.value = nearest(standing.value?.placed.top2 ?? 0)
 })
 const peer = computed(() => peers.value[peerIndex.value])
+function snap() {
+  if (peer.value && standing.value) blockRatio.value = standing.value.ratio(peer.value[0])
+}
+watch([peers, () => standing.value?.top2Rank], () => {
+  if (standing.value) blockRatio.value = clampRatio(standing.value.ratio(standing.value.top2Rank))
+  snap()
+})
 const peerContributions = computed(() => {
   const p = peer.value
   if (!p) return undefined
@@ -128,36 +156,67 @@ const peerContributions = computed(() => {
   ) as Metrics
 })
 const peerText = computed(() =>
-  peer.value && peerFile.value
-    ? `${peer.value[2]}, ${peer.value[3]} · rank ${peer.value[0].toLocaleString('en')} of ${peerFile.value.count.toLocaleString('en')} · ${peer.value[1].toFixed(3)}`
+  peer.value && standing.value
+    ? `${peer.value[2]}, ${peer.value[3]} · rank ${peer.value[0].toLocaleString('en')} of ${standing.value.count.toLocaleString('en')} · ${peer.value[1].toFixed(3)}`
     : '',
 )
+const near = (rank: number) =>
+  fine.value && !!standing.value && Math.abs(standing.value.ratio(rank) - blockRatio.value) < 0.14
+const fineLabels = computed(() => {
+  const s = standing.value
+  if (!fine.value || !s) return []
+  const gap = 34 / (track.value?.clientWidth || 500)
+  const shown: number[] = []
+  for (const r of [...s.minors, ...s.majors].filter(near).sort((a, b) => a - b))
+    if (shown.every((x) => Math.abs(s.ratio(x) - s.ratio(r)) >= gap)) shown.push(r)
+  return shown
+})
 const track = ref<HTMLElement>()
-function pick(event: PointerEvent) {
-  if (!standing.value || !track.value || !peers.value.length) return
-  const box = track.value.getBoundingClientRect()
-  const { lo, hi } = standing.value
-  peerIndex.value = nearest(lo + ((event.clientX - box.left) / box.width) * (hi - lo))
-}
+let lastX = 0
+let lastT = 0
 function grab(event: PointerEvent) {
-  track.value?.setPointerCapture(event.pointerId)
-  pick(event)
+  if (!track.value || !peers.value.length) return
+  track.value.setPointerCapture(event.pointerId)
+  dragging.value = true
+  if (!(event.target as HTMLElement).closest('.standing-peer')) {
+    const box = track.value.getBoundingClientRect()
+    blockRatio.value = clampRatio((event.clientX - box.left) / box.width)
+  }
+  lastX = event.clientX
+  lastT = event.timeStamp
+}
+function drag(event: PointerEvent) {
+  if (!dragging.value || !track.value) return
+  const dx = event.clientX - lastX
+  const speed = Math.abs(dx) / Math.max(1, event.timeStamp - lastT)
+  // ponytail: scrub gain follows pointer speed (0.2× slow for fine steps, up to 1.6× fast); the 0.6 px/ms knee is a feel constant.
+  const gain = Math.min(1.6, Math.max(0.2, speed / 0.6))
+  fine.value = gain < 0.5
+  blockRatio.value = clampRatio(blockRatio.value + (dx * gain) / track.value.clientWidth)
+  lastX = event.clientX
+  lastT = event.timeStamp
+}
+function release() {
+  dragging.value = false
+  fine.value = false
+  snap()
 }
 function step(event: KeyboardEvent) {
   const last = peers.value.length - 1
+  const i = peerIndex.value
   const next = {
-    ArrowRight: peerIndex.value + 1,
-    ArrowUp: peerIndex.value + 1,
-    ArrowLeft: peerIndex.value - 1,
-    ArrowDown: peerIndex.value - 1,
-    PageUp: peerIndex.value + 10,
-    PageDown: peerIndex.value - 10,
+    ArrowRight: i + 1,
+    ArrowUp: i - 1,
+    ArrowLeft: i - 1,
+    ArrowDown: i + 1,
+    PageUp: i - 10,
+    PageDown: i + 10,
     Home: 0,
     End: last,
   }[event.key]
-  if (next === undefined) return
+  if (next === undefined || !standing.value) return
   event.preventDefault()
-  peerIndex.value = Math.min(last, Math.max(0, next))
+  blockRatio.value = standing.value.ratio(peers.value[Math.min(last, Math.max(0, next))]![0])
 }
 
 function download(kind: 'json' | 'csv') {
@@ -194,10 +253,20 @@ function download(kind: 'json' | 'csv') {
     <div v-if="result" class="result-grid">
       <div>
         <h3 class="result-label">What drives it</h3>
-        <p class="legend">
-          <span><span class="swatch you" />You</span>
-          <span v-if="peer"><span class="swatch peer" />{{ peerText }}</span>
-        </p>
+        <div class="legend">
+          <span class="legend-row"
+            ><span class="swatch you" />You · {{ result.cScore.toFixed(3) }}</span
+          >
+          <span class="legend-row"
+            ><template v-if="peer"
+              ><span class="swatch peer" /><strong>{{ peer[2] }}</strong> · #{{
+                peer[0].toLocaleString('en')
+              }}
+              · {{ peer[1].toFixed(3) }}</template
+            ></span
+          >
+          <span class="legend-row sub">{{ peer?.[3] }}</span>
+        </div>
         <ContributionChart :result="result" :peer="peerContributions" />
         <div class="sr-only">
           <table>
@@ -254,24 +323,37 @@ function download(kind: 'json' | 'csv') {
           />
         </div>
 
-        <template v-if="standing">
-          <div class="standing">
+        <div class="standing-area">
+          <div v-if="standing" class="standing">
             <div
               ref="track"
               class="standing-track"
               @pointerdown="grab"
-              @pointermove="(e) => e.buttons && pick(e)"
+              @pointermove="drag"
+              @pointerup="release"
+              @pointercancel="release"
             >
-              <div class="standing-fill" :style="{ width: standing.at(standing.c) }" />
+              <div
+                :key="`${scope}-${subfieldName}`"
+                class="standing-fill"
+                :style="{ width: standing.at(standing.top2Rank) }"
+              />
               <span
-                v-for="t in standing.ticks"
-                :key="t.label"
+                v-for="r in standing.minors"
+                :key="`m${r}`"
+                class="standing-tick minor"
+                :style="{ left: standing.at(r) }"
+              />
+              <span
+                v-for="r in standing.majors.slice(1)"
+                :key="`M${r}`"
                 class="standing-tick"
-                :style="{ left: standing.at(t.value) }"
+                :style="{ left: standing.at(r) }"
               />
               <span
                 v-if="peer"
                 class="standing-peer"
+                :class="{ dragging }"
                 role="slider"
                 tabindex="0"
                 aria-label="Compare with a listed author"
@@ -279,34 +361,70 @@ function download(kind: 'json' | 'csv') {
                 :aria-valuemax="peers.length"
                 :aria-valuenow="peerIndex + 1"
                 :aria-valuetext="peerText"
-                :style="{ left: standing.at(peer[1]) }"
+                :style="{ left: `${blockRatio * 100}%` }"
                 @keydown="step"
-              />
+              >
+                <span v-if="dragging" class="standing-readout"
+                  >#{{ peer[0].toLocaleString('en') }}</span
+                >
+              </span>
             </div>
             <span
-              v-for="t in standing.labels"
-              :key="t.label"
-              class="standing-pct"
+              v-for="r in standing.majors.filter((r) => !near(r))"
+              :key="`a${r}`"
+              class="standing-axis"
               aria-hidden="true"
-              :style="{ left: standing.at(t.value), ...standing.align(t.value) }"
-              >{{ t.label }}th</span
+              :style="{ left: standing.at(r), ...standing.align(r) }"
+              >{{ r === 1 ? '#1' : compact(r) }}</span
             >
-            <span class="standing-marker you" :style="{ left: standing.at(standing.c) }">
-              <span :style="standing.align(standing.c)"
-                >You {{ standing.c.toFixed(3)
-                }}<template v-if="standing.band"> · {{ standing.band }}</template></span
+            <span
+              class="standing-axis"
+              aria-hidden="true"
+              :style="{ left: '100%', ...standing.align(standing.count) }"
+              >{{ compact(standing.count) }}</span
+            >
+            <span
+              v-for="r in fineLabels"
+              :key="`f${r}`"
+              class="standing-axis fine"
+              aria-hidden="true"
+              :style="{ left: standing.at(r), ...standing.align(r) }"
+              >{{ compact(r) }}</span
+            >
+            <span
+              v-if="standing.you"
+              class="standing-marker you"
+              :class="{ faded: dragging }"
+              :style="{ left: standing.at(standing.you.rank) }"
+            >
+              <span :style="standing.align(standing.you.rank)"
+                >You {{ standing.c.toFixed(3) }} ·
+                {{
+                  standing.you.listed
+                    ? `≈ #${Math.round(standing.you.rank).toLocaleString('en')}`
+                    : standing.band
+                }}</span
               >
             </span>
-            <span
-              v-if="standing.placed.top2 !== null"
-              class="standing-marker top2"
-              :style="{ left: standing.at(standing.placed.top2) }"
-            >
-              <span :style="standing.align(standing.placed.top2)"
-                >Top 2% {{ standing.placed.top2.toFixed(3) }}</span
+            <span v-else class="standing-marker you no-line" style="left: 100%">
+              <span style="transform: translateX(-100%)"
+                >You {{ standing.c.toFixed(3) }} · below the listed range</span
+              >
+            </span>
+            <span class="standing-marker top2" :style="{ left: standing.at(standing.top2Rank) }">
+              <span :style="standing.align(standing.top2Rank)"
+                >Top 2% · #{{ standing.top2Rank.toLocaleString('en')
+                }}<template v-if="standing.placed.top2 !== null">
+                  · {{ standing.placed.top2.toFixed(3) }}</template
+                ></span
               >
             </span>
           </div>
+          <div v-else class="standing">
+            <div class="standing-track empty">Choose a field and subfield</div>
+          </div>
+        </div>
+        <template v-if="standing">
           <p class="sr-only">
             {{ standing.placed.band ?? 'No published percentile for this mode' }} of
             {{ standing.sub.authors.toLocaleString('en') }} {{ standing.sub.name }} authors.
@@ -319,14 +437,13 @@ function download(kind: 'json' | 'csv') {
               signed(standing.placed.top100kGap)
             }}).
           </p>
-          <p class="fine-print">
-            <template v-if="peers.length">Drag the block to compare with a listed author. </template
-            >Comparison only; crossing a line does not confirm selection.
-            <a :href="data!.dataset" target="_blank" rel="noopener noreferrer">V9 data</a>,
-            {{ data!.license }}.
-          </p>
         </template>
-        <p v-else class="muted">Choose a field and subfield to see where your score stands.</p>
+        <p class="fine-print">
+          Rank in subfield, log scale. Drag the block to compare with a listed author; drag slowly
+          for single steps. Comparison only.
+          <a :href="data?.dataset" target="_blank" rel="noopener noreferrer">V9 data</a>,
+          {{ data?.license }}.
+        </p>
       </div>
     </div>
     <UAlert

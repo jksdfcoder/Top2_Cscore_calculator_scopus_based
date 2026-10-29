@@ -46,7 +46,7 @@ html {
 body {
   margin: 0;
   color: var(--ui-text);
-  background: var(--ui-bg);
+  background: #e8e8e3;
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -71,7 +71,9 @@ li a {
 }
 .shell {
   max-width: 1200px;
+  min-height: 100vh;
   margin: 0 auto;
+  background: var(--ui-bg);
   padding: 0 clamp(1.25rem, 4vw, 3rem);
 }
 
@@ -290,6 +292,26 @@ h1 em {
   line-height: 2;
   color: var(--ui-warning);
 }
+.score-formula {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ui-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.score-strip {
+  display: flex;
+  gap: 2px;
+  height: 0.4rem;
+  margin: 0.35rem 0 0.5rem;
+}
+.score-strip i {
+  border-radius: 1px;
+  background: var(--ui-primary);
+  transform-origin: left;
+}
+.score-strip i:nth-child(even) {
+  background: var(--color-forest-500);
+}
 .score-note {
   font-size: 0.8rem;
   color: var(--ui-text-muted);
@@ -429,29 +451,44 @@ h1 em {
   color: var(--ui-text-muted);
 }
 .legend {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem 1.25rem;
-  min-height: 1.25rem;
+  display: grid;
+  gap: 0.15rem;
+  margin-bottom: 0.5rem;
   font-size: 0.8rem;
+  line-height: 1.35;
   color: var(--ui-text-muted);
 }
-.legend > span {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.4rem;
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  height: 1.1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.legend-row strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  color: var(--ui-text);
+}
+.legend-row.sub {
+  display: block;
+  padding-left: 1.45rem;
 }
 .swatch {
-  display: inline-block;
   flex: none;
-  align-self: center;
   width: 1rem;
   height: 0;
-  border-top: 2px solid var(--ui-primary);
+  border-top: 2px solid var(--color-gold-500);
 }
 .swatch.peer {
-  border-top: 2px dashed var(--color-gold-500);
+  border-top: 2px dashed var(--ui-primary);
+}
+.standing-area {
+  min-height: 8.5rem;
 }
 .standing {
   --label: 1.75rem;
@@ -464,22 +501,37 @@ h1 em {
 .standing-track {
   position: relative;
   height: var(--track);
+  border: 1px solid var(--ui-border);
   border-radius: 0.5rem;
-  background: color-mix(in srgb, var(--ui-border) 70%, transparent);
+  background: var(--ui-bg-elevated);
   cursor: pointer;
   touch-action: none;
+  user-select: none;
+}
+.standing-track.empty {
+  display: grid;
+  place-items: center;
+  cursor: default;
+  color: var(--ui-text-muted);
 }
 .standing-fill {
   height: 100%;
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0.45rem 0 0 0.45rem;
   background: var(--ui-primary);
+  transform-origin: left;
 }
 .standing-tick {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 1px;
-  background: color-mix(in srgb, var(--ui-bg) 70%, transparent);
+  background: rgb(128 128 120 / 0.4);
+  pointer-events: none;
+}
+.standing-tick.minor {
+  top: auto;
+  height: 28%;
+  background: rgb(128 128 120 / 0.3);
 }
 .standing-peer {
   position: absolute;
@@ -487,20 +539,42 @@ h1 em {
   bottom: -0.3rem;
   width: 0.75rem;
   transform: translateX(-50%);
-  border: 2px solid var(--color-gold-500);
+  border: 2px solid var(--ui-primary);
   border-radius: 0.3rem;
   background: var(--ui-bg-elevated);
   box-shadow: 0 1px 4px rgb(0 0 0 / 0.18);
   cursor: grab;
+  transition: left 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.standing-peer.dragging {
+  cursor: grabbing;
+  transition: none;
 }
 .standing-peer:focus-visible {
-  outline: 2px solid var(--ui-primary);
+  outline: 2px solid var(--color-gold-500);
   outline-offset: 2px;
 }
-.standing-pct {
+.standing-readout {
+  position: absolute;
+  bottom: calc(100% + 0.35rem);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  background: var(--ui-primary);
+  color: var(--ui-bg-elevated);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.standing-axis {
   position: absolute;
   top: calc(var(--label) + var(--track) + 0.3rem);
   color: var(--ui-text-muted);
+  white-space: nowrap;
+}
+.standing-axis.fine {
+  color: var(--ui-primary);
+  font-weight: 500;
 }
 .standing-marker {
   position: absolute;
@@ -523,11 +597,18 @@ h1 em {
 .standing-marker.you {
   top: 0;
   height: calc(var(--label) + var(--track));
-  color: var(--ui-primary);
+  color: var(--color-gold-700);
 }
 .standing-marker.you::before {
   top: 1rem;
   bottom: 0;
+  background: var(--color-gold-500);
+}
+.standing-marker.faded > span {
+  opacity: 0.2;
+}
+.standing-marker.no-line::before {
+  display: none;
 }
 .standing-marker.you > span {
   top: 0;
@@ -535,12 +616,11 @@ h1 em {
 .standing-marker.top2 {
   top: var(--label);
   bottom: 0;
-  color: var(--ui-secondary);
+  color: var(--ui-primary);
 }
 .standing-marker.top2::before {
   top: 0;
   bottom: 1rem;
-  background: var(--color-gold-500);
 }
 .standing-marker.top2 > span {
   bottom: 0;
@@ -627,6 +707,32 @@ figcaption {
       animation-timeline: view();
       animation-range: entry 0% entry 60%;
     }
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .score-formula {
+    animation: settle 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .score-strip i {
+    animation: grow 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .score-strip + .score-value {
+    animation: settle 380ms 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .standing-fill {
+    animation: grow 700ms cubic-bezier(0.25, 1, 0.5, 1) both;
+  }
+}
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(0.3em);
+    filter: blur(4px);
   }
 }
 @keyframes reveal {

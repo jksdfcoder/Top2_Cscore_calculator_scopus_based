@@ -186,7 +186,7 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
   await expect(standing).toContainText(`Subfield top 2% line ${top2}`)
   const peer = page.getByRole('slider', { name: 'Compare with a listed author' })
   await peer.focus()
-  await page.keyboard.press('End')
+  await page.keyboard.press('Home')
   await expect(peer).toHaveAttribute('aria-valuetext', /rank 1 of /)
   await page.locator('#results-heading').click()
   await expect(page.getByRole('listbox')).toHaveCount(0)

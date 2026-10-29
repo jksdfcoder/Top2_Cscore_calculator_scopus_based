@@ -11,18 +11,18 @@ function update() {
     {
       value: metricNames.map((key) => props.result.contributions[key]),
       name: 'You',
-      lineStyle: { color: '#1f4d3c', width: 2 },
-      itemStyle: { color: '#1f4d3c' },
-      areaStyle: { color: '#1f4d3c', opacity: 0.12 },
+      lineStyle: { color: '#ad8533', width: 2 },
+      itemStyle: { color: '#ad8533' },
+      areaStyle: { color: '#ad8533', opacity: 0.16 },
     },
   ]
   if (props.peer)
     series.push({
       value: metricNames.map((key) => props.peer![key]),
       name: 'Listed author',
-      lineStyle: { color: '#ad8533', width: 2, type: 'dashed' } as never,
-      itemStyle: { color: '#ad8533' },
-      areaStyle: { color: '#ad8533', opacity: 0 },
+      lineStyle: { color: '#1f4d3c', width: 2, type: 'dashed' } as never,
+      itemStyle: { color: '#1f4d3c' },
+      areaStyle: { color: '#1f4d3c', opacity: 0 },
     })
   const max = Math.max(...series.flatMap((s) => s.value))
   chart?.setOption(

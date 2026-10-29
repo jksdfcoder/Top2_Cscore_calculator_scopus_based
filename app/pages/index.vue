@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Issue, SelfMode } from '~/lib/cscore'
+import { metricNames } from '~/lib/cscore'
 import { selfLabel } from '~/lib/reference'
 
 const {
@@ -93,6 +94,8 @@ async function run() {
   const score = document.getElementById('score')
   if (score && score.getBoundingClientRect().top > innerHeight - 160) score.scrollIntoView()
 }
+const runId = ref(0)
+watch(analysis, () => runId.value++)
 const hasReady = computed(() => analysis.value?.modes.some((m) => m.ready) ?? false)
 const scores = computed(() =>
   (['career', 'single-year'] as const).map((scope) => {
@@ -104,6 +107,7 @@ const scores = computed(() =>
       label: scope === 'career' ? 'Career' : 'Single year',
       note: scope === 'career' ? 'Citations 1996–2025' : 'Citations in 2025',
       value: mode?.result?.cScore,
+      parts: mode?.result ? metricNames.map((k) => ({ k, v: mode.result!.contributions[k] })) : [],
       state: !mode ? 'empty' : mode.result ? 'ready' : 'incomplete',
     }
   }),
@@ -270,10 +274,24 @@ const latestStatus = computed(() =>
                   aria-label="Self-citation setting"
                 />
               </div>
-              <dl class="scores">
+              <p v-if="hasReady" :key="`f${runId}`" class="score-formula" aria-hidden="true">
+                c = Σ ln(1 + indicator) / maxlog
+              </p>
+              <dl :key="runId" class="scores">
                 <div v-for="s in scores" :key="s.scope" class="score">
                   <dt>{{ s.label }}</dt>
                   <dd>
+                    <span v-if="s.state === 'ready'" class="score-strip" aria-hidden="true">
+                      <i
+                        v-for="(p, i) in s.parts"
+                        :key="p.k"
+                        :title="`${p.k} ${p.v.toFixed(3)}`"
+                        :style="{
+                          width: `${(p.v / 6) * 100}%`,
+                          animationDelay: `${180 + i * 70}ms`,
+                        }"
+                      />
+                    </span>
                     <span
                       class="score-value"
                       :class="{ empty: s.state === 'empty', incomplete: s.state === 'incomplete' }"
