@@ -184,6 +184,16 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
   await expect(standing).toContainText('Epidemiology')
   await page.getByRole('tab', { name: 'Incl. self-citations', exact: true }).click()
   await expect(standing).toContainText(`Subfield top 2% line ${top2}`)
+  const peer = page.getByRole('slider', { name: 'Compare with a listed author' })
+  await peer.focus()
+  await page.keyboard.press('End')
+  await expect(peer).toHaveAttribute('aria-valuetext', /rank 1 of /)
+  await page.locator('#results-heading').click()
+  await expect(page.getByRole('listbox')).toHaveCount(0)
+  await page.locator('.standing-track').scrollIntoViewIfNeeded()
+  const track = (await page.locator('.standing-track').boundingBox())!
+  await page.mouse.click(track.x + track.width * 0.55, track.y + track.height / 2)
+  await expect(peer).not.toHaveAttribute('aria-valuetext', /rank 1 of /)
   await page.getByRole('tab', { name: 'Excl. self-citations', exact: true }).click()
   expect(await fourResultScores(page)).toEqual(before)
 

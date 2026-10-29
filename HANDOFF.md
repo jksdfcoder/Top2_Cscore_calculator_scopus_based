@@ -36,7 +36,7 @@
 
 ## 官方 field/subfield 对照（第二段已完成）
 
-`scripts/build-reference.py` 从 V9 Table 1（父目录 `originDoc`，各约 100 MB）和 Table 2 生成 `public/reference/v9/comparison.json`（约 138 KB，记录各源文件 SHA-256，约 90 秒）。内容：每个 field/subfield 全体 ≥5 篇作者的 c 分位数（Table 2 原值，只基于含自引 c）；每个 subfield 的前 2% 线（含/排自引各一条）；全局第 100,000 名线。不打包任何作者个人行。
+`scripts/build-reference.py` 从 V9 Table 1（父目录 `originDoc`，各约 100 MB）和 Table 2 生成 `public/reference/v9/comparison.json`（约 138 KB，记录各源文件 SHA-256，约 90 秒）。内容：每个 field/subfield 全体 ≥5 篇作者的 c 分位数（Table 2 原值，只基于含自引 c）；每个 subfield 的前 2% 线（含/排自引各一条）；全局第 100,000 名线。加 `--peers-out public/reference/v9/peers` 时另外为每个 subfield × 口径 × 自引设置按子领域排名等距抽取最多 100 位上榜作者（姓名、机构、排名、c、六指标；约 6.3 MB，174×2 个文件），构建时用 maxlog 复算每位上榜作者 c 并断言与官方值相差 <1e-6。只覆盖上榜区间（约前 2%），以下没有个人数据。
 
 2% 线的推导：在 Table 1 中取 `rank sm-subfield-1 ≤ 0.02 × sm-subfield-1 count` 的作者的最低 c。已验证：所有"不靠全局前 10 万入选"的作者的排名比例最大值恰为 0.0200（164 个 subfield，中位 0.01998），且全部 348 条 2% 线落在该 subfield 的 c@95 与 c@99 之间（脚本断言）。排自引模式没有官方分位数，只显示 2% 线和前 10 万线。
 

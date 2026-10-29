@@ -15,7 +15,7 @@ For a static build: `npm run generate`, then `npm run preview` (http://localhost
 
 Docker (static files behind nginx with a restrictive CSP): `docker build -t cscore-calculator . && docker run -p 8080:8080 cscore-calculator`. Browser tests can target it with `BASE_URL=http://localhost:8080 npm run test:e2e`.
 
-Rebuild the official comparison data (needs the V9 Table 1 and Table 2 workbooks, not in this repo): `python3 scripts/build-reference.py --table1-dir <dir> --table2-dir <dir> --out public/reference/v9/comparison.json`.
+Rebuild the official comparison data (needs the V9 Table 1 and Table 2 workbooks, not in this repo): `python3 scripts/build-reference.py --table1-dir <dir> --table2-dir <dir> --out public/reference/v9/comparison.json --peers-out public/reference/v9/peers`.
 
 ## Current features
 

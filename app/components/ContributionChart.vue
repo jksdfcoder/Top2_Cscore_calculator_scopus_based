@@ -1,45 +1,51 @@
 <script setup lang="ts">
-import type { CalculationResult } from '~/lib/cscore'
+import type { CalculationResult, Metrics } from '~/lib/cscore'
 import { metricNames } from '~/lib/cscore'
-const props = defineProps<{ result: CalculationResult }>()
+const props = defineProps<{ result: CalculationResult; peer?: Metrics }>()
 const element = ref<HTMLDivElement>()
 let chart: import('echarts/core').ECharts | undefined
 let observer: ResizeObserver | undefined
 let disposed = false
 function update() {
-  chart?.setOption({
-    animation: false,
-    aria: { enabled: true },
-    tooltip: { show: false },
-    radar: {
-      radius: '64%',
-      center: ['50%', '50%'],
-      indicator: metricNames.map((name) => ({
-        name: `${name} (${props.result.metrics[name].toLocaleString('en', { maximumFractionDigits: 2 })})`,
-        max: Math.max(1, ...Object.values(props.result.contributions)),
-      })),
-      axisName: { color: '#5a625d', fontSize: 12 },
-      splitArea: { show: false },
-      splitLine: { lineStyle: { color: '#dcdcd6' } },
-      axisLine: { lineStyle: { color: '#dcdcd6' } },
+  const series = [
+    {
+      value: metricNames.map((key) => props.result.contributions[key]),
+      name: 'You',
+      lineStyle: { color: '#1f4d3c', width: 2 },
+      itemStyle: { color: '#1f4d3c' },
+      areaStyle: { color: '#1f4d3c', opacity: 0.12 },
     },
-    series: [
-      {
-        type: 'radar',
-        symbol: 'circle',
-        symbolSize: 5,
-        data: [
-          {
-            value: metricNames.map((key) => props.result.contributions[key]),
-            name: 'Score contributions',
-          },
-        ],
-        lineStyle: { color: '#1f4d3c', width: 2 },
-        itemStyle: { color: '#ad8533' },
-        areaStyle: { color: '#ad8533', opacity: 0.14 },
+  ]
+  if (props.peer)
+    series.push({
+      value: metricNames.map((key) => props.peer![key]),
+      name: 'Listed author',
+      lineStyle: { color: '#ad8533', width: 2, type: 'dashed' } as never,
+      itemStyle: { color: '#ad8533' },
+      areaStyle: { color: '#ad8533', opacity: 0 },
+    })
+  const max = Math.max(...series.flatMap((s) => s.value))
+  chart?.setOption(
+    {
+      animation: false,
+      aria: { enabled: true },
+      tooltip: { show: false },
+      radar: {
+        radius: '64%',
+        center: ['50%', '50%'],
+        indicator: metricNames.map((name) => ({
+          name: `${name} (${props.result.metrics[name].toLocaleString('en', { maximumFractionDigits: 2 })})`,
+          max,
+        })),
+        axisName: { color: '#5a625d', fontSize: 12 },
+        splitArea: { show: false },
+        splitLine: { lineStyle: { color: '#dcdcd6' } },
+        axisLine: { lineStyle: { color: '#dcdcd6' } },
       },
-    ],
-  })
+      series: [{ type: 'radar', symbol: 'circle', symbolSize: 5, data: series }],
+    },
+    { replaceMerge: ['series'] },
+  )
 }
 onMounted(async () => {
   const [{ init, use }, { RadarChart }, { RadarComponent, AriaComponent }, { SVGRenderer }] =
@@ -56,7 +62,7 @@ onMounted(async () => {
   observer = new ResizeObserver(() => chart?.resize())
   observer.observe(element.value)
 })
-watch(() => props.result, update)
+watch(() => [props.result, props.peer], update)
 onBeforeUnmount(() => {
   disposed = true
   observer?.disconnect()
@@ -71,8 +77,5 @@ onBeforeUnmount(() => {
       role="img"
       aria-label="Radar chart of six score contributions. Exact values follow in a table."
     />
-    <figcaption>
-      Each axis shows that indicator's contribution to the score, not a percentile.
-    </figcaption>
   </figure>
 </template>

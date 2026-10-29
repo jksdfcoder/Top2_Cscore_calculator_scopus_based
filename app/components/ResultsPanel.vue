@@ -7,6 +7,7 @@ import {
   percentiles,
   type Analysis,
   type ComparisonData,
+  type Metrics,
   type ParsedFile,
   type Scope,
   type SelfMode,
@@ -50,6 +51,28 @@ const number = (value: number, places = 0) =>
   value.toLocaleString('en', { maximumFractionDigits: places })
 const signed = (value: number) => `${value >= 0 ? '+' : '−'}${Math.abs(value).toFixed(3)}`
 
+// [subfield rank, c, name, institution, NC, H, Hm, NCS, NCSF, NCSFL]
+type PeerRow = [number, number, string, string, number, number, number, number, number, number]
+const peerFile = ref<({ count: number } & Record<SelfMode, PeerRow[]>) | null>(null)
+watch(
+  [scope, subfieldName],
+  async ([s, name]) => {
+    peerFile.value = null
+    if (!name) return
+    const slug = name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+    const response = await fetch(`/reference/v9/peers/${s}/${slug}.json`)
+    if (response.ok && scope.value === s && subfieldName.value === name)
+      peerFile.value = await response.json()
+  },
+  { immediate: true },
+)
+const peers = computed(() =>
+  [...(peerFile.value?.[selfMode.value] ?? [])].sort((a, b) => a[1] - b[1]),
+)
+
 const standing = computed(() => {
   const sub = data.value?.scopes[scope.value].subfields.find(
     (s) => s.field === field.value && s.name === subfieldName.value,
@@ -59,12 +82,83 @@ const standing = computed(() => {
   const placed = compare(c, data.value, scope.value, selfMode.value, sub)
   const ticks =
     selfMode.value === 'with-self' ? percentiles.map((p) => ({ label: p, value: sub.c[p] })) : []
-  const values = [c, ...ticks.map((t) => t.value), ...(placed.top2 === null ? [] : [placed.top2])]
-  const lo = Math.min(...values) * 0.85
-  const hi = Math.max(...values) * 1.12
-  const at = (v: number) => `${(((v - lo) / (hi - lo)) * 100).toFixed(2)}%`
-  return { sub, c, placed, ticks, at }
+  const values = [
+    c,
+    ...ticks.map((t) => t.value),
+    ...(placed.top2 === null ? [] : [placed.top2]),
+    ...peers.value.map((p) => p[1]),
+  ]
+  const lo = Math.min(...values) * 0.9
+  const hi = Math.max(...values) * 1.03
+  const ratio = (v: number) => (v - lo) / (hi - lo)
+  const at = (v: number) => `${(ratio(v) * 100).toFixed(2)}%`
+  const align = (v: number) => ({
+    transform: `translateX(${ratio(v) < 0.15 ? -2 : ratio(v) > 0.85 ? -98 : -50}%)`,
+  })
+  const band = placed.band
+    ?.replace(/^Between the (\w+) and (\w+) percentiles$/, '$1–$2 percentile')
+    .replace(/^At or above/, '≥')
+  let last = -1
+  const labels = ticks.filter((t) => {
+    const keep = ratio(t.value) - last > 0.08
+    if (keep) last = ratio(t.value)
+    return keep
+  })
+  return { sub, c, placed, ticks, labels, band, lo, hi, at, align }
 })
+
+const peerIndex = ref(0)
+function nearest(c: number) {
+  let best = 0
+  peers.value.forEach((p, i) => {
+    if (Math.abs(p[1] - c) < Math.abs(peers.value[best]![1] - c)) best = i
+  })
+  return best
+}
+watch([peers, () => standing.value?.placed.top2], () => {
+  peerIndex.value = nearest(standing.value?.placed.top2 ?? 0)
+})
+const peer = computed(() => peers.value[peerIndex.value])
+const peerContributions = computed(() => {
+  const p = peer.value
+  if (!p) return undefined
+  const d = reference.maxlog[scope.value][selfMode.value]
+  return Object.fromEntries(
+    metricNames.map((k, i) => [k, Math.log1p(p[4 + i] as number) / d[k]]),
+  ) as Metrics
+})
+const peerText = computed(() =>
+  peer.value && peerFile.value
+    ? `${peer.value[2]}, ${peer.value[3]} · rank ${peer.value[0].toLocaleString('en')} of ${peerFile.value.count.toLocaleString('en')} · ${peer.value[1].toFixed(3)}`
+    : '',
+)
+const track = ref<HTMLElement>()
+function pick(event: PointerEvent) {
+  if (!standing.value || !track.value || !peers.value.length) return
+  const box = track.value.getBoundingClientRect()
+  const { lo, hi } = standing.value
+  peerIndex.value = nearest(lo + ((event.clientX - box.left) / box.width) * (hi - lo))
+}
+function grab(event: PointerEvent) {
+  track.value?.setPointerCapture(event.pointerId)
+  pick(event)
+}
+function step(event: KeyboardEvent) {
+  const last = peers.value.length - 1
+  const next = {
+    ArrowRight: peerIndex.value + 1,
+    ArrowUp: peerIndex.value + 1,
+    ArrowLeft: peerIndex.value - 1,
+    ArrowDown: peerIndex.value - 1,
+    PageUp: peerIndex.value + 10,
+    PageDown: peerIndex.value - 10,
+    Home: 0,
+    End: last,
+  }[event.key]
+  if (next === undefined) return
+  event.preventDefault()
+  peerIndex.value = Math.min(last, Math.max(0, next))
+}
 
 function download(kind: 'json' | 'csv') {
   const body =
@@ -100,7 +194,11 @@ function download(kind: 'json' | 'csv') {
     <div v-if="result" class="result-grid">
       <div>
         <h3 class="result-label">What drives it</h3>
-        <ContributionChart :result="result" />
+        <p class="legend">
+          <span><span class="swatch you" />You</span>
+          <span v-if="peer"><span class="swatch peer" />{{ peerText }}</span>
+        </p>
+        <ContributionChart :result="result" :peer="peerContributions" />
         <div class="sr-only">
           <table>
             <caption>
@@ -157,11 +255,13 @@ function download(kind: 'json' | 'csv') {
         </div>
 
         <template v-if="standing">
-          <div class="standing" aria-hidden="true">
-            <span class="standing-you" :style="{ left: standing.at(standing.c) }"
-              >You {{ standing.c.toFixed(3) }}</span
+          <div class="standing">
+            <div
+              ref="track"
+              class="standing-track"
+              @pointerdown="grab"
+              @pointermove="(e) => e.buttons && pick(e)"
             >
-            <div class="standing-track">
               <div class="standing-fill" :style="{ width: standing.at(standing.c) }" />
               <span
                 v-for="t in standing.ticks"
@@ -170,52 +270,59 @@ function download(kind: 'json' | 'csv') {
                 :style="{ left: standing.at(t.value) }"
               />
               <span
-                v-if="standing.placed.top2 !== null"
-                class="standing-tick top2"
-                :style="{ left: standing.at(standing.placed.top2) }"
+                v-if="peer"
+                class="standing-peer"
+                role="slider"
+                tabindex="0"
+                aria-label="Compare with a listed author"
+                :aria-valuemin="1"
+                :aria-valuemax="peers.length"
+                :aria-valuenow="peerIndex + 1"
+                :aria-valuetext="peerText"
+                :style="{ left: standing.at(peer[1]) }"
+                @keydown="step"
               />
             </div>
-            <div class="standing-axis">
-              <span
-                v-for="t in standing.ticks"
-                :key="t.label"
-                :style="{ left: standing.at(t.value) }"
-                >{{ t.label }}</span
+            <span
+              v-for="t in standing.labels"
+              :key="t.label"
+              class="standing-pct"
+              aria-hidden="true"
+              :style="{ left: standing.at(t.value), ...standing.align(t.value) }"
+              >{{ t.label }}th</span
+            >
+            <span class="standing-marker you" :style="{ left: standing.at(standing.c) }">
+              <span :style="standing.align(standing.c)"
+                >You {{ standing.c.toFixed(3)
+                }}<template v-if="standing.band"> · {{ standing.band }}</template></span
               >
-              <span
-                v-if="standing.placed.top2 !== null"
-                class="top2"
-                :style="{ left: standing.at(standing.placed.top2) }"
-                >Top 2%</span
+            </span>
+            <span
+              v-if="standing.placed.top2 !== null"
+              class="standing-marker top2"
+              :style="{ left: standing.at(standing.placed.top2) }"
+            >
+              <span :style="standing.align(standing.placed.top2)"
+                >Top 2% {{ standing.placed.top2.toFixed(3) }}</span
               >
-            </div>
+            </span>
           </div>
-          <ul class="standing-facts">
-            <li>
-              <template v-if="standing.placed.band"
-                >{{ standing.placed.band }} of {{ standing.sub.authors.toLocaleString('en') }}
-                {{ standing.sub.name }} authors with ≥5 papers.</template
-              >
-              <template v-else
-                >Official percentiles are published only for scores including
-                self-citations.</template
-              >
-            </li>
-            <li v-if="standing.placed.top2 !== null">
-              Subfield top 2% line {{ standing.placed.top2.toFixed(3) }} ({{
+          <p class="sr-only">
+            {{ standing.placed.band ?? 'No published percentile for this mode' }} of
+            {{ standing.sub.authors.toLocaleString('en') }} {{ standing.sub.name }} authors.
+            <template v-if="standing.placed.top2 !== null"
+              >Subfield top 2% line {{ standing.placed.top2.toFixed(3) }} ({{
                 signed(standing.placed.top2Gap!)
-              }}).
-            </li>
-            <li>
-              Global top 100,000 line {{ standing.placed.top100k.toFixed(3) }} ({{
-                signed(standing.placed.top100kGap)
-              }}).
-            </li>
-          </ul>
+              }}).</template
+            >
+            Global top 100,000 line {{ standing.placed.top100k.toFixed(3) }} ({{
+              signed(standing.placed.top100kGap)
+            }}).
+          </p>
           <p class="fine-print">
-            Comparison only; your score does not change. Your official subfield is the one with most
-            of your papers. Crossing a line does not confirm selection. Source:
-            <a :href="data!.dataset" target="_blank" rel="noopener noreferrer">V9 Tables 1–2</a>,
+            <template v-if="peers.length">Drag the block to compare with a listed author. </template
+            >Comparison only; crossing a line does not confirm selection.
+            <a :href="data!.dataset" target="_blank" rel="noopener noreferrer">V9 data</a>,
             {{ data!.license }}.
           </p>
         </template>
