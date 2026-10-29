@@ -15,7 +15,7 @@ function update() {
       radius: '64%',
       center: ['50%', '50%'],
       indicator: metricNames.map((name) => ({
-        name,
+        name: `${name} (${props.result.metrics[name].toLocaleString('en', { maximumFractionDigits: 2 })})`,
         max: Math.max(1, ...Object.values(props.result.contributions)),
       })),
       axisName: { color: '#5a625d', fontSize: 12 },
@@ -69,11 +69,10 @@ onBeforeUnmount(() => {
       ref="element"
       class="chart-canvas"
       role="img"
-      aria-label="Radar chart of six score contributions. Exact values are in the adjacent indicator table."
+      aria-label="Radar chart of six score contributions. Exact values follow in a table."
     />
     <figcaption>
-      Six contributions to the composite score. Each axis uses the same reference scale; this is not
-      a percentile.
+      Each axis shows that indicator's contribution to the score, not a percentile.
     </figcaption>
   </figure>
 </template>

@@ -417,11 +417,78 @@ h1 em {
 .metric-table .above {
   color: var(--ui-primary);
 }
-.detail-grid {
+.result-grid {
   display: grid;
-  gap: 2rem;
-  align-items: center;
-  margin-top: 1.5rem;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+.result-label {
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ui-text-muted);
+}
+.standing {
+  position: relative;
+  padding: 1.75rem 0 1.5rem;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+.standing-track {
+  position: relative;
+  height: 2.75rem;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--ui-border) 70%, transparent);
+  overflow: hidden;
+}
+.standing-fill {
+  height: 100%;
+  background: var(--ui-primary);
+}
+.standing-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: color-mix(in srgb, var(--ui-bg) 70%, transparent);
+}
+.standing-tick.top2 {
+  width: 2px;
+  background: var(--color-gold-500);
+}
+.standing-you,
+.standing-axis span {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.standing-you {
+  top: 0;
+  font-weight: 600;
+  color: var(--ui-primary);
+}
+.standing-axis span {
+  top: 0.4rem;
+  color: var(--ui-text-muted);
+}
+.standing-axis {
+  position: relative;
+}
+.standing-axis .top2 {
+  top: 1.4rem;
+  font-weight: 600;
+  color: var(--ui-secondary);
+}
+.standing-facts {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+.score-links {
+  display: flex;
+  gap: 1.25rem;
+  margin-left: auto;
 }
 .contribution-chart {
   margin: 0;
@@ -447,9 +514,9 @@ figcaption {
 }
 .pick-row {
   display: grid;
-  gap: 1rem;
-  max-width: 44rem;
-  margin-bottom: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
 }
 .pick-row > * {
   min-width: 0;
@@ -516,28 +583,27 @@ figcaption {
     align-items: center;
   }
 }
-@container (min-width: 40rem) {
-  .pick-row {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@container (min-width: 54rem) {
-  .detail-grid {
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+@media (min-width: 60rem) {
+  .result-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: clamp(3rem, 6vw, 6rem);
   }
 }
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0s !important;
+  }
 }
 @media print {
   .site-header,
   .hero .steps,
   .chapter-actions,
-  #guide,
-  #method,
-  #comparison,
+  .pick-row,
   .site-footer {
     display: none;
   }

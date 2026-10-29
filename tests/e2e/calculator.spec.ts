@@ -24,7 +24,7 @@ test('one import produces four modes, downloads a private report, then clears', 
   await expect(page.locator('#score')).toContainText('1.394')
   await expect(page.locator('#results')).toContainText('1.143570')
   await page.getByRole('tab', { name: 'Single year · 2025', exact: true }).click()
-  await expect(page.locator('.metric-table tfoot')).toContainText('1.394161')
+  await expect(page.locator('#results tfoot')).toContainText('1.394161')
   const downloaded = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Download audit JSON' }).click()
   const download = await downloaded
@@ -180,9 +180,11 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
   await page.getByRole('option', { name: 'Epidemiology', exact: true }).click()
   await closeOverlays(page)
 
-  const table = page.locator('#comparison table')
-  await expect(table).toContainText('Epidemiology')
-  await expect(table).toContainText(top2)
+  const standing = page.locator('#comparison')
+  await expect(standing).toContainText('Epidemiology')
+  await page.getByRole('tab', { name: 'Incl. self-citations', exact: true }).click()
+  await expect(standing).toContainText(`Subfield top 2% line ${top2}`)
+  await page.getByRole('tab', { name: 'Excl. self-citations', exact: true }).click()
   expect(await fourResultScores(page)).toEqual(before)
 
   const accessibility = await new AxeBuilder({ page })
@@ -194,6 +196,18 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
   await expect
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     .toBe(true)
+})
+
+test('export guide and methodology open as dialogs', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: 'How to export three files from Scopus' }).click()
+  const dialog = page.getByRole('dialog')
+  await expect(dialog).toContainText('Citation overview')
+  await dialog.getByRole('button', { name: 'What happens to my files?' }).click()
+  await expect(dialog).toContainText('not uploaded')
+  await page.keyboard.press('Escape')
+  await page.getByRole('button', { name: 'Methodology' }).click()
+  await expect(page.getByRole('dialog')).toContainText('the formula is the same in every field')
 })
 
 test('clearing while a demo is fetching cancels the old request intent', async ({ page }) => {

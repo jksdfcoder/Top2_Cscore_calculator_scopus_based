@@ -1,19 +1,21 @@
 <script setup lang="ts">
+const open = defineModel<boolean>('open', { default: false })
 const items = [
-  { label: 'How to export the three files from Scopus', slot: 'basic' },
   { label: 'My career data needs an earlier citation window', slot: 'early' },
   { label: 'What happens to my files?', slot: 'privacy' },
 ]
 </script>
 
 <template>
-  <UAccordion :items="items" :unmount-on-hide="false">
-    <template #basic>
-      <div class="prose pb-4">
-        <p>
-          You need access to Scopus exports through your own subscription or institution. No account
-          or API key is needed on this site.
-        </p>
+  <UModal
+    v-model:open="open"
+    title="Export three files from Scopus"
+    description="One Documents export and two Citation overviews."
+    :ui="{ content: 'sm:max-w-2xl' }"
+  >
+    <template #body>
+      <!-- ponytail: the recorded walkthrough GIF goes here as an <img> with alt text, above the steps. -->
+      <div class="prose">
         <ol>
           <li>
             Open <strong>Authors</strong>, search for yourself and check your author profile. Under
@@ -37,47 +39,49 @@ const items = [
             author” is a different definition.
           </li>
           <li>
-            Drop all three CSV files into step 1 at the top of the page. Keep their original names
-            and contents. The same files calculate both career and single-year impact.
+            Drop all three CSV files into step 1, keeping their original names and contents. The
+            same files calculate both career and single-year impact.
           </li>
         </ol>
-        <p class="text-muted">
-          Instructions were checked against the Scopus interface on 29 October 2026. Export access
-          and limits may change.
+        <p class="muted">
+          You need Scopus access through your own subscription or institution. Checked against the
+          Scopus interface on 29 October 2026.
         </p>
       </div>
+      <UAccordion :items="items" class="mt-4">
+        <template #early>
+          <div class="prose pb-4">
+            <p>
+              Career impact uses citations received in <strong>1996–2025</strong>. A nonzero “before
+              2000” column cannot tell us which citations occurred before 1996.
+            </p>
+            <p>
+              If the calculator requests earlier data, export an additional
+              <strong>1996–2021</strong> Citation overview window for the affected self-citation
+              setting. Keep zero-cited papers visible. Add the new CSV without removing your
+              existing files.
+            </p>
+            <p>
+              Scopus currently limits the visible window to 26 years. We combine explicit yearly
+              columns and check overlapping counts. You do not need to join spreadsheets yourself.
+            </p>
+          </div>
+        </template>
+        <template #privacy>
+          <div class="prose pb-4">
+            <p>
+              Your CSV files are read and calculated in this browser. They are not uploaded, logged
+              or saved in browser storage. Clear your data, refresh or close the page to remove the
+              session.
+            </p>
+            <p>
+              Downloads are created on your device. Audit reports contain input fingerprints and
+              calculated values, but not publication titles or author IDs. The hosting provider may
+              still record ordinary page requests.
+            </p>
+          </div>
+        </template>
+      </UAccordion>
     </template>
-    <template #early>
-      <div class="prose pb-4">
-        <p>
-          Career impact uses citations received in <strong>1996–2025</strong>. A nonzero “before
-          2000” column cannot tell us which citations occurred before 1996.
-        </p>
-        <p>
-          If the calculator requests earlier data, export an additional
-          <strong>1996–2021</strong> Citation overview window for the affected self-citation
-          setting. Keep zero-cited papers visible. Add the new CSV without removing your existing
-          files.
-        </p>
-        <p>
-          Scopus currently limits the visible window to 26 years. We combine explicit yearly columns
-          and check overlapping counts. You do not need to join spreadsheets yourself.
-        </p>
-      </div>
-    </template>
-    <template #privacy>
-      <div class="prose pb-4">
-        <p>
-          Your CSV files are read and calculated in this browser. They are not uploaded, logged or
-          saved in browser storage. Clear your data or close the page to remove the session.
-          Refreshing the page also removes it.
-        </p>
-        <p>
-          Downloads are created on your device. Audit reports contain input fingerprints and
-          calculated values, but not publication titles or author IDs. The hosting provider may
-          still record ordinary page requests.
-        </p>
-      </div>
-    </template>
-  </UAccordion>
+  </UModal>
 </template>

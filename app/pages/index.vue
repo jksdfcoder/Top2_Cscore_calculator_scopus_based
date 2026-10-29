@@ -23,6 +23,8 @@ onMounted(() => {
 })
 const pendingFiles = ref<File[] | null>(null)
 const manualAuthor = ref(false)
+const guideOpen = ref(false)
+const methodOpen = ref(false)
 const selfMode = ref<SelfMode>('without-self')
 const selfItems = [
   { label: 'Excl. self-citations', value: 'without-self' },
@@ -123,9 +125,8 @@ const latestStatus = computed(() =>
     <div class="shell">
       <header class="site-header">
         <a href="#" class="brand">C-score calculator</a>
-        <nav aria-label="Page sections">
-          <a href="#guide">Export guide</a><a href="#method">Method</a
-          ><a
+        <nav aria-label="Links">
+          <a
             href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based"
             target="_blank"
             rel="noopener noreferrer"
@@ -173,7 +174,9 @@ const latestStatus = computed(() =>
                     </li>
                   </ul>
                   <div class="step-links">
-                    <a href="#guide">How to export</a>
+                    <UButton variant="link" size="sm" class="p-0" @click="guideOpen = true"
+                      >How to export three files from Scopus</UButton
+                    >
                     <UButton
                       variant="link"
                       color="secondary"
@@ -289,7 +292,12 @@ const latestStatus = computed(() =>
               <div class="score-foot">
                 <span v-if="isDemo">Synthetic example · author ID 123</span>
                 <span v-else>V9 normalization · not an official selection</span>
-                <a v-if="hasReady" href="#results">Indicators &amp; comparison ↓</a>
+                <span class="score-links">
+                  <a v-if="hasReady" href="#results">Indicators &amp; comparison ↓</a>
+                  <UButton variant="link" size="xs" class="p-0" @click="methodOpen = true"
+                    >Methodology</UButton
+                  >
+                </span>
               </div>
             </section>
           </div>
@@ -351,7 +359,10 @@ const latestStatus = computed(() =>
             v-if="groupedIssues.some((i) => /year|coverage|bucket/.test(i.code))"
             class="muted mt-4"
           >
-            Earlier citation years are needed. <a href="#guide">See the early-window export.</a>
+            Earlier citation years are needed.
+            <UButton variant="link" size="sm" class="p-0" @click="guideOpen = true"
+              >See the early-window export.</UButton
+            >
           </p>
         </section>
 
@@ -362,26 +373,25 @@ const latestStatus = computed(() =>
           :files="files"
           :is-demo="isDemo"
         />
-        <ComparisonPanel v-if="hasReady && analysis" :analysis="analysis" />
+      </main>
 
-        <section id="guide" class="chapter reveal" aria-labelledby="guide-heading">
-          <div class="chapter-head">
-            <h2 id="guide-heading">Three files from Scopus.</h2>
-            <p>One documents export and two citation overviews. No spreadsheet work.</p>
-          </div>
-          <ExportGuide />
-        </section>
-
-        <section id="method" class="chapter reveal" aria-labelledby="method-heading">
-          <div class="chapter-head">
-            <h2 id="method-heading">Six indicators. One score.</h2>
-            <p>
-              Citations, h-index, coauthor-adjusted hm-index, and citations as single, first or last
-              author.
-            </p>
-          </div>
+      <ExportGuide v-model:open="guideOpen" />
+      <UModal
+        v-model:open="methodOpen"
+        title="Methodology"
+        description="Six indicators, one composite score."
+        :ui="{ content: 'sm:max-w-2xl' }"
+      >
+        <template #body>
           <div class="prose">
             <span class="formula">c = Σ ln(1 + indicator) / maxlog</span>
+            <p>
+              The indicators are total citations (NC), h-index (H), coauthorship-adjusted hm-index
+              (Hm), and citations to papers as single (NCS), single or first (NCSF), and single,
+              first or last author (NCSFL). Each maxlog is the largest value across all Scopus
+              authors, so the formula is the same in every field. Field and subfield only choose
+              what your score is compared with.
+            </p>
             <p>
               Career uses citations received in 1996–2025; single year uses citations received in
               2025. Excluding self-citations removes any citation sharing an author with the cited
@@ -394,7 +404,7 @@ const latestStatus = computed(() =>
                 href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000918"
                 target="_blank"
                 rel="noopener noreferrer"
-                >Methodology</a
+                >Ioannidis et al. 2020</a
               >
               ·
               <a
@@ -405,12 +415,11 @@ const latestStatus = computed(() =>
               >
             </p>
           </div>
-        </section>
-      </main>
+        </template>
+      </UModal>
 
       <footer class="site-footer">
-        <span>Open calculation. Local files.</span><a href="#guide">Privacy & export help</a
-        ><a href="#page-title">Back to top</a>
+        <span>Open calculation. Local files.</span><a href="#page-title">Back to top</a>
       </footer>
     </div>
   </div>
