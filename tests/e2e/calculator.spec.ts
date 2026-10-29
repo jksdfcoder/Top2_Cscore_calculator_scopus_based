@@ -63,6 +63,7 @@ test('missing citation data stays incomplete and adding files recovers', async (
 
 test('unknown files are explained and can be replaced', async ({ page }) => {
   await page.goto('/')
+  await expect(page.locator('input[type=file]')).toBeEnabled()
   await page.locator('input[type=file]').setInputFiles({
     name: 'wrong.csv',
     mimeType: 'text/csv',
@@ -240,4 +241,46 @@ test('clearing while a demo is fetching cancels the old request intent', async (
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
   release()
   await expect(page.getByText('Synthetic example · author ID 123', { exact: true })).toHaveCount(0)
+})
+
+test('standing reveals You only after the bar and peer data are ready', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  let release!: () => void
+  const pending = new Promise<void>((resolve) => {
+    release = resolve
+  })
+  await page.route('**/peers/career/epidemiology.json', async (route) => {
+    await pending
+    await route.continue()
+  })
+  await page.goto('/')
+  await page.addStyleTag({ content: '.standing-fill { animation-duration: 10s !important; }' })
+  await page.getByRole('button', { name: 'Try a synthetic example' }).click()
+  await expect(page.getByRole('status').first()).toContainText('4 of 4')
+  await page.getByRole('tab', { name: 'Incl. self-citations', exact: true }).click()
+  await page.getByRole('button', { name: 'Field', exact: true }).click()
+  await page.getByRole('option', { name: 'Public Health & Health Services', exact: true }).click()
+  await page.getByRole('button', { name: 'Subfield', exact: true }).click()
+  await page.getByRole('option', { name: 'Epidemiology', exact: true }).click()
+  await closeOverlays(page)
+  const marker = page.locator('.standing-marker.you')
+  await expect(marker).toHaveCount(0)
+  await page
+    .locator('.standing-fill')
+    .evaluate((element) => element.getAnimations().forEach((a) => a.finish()))
+  // Animation completion alone must not reveal the preliminary percentile position.
+  await expect(marker).toHaveCount(0)
+  release()
+  await expect(page.getByRole('slider', { name: 'Compare with a listed author' })).toBeVisible()
+  await expect(marker.locator(':scope > span')).toBeVisible()
+  // A new animation with already-loaded data must also hide You until its end.
+  await page.getByRole('tab', { name: 'Excl. self-citations', exact: true }).click()
+  await expect(marker).toHaveCount(0)
+  await page
+    .locator('.standing-fill')
+    .evaluate((element) => element.getAnimations().forEach((a) => a.finish()))
+  await expect(marker.locator(':scope > span')).toBeVisible()
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.getByRole('tab', { name: 'Incl. self-citations', exact: true }).click()
+  await expect(marker.locator(':scope > span')).toBeVisible()
 })

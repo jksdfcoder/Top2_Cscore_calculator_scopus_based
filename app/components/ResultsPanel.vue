@@ -54,21 +54,52 @@ const signed = (value: number) => `${value >= 0 ? '+' : '−'}${Math.abs(value).
 // [subfield rank, c, name, institution, NC, H, Hm, NCS, NCSF, NCSFL]
 type PeerRow = [number, number, string, string, number, number, number, number, number, number]
 const peerFile = ref<({ count: number } & Record<SelfMode, PeerRow[]>) | null>(null)
+const peersLoading = ref(false)
+const barFinished = ref(false)
+watch(
+  [scope, field, subfieldName, selfMode],
+  () => {
+    barFinished.value =
+      import.meta.client && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  },
+  { immediate: true, flush: 'sync' },
+)
+onMounted(() => {
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+  const update = () => {
+    if (motion.matches) barFinished.value = true
+  }
+  update()
+  motion.addEventListener('change', update)
+  onBeforeUnmount(() => motion.removeEventListener('change', update))
+})
 watch(
   [scope, subfieldName],
-  async ([s, name]) => {
+  async ([s, name], _previous, onCleanup) => {
+    let current = true
+    onCleanup(() => {
+      current = false
+    })
     peerFile.value = null
+    peersLoading.value = !!name
     if (!name) return
     const slug = name
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '')
-    const response = await fetch(`/reference/v9/peers/${s}/${slug}.json`)
-    if (response.ok && scope.value === s && subfieldName.value === name)
-      peerFile.value = await response.json()
+    try {
+      const response = await fetch(`/reference/v9/peers/${s}/${slug}.json`)
+      const loaded = response.ok ? await response.json() : null
+      if (current) peerFile.value = loaded
+    } catch {
+      // Published percentile comparisons remain available if the peer file cannot load.
+    } finally {
+      if (current) peersLoading.value = false
+    }
   },
-  { immediate: true },
+  { immediate: true, flush: 'sync' },
 )
+const showYou = computed(() => barFinished.value && !peersLoading.value)
 const peers = computed(() =>
   [...(peerFile.value?.[selfMode.value] ?? [])].sort((a, b) => a[0] - b[0]),
 )
@@ -330,8 +361,9 @@ function download(kind: 'json' | 'csv') {
               @pointercancel="release"
             >
               <div
-                :key="`${scope}-${subfieldName}`"
+                :key="`${scope}-${subfieldName}-${selfMode}`"
                 class="standing-fill"
+                @animationend.self="barFinished = true"
                 :style="{ width: standing.at(standing.top2Rank) }"
               />
               <span
@@ -388,7 +420,7 @@ function download(kind: 'json' | 'csv') {
               >{{ compact(r) }}</span
             >
             <span
-              v-if="standing.you"
+              v-if="showYou && standing.you"
               class="standing-marker you"
               :class="{ faded: dragging }"
               :style="{ left: standing.at(standing.you.rank) }"
@@ -402,7 +434,7 @@ function download(kind: 'json' | 'csv') {
                 }}</span
               >
             </span>
-            <span v-else class="standing-marker you no-line" style="left: 100%">
+            <span v-else-if="showYou" class="standing-marker you no-line" style="left: 100%">
               <span style="transform: translateX(-100%)"
                 >You {{ standing.c.toFixed(3) }} · below the listed range</span
               >
