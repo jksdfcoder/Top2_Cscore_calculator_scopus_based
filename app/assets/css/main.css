@@ -364,6 +364,15 @@ h1 em {
 .prose {
   max-width: 68ch;
 }
+.tutorial-clip {
+  display: block;
+  width: 100%;
+  aspect-ratio: 8 / 5;
+  margin: 0.6rem 0 1rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 0.5rem;
+  background: #fff;
+}
 .prose p + p {
   margin-top: 0.75rem;
 }

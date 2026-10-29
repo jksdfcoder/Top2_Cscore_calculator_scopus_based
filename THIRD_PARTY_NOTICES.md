@@ -11,3 +11,7 @@ Fixtures in tests/fixtures/public and public/demo are synthetic examples created
 `docs/qa/hm-validation-summary.json` includes aggregate official V9 author metrics used for validation. Those source data remain attributed to John P. A. Ioannidis under CC BY-NC 3.0, separately from MIT application code. See the adjacent investigation for provenance and limitations.
 
 `docs/qa/window-audit-summary.json` contains only aggregated results of local window experiments. It does not distribute raw Scopus exports, individual publication records, or account screenshots. The accompanying review attributes official reference values separately to V9.
+
+## Export tutorial clips
+
+`public/tutorial/step1–4.mp4` and their posters show the Scopus web interface (Scopus is a trademark of Elsevier B.V.) for instructional purposes. They were recorded on 29 October 2026 with the author's name, identifiers, affiliation, publications, headline metrics and the signed-in account replaced or hidden before capture; no real export file is included.
