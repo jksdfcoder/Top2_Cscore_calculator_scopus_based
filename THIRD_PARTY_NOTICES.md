@@ -9,3 +9,5 @@ The application source is licensed under MIT (LICENSE). npm dependencies retain 
 Fixtures in tests/fixtures/public and public/demo are synthetic examples created for this project. No personal Scopus exports or authenticated account screenshots are distributed.
 
 `docs/qa/hm-validation-summary.json` includes aggregate official V9 author metrics used for validation. Those source data remain attributed to John P. A. Ioannidis under CC BY-NC 3.0, separately from MIT application code. See the adjacent investigation for provenance and limitations.
+
+`docs/qa/window-audit-summary.json` contains only aggregated results of local window experiments. It does not distribute raw Scopus exports, individual publication records, or account screenshots. The accompanying review attributes official reference values separately to V9.

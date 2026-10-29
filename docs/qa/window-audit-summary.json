@@ -1,0 +1,457 @@
+{
+  "date": "2026-10-29",
+  "reference": "https://doi.org/10.17632/btchxktzyw.9",
+  "sourceDataLicense": "Official values CC BY-NC 3.0; CSV-derived values are research aggregates, no raw records.",
+  "authors": {
+    "ioannidis": {
+      "publicationCount": 1516,
+      "eligiblePublicationCount": 1488,
+      "modes": {
+        "inc": {
+          "overlapChecks": 31836,
+          "pre1996": 5,
+          "citations1996_2000": 845,
+          "citations2025OnPost2025Papers": 2,
+          "metrics": {
+            "career_1996_2025": {
+              "NC": 312784,
+              "H": 204,
+              "Hm": 104.2129367736498,
+              "NCS": 23173,
+              "NCSF": 46799,
+              "NCSFL": 96601
+            },
+            "career_2001_2025_missing_early": {
+              "NC": 311939,
+              "H": 203,
+              "Hm": 103.81293677364981,
+              "NCS": 23143,
+              "NCSF": 46420,
+              "NCSFL": 96212
+            },
+            "career_with_pre1996": {
+              "NC": 312789,
+              "H": 204,
+              "Hm": 104.2129367736498,
+              "NCS": 23173,
+              "NCSF": 46803,
+              "NCSFL": 96606
+            },
+            "single_2024": {
+              "NC": 25941,
+              "H": 57,
+              "Hm": 27.47568917013936,
+              "NCS": 1556,
+              "NCSF": 2841,
+              "NCSFL": 6734
+            },
+            "single_2025": {
+              "NC": 26771,
+              "H": 58,
+              "Hm": 29.08597421451833,
+              "NCS": 1656,
+              "NCSF": 2881,
+              "NCSFL": 6795
+            },
+            "single_2025_all_current_publications": {
+              "NC": 26773,
+              "H": 58,
+              "Hm": 29.08597421451833,
+              "NCS": 1656,
+              "NCSF": 2881,
+              "NCSFL": 6797
+            },
+            "lifetime_total_not_a_comparable_window": {
+              "NC": 338866,
+              "H": 213,
+              "Hm": 107.33774173542227,
+              "NCS": 24769,
+              "NCSF": 49525,
+              "NCSFL": 102803
+            },
+            "career_1996_2026": {
+              "NC": 338702,
+              "H": 213,
+              "Hm": 107.33774173542227,
+              "NCS": 24760,
+              "NCSF": 49502,
+              "NCSFL": 102758
+            },
+            "single_2026": {
+              "NC": 25918,
+              "H": 59,
+              "Hm": 25.334612915638044,
+              "NCS": 1587,
+              "NCSF": 2703,
+              "NCSFL": 6157
+            },
+            "single_2025_plus_2026": {
+              "NC": 52689,
+              "H": 84,
+              "Hm": 37.99407320236962,
+              "NCS": 3243,
+              "NCSF": 5584,
+              "NCSFL": 12952
+            }
+          }
+        },
+        "exc": {
+          "overlapChecks": 31836,
+          "pre1996": 5,
+          "citations1996_2000": 686,
+          "citations2025OnPost2025Papers": 2,
+          "metrics": {
+            "career_1996_2025": {
+              "NC": 293749,
+              "H": 193,
+              "Hm": 100.20111396783989,
+              "NCS": 21824,
+              "NCSF": 42804,
+              "NCSFL": 88182
+            },
+            "career_2001_2025_missing_early": {
+              "NC": 293063,
+              "H": 192,
+              "Hm": 100.00111396783988,
+              "NCS": 21801,
+              "NCSF": 42522,
+              "NCSFL": 87890
+            },
+            "career_with_pre1996": {
+              "NC": 293754,
+              "H": 193,
+              "Hm": 100.20111396783989,
+              "NCS": 21824,
+              "NCSF": 42808,
+              "NCSFL": 88187
+            },
+            "single_2024": {
+              "NC": 25142,
+              "H": 54,
+              "Hm": 26.593407384185547,
+              "NCS": 1521,
+              "NCSF": 2743,
+              "NCSFL": 6419
+            },
+            "single_2025": {
+              "NC": 25952,
+              "H": 57,
+              "Hm": 28.87226864445917,
+              "NCS": 1622,
+              "NCSF": 2792,
+              "NCSFL": 6519
+            },
+            "single_2025_all_current_publications": {
+              "NC": 25954,
+              "H": 57,
+              "Hm": 28.87226864445917,
+              "NCS": 1622,
+              "NCSF": 2792,
+              "NCSFL": 6521
+            },
+            "lifetime_total_not_a_comparable_window": {
+              "NC": 319160,
+              "H": 202,
+              "Hm": 102.9234417771352,
+              "NCS": 23395,
+              "NCSF": 45465,
+              "NCSFL": 94181
+            },
+            "career_1996_2026": {
+              "NC": 318997,
+              "H": 202,
+              "Hm": 102.9234417771352,
+              "NCS": 23386,
+              "NCSF": 45443,
+              "NCSFL": 94137
+            },
+            "single_2026": {
+              "NC": 25248,
+              "H": 57,
+              "Hm": 24.912872959734532,
+              "NCS": 1562,
+              "NCSF": 2639,
+              "NCSFL": 5955
+            },
+            "single_2025_plus_2026": {
+              "NC": 51200,
+              "H": 83,
+              "Hm": 36.85121605951248,
+              "NCS": 3184,
+              "NCSF": 5431,
+              "NCSFL": 12474
+            }
+          }
+        }
+      }
+    },
+    "schreiber": {
+      "publicationCount": 387,
+      "eligiblePublicationCount": 387,
+      "modes": {
+        "inc": {
+          "overlapChecks": 8127,
+          "pre1996": 846,
+          "citations1996_2000": 1072,
+          "citations2025OnPost2025Papers": 0,
+          "metrics": {
+            "career_1996_2025": {
+              "NC": 7283,
+              "H": 44,
+              "Hm": 32.67136752136752,
+              "NCS": 1526,
+              "NCSF": 2078,
+              "NCSFL": 5683
+            },
+            "career_2001_2025_missing_early": {
+              "NC": 6211,
+              "H": 41,
+              "Hm": 29.92136752136751,
+              "NCS": 1375,
+              "NCSF": 1814,
+              "NCSFL": 4817
+            },
+            "career_with_pre1996": {
+              "NC": 8129,
+              "H": 47,
+              "Hm": 33.761111111111106,
+              "NCS": 1804,
+              "NCSF": 2475,
+              "NCSFL": 6332
+            },
+            "single_2024": {
+              "NC": 196,
+              "H": 6,
+              "Hm": 4.708333333333333,
+              "NCS": 60,
+              "NCSF": 72,
+              "NCSFL": 156
+            },
+            "single_2025": {
+              "NC": 165,
+              "H": 5,
+              "Hm": 4.158333333333333,
+              "NCS": 49,
+              "NCSF": 62,
+              "NCSFL": 128
+            },
+            "single_2025_all_current_publications": {
+              "NC": 165,
+              "H": 5,
+              "Hm": 4.158333333333333,
+              "NCS": 49,
+              "NCSF": 62,
+              "NCSFL": 128
+            },
+            "lifetime_total_not_a_comparable_window": {
+              "NC": 8300,
+              "H": 47,
+              "Hm": 33.92136752136753,
+              "NCS": 1857,
+              "NCSF": 2535,
+              "NCSFL": 6460
+            }
+          }
+        },
+        "exc": {
+          "overlapChecks": 8127,
+          "pre1996": 581,
+          "citations1996_2000": 749,
+          "citations2025OnPost2025Papers": 0,
+          "metrics": {
+            "career_1996_2025": {
+              "NC": 5738,
+              "H": 40,
+              "Hm": 28.888034188034187,
+              "NCS": 1377,
+              "NCSF": 1832,
+              "NCSFL": 4471
+            },
+            "career_2001_2025_missing_early": {
+              "NC": 4989,
+              "H": 38,
+              "Hm": 25.97136752136751,
+              "NCS": 1233,
+              "NCSF": 1609,
+              "NCSFL": 3864
+            },
+            "career_with_pre1996": {
+              "NC": 6319,
+              "H": 40,
+              "Hm": 28.888034188034187,
+              "NCS": 1611,
+              "NCSF": 2140,
+              "NCSFL": 4918
+            },
+            "single_2024": {
+              "NC": 181,
+              "H": 6,
+              "Hm": 4.708333333333333,
+              "NCS": 60,
+              "NCSF": 72,
+              "NCSFL": 143
+            },
+            "single_2025": {
+              "NC": 154,
+              "H": 5,
+              "Hm": 4.158333333333333,
+              "NCS": 49,
+              "NCSF": 62,
+              "NCSFL": 119
+            },
+            "single_2025_all_current_publications": {
+              "NC": 154,
+              "H": 5,
+              "Hm": 4.158333333333333,
+              "NCS": 49,
+              "NCSF": 62,
+              "NCSFL": 119
+            },
+            "lifetime_total_not_a_comparable_window": {
+              "NC": 6480,
+              "H": 41,
+              "Hm": 28.888034188034187,
+              "NCS": 1664,
+              "NCSF": 2200,
+              "NCSFL": 5040
+            }
+          }
+        }
+      }
+    },
+    "jumper": {
+      "publicationCount": 32,
+      "eligiblePublicationCount": 32,
+      "modes": {
+        "inc": {
+          "overlapChecks": 0,
+          "pre1996": 0,
+          "citations1996_2000": 0,
+          "citations2025OnPost2025Papers": 0,
+          "metrics": {
+            "career_1996_2025": {
+              "NC": 51081,
+              "H": 22,
+              "Hm": 3.753005877072878,
+              "NCS": 0,
+              "NCSF": 29402,
+              "NCSFL": 35675
+            },
+            "career_2001_2025_missing_early": {
+              "NC": 51081,
+              "H": 22,
+              "Hm": 3.753005877072878,
+              "NCS": 0,
+              "NCSF": 29402,
+              "NCSFL": 35675
+            },
+            "career_with_pre1996": {
+              "NC": 51081,
+              "H": 22,
+              "Hm": 3.753005877072878,
+              "NCS": 0,
+              "NCSF": 29402,
+              "NCSFL": 35675
+            },
+            "single_2024": {
+              "NC": 12890,
+              "H": 15,
+              "Hm": 2.8471977962647967,
+              "NCS": 0,
+              "NCSF": 8491,
+              "NCSFL": 9365
+            },
+            "single_2025": {
+              "NC": 18755,
+              "H": 15,
+              "Hm": 2.3888644629314633,
+              "NCS": 0,
+              "NCSF": 9176,
+              "NCSFL": 14574
+            },
+            "single_2025_all_current_publications": {
+              "NC": 18755,
+              "H": 15,
+              "Hm": 2.3888644629314633,
+              "NCS": 0,
+              "NCSF": 9176,
+              "NCSFL": 14574
+            },
+            "lifetime_total_not_a_comparable_window": {
+              "NC": 69460,
+              "H": 23,
+              "Hm": 3.753005877072878,
+              "NCS": 0,
+              "NCSF": 37171,
+              "NCSFL": 50474
+            }
+          }
+        },
+        "exc": {
+          "overlapChecks": 0,
+          "pre1996": 0,
+          "citations1996_2000": 0,
+          "citations2025OnPost2025Papers": 0,
+          "metrics": {
+            "career_1996_2025": {
+              "NC": 50793,
+              "H": 20,
+              "Hm": 3.628005877072878,
+              "NCS": 0,
+              "NCSF": 29335,
+              "NCSFL": 35600
+            },
+            "career_2001_2025_missing_early": {
+              "NC": 50793,
+              "H": 20,
+              "Hm": 3.628005877072878,
+              "NCS": 0,
+              "NCSF": 29335,
+              "NCSFL": 35600
+            },
+            "career_with_pre1996": {
+              "NC": 50793,
+              "H": 20,
+              "Hm": 3.628005877072878,
+              "NCS": 0,
+              "NCSF": 29335,
+              "NCSFL": 35600
+            },
+            "single_2024": {
+              "NC": 12847,
+              "H": 15,
+              "Hm": 2.4721977962647967,
+              "NCS": 0,
+              "NCSF": 8476,
+              "NCSFL": 9349
+            },
+            "single_2025": {
+              "NC": 18710,
+              "H": 14,
+              "Hm": 2.3888644629314633,
+              "NCS": 0,
+              "NCSF": 9166,
+              "NCSFL": 14557
+            },
+            "single_2025_all_current_publications": {
+              "NC": 18710,
+              "H": 14,
+              "Hm": 2.3888644629314633,
+              "NCS": 0,
+              "NCSF": 9166,
+              "NCSFL": 14557
+            },
+            "lifetime_total_not_a_comparable_window": {
+              "NC": 69140,
+              "H": 22,
+              "Hm": 3.7530058770728782,
+              "NCS": 0,
+              "NCSF": 37096,
+              "NCSFL": 50389
+            }
+          }
+        }
+      }
+    }
+  }
+}

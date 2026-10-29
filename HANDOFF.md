@@ -28,7 +28,7 @@
 |2025 含自引|−84|0|−0.263|−0.0030|
 |2025 排自引|−60|+1|+0.929|+0.0115|
 
-此前把作者人数口径列为首要怀疑，目前证据不足：新增 Schreiber、Jumper 的 8 种模式中，6 个 Hm 与官方一致（<1e-14）；Schreiber 两种单年 Hm 相差 +0.2，一条边界引用的假设变化即可复现。Ioannidis 的具体差异仍未定位，不应直接归因于快照或修改分母。完整六指标、排查证据和复现方式见 [Hm 复核](docs/qa/hm-validation-2026-10-29.md)。
+此前把作者人数口径列为首要怀疑，目前证据不足：新增 Schreiber、Jumper 的 8 种模式中，6 个 Hm 与官方一致（<1e-14）；Schreiber 两种单年 Hm 相差 +0.2，一条边界引用的假设变化即可复现。Ioannidis 的具体差异仍未定位，不应直接归因于快照或修改分母。完整六指标、排查证据和复现方式见 [Hm 复核](docs/qa/hm-validation-2026-10-29.md)。 后续[时间窗口深度复核](docs/qa/window-review-2026-10-29.md)排除了已检查的年度错位、早期窗口遗漏和2026混入；确认日期控件不能还原官方历史快照。另记录了窗口外冲突会过度阻断结果的校验问题，尚未修改生产逻辑。
 
 运行 `CSCORE_PRIVATE_FIXTURES=/absolute/path npm run test:private`。目录需要 `reference/maxlog.json`、`validation-report.json` 和五个原始文件：`ioannidis-publications.csv`、`ioannidis-citations-including-self-full.csv`、`ioannidis-citations-excluding-all-self.csv`、`ioannidis-citations-1996-2021-including-self.csv`、`ioannidis-citations-1996-2021-excluding-all-self.csv`。脚本只输出聚合指标。
 

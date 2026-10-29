@@ -37,7 +37,7 @@ npx playwright install chromium firefox webkit
 npm run test:e2e
 ```
 
-Optional private validation: `CSCORE_PRIVATE_FIXTURES=/absolute/path/to/private/exports npm run test:private`. See [HANDOFF.md](HANDOFF.md) for required filenames and next work. Private exports are intentionally excluded from this repository. Additional externally supplied samples can be checked with `CSCORE_SAMPLE_MANIFEST=/absolute/path/manifest.json npm run validate:sample`; see the [three-author Hm investigation](docs/qa/hm-validation-2026-10-29.md).
+Optional private validation: `CSCORE_PRIVATE_FIXTURES=/absolute/path/to/private/exports npm run test:private`. See [HANDOFF.md](HANDOFF.md) for required filenames and next work. Private exports are intentionally excluded from this repository. Additional externally supplied samples can be checked with `CSCORE_SAMPLE_MANIFEST=/absolute/path/manifest.json npm run validate:sample`; see the [three-author Hm investigation](docs/qa/hm-validation-2026-10-29.md). The [window and snapshot review](docs/qa/window-review-2026-10-29.md) distinguishes statistical years from historical database state.
 
 ## Structure
 
