@@ -28,8 +28,8 @@ const guideOpen = ref(false)
 const methodOpen = ref(false)
 const selfMode = ref<SelfMode>('without-self')
 const selfItems = [
-  { label: 'Excl. self-citations', value: 'without-self' },
-  { label: 'Incl. self-citations', value: 'with-self' },
+  { label: 'Exclude self-citations', value: 'without-self' },
+  { label: 'Include self-citations', value: 'with-self' },
 ]
 watch(analysis, (value) => {
   if (value && !value.modes.some((m) => m.selfMode === selfMode.value && m.ready)) {
@@ -274,9 +274,6 @@ const latestStatus = computed(() =>
                   aria-label="Self-citation setting"
                 />
               </div>
-              <p v-if="hasReady" :key="`f${runId}`" class="score-formula" aria-hidden="true">
-                c = Σ ln(1 + indicator) / maxlog
-              </p>
               <dl :key="runId" class="scores">
                 <div v-for="s in scores" :key="s.scope" class="score">
                   <dt>{{ s.label }}</dt>
@@ -287,21 +284,17 @@ const latestStatus = computed(() =>
                         :key="p.k"
                         :style="{ animationDelay: `${200 + i * 90}ms` }"
                       >
-                        {{ p.k }} <b>{{ p.v.toFixed(3) }}</b
+                        {{ p.k }} <b><ChangingNumber :value="p.v" /></b
                         ><i :style="{ width: `${p.v * 100}%` }" />
                       </li>
                     </ol>
                     <span
                       class="score-value"
                       :class="{ empty: s.state === 'empty', incomplete: s.state === 'incomplete' }"
-                      >{{
-                        s.state === 'ready'
-                          ? s.value!.toFixed(3)
-                          : s.state === 'incomplete'
-                            ? 'Incomplete'
-                            : '—'
-                      }}</span
-                    >
+                      ><ChangingNumber
+                        :value="s.state === 'ready' ? s.value : undefined"
+                        :fallback="s.state === 'incomplete' ? 'Incomplete' : '—'"
+                    /></span>
                     <span class="score-note">{{ s.note }}</span>
                   </dd>
                 </div>
@@ -420,46 +413,69 @@ const latestStatus = computed(() =>
 
       <footer class="site-footer">
         <div class="disclaimer">
-          <h2>Limitations</h2>
+          <h2>About this open-source tool</h2>
           <p>
-            This is a calculated estimate, not an official result. It uses your current Scopus
-            exports with the published method and the V9 normalization parameters; the official
-            database is frozen at the Scopus snapshot of 1 August 2026. Snapshot dates, record
-            updates, incomplete exports, author identification and undisclosed implementation
-            details can all make results differ. Crossing a displayed line does not confirm
-            inclusion in the official Top 2% database.
+            An independent, open-source c-score calculator, provided in a personal capacity.
+            <a
+              href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based"
+              target="_blank"
+              rel="noopener noreferrer"
+              >View the source on GitHub</a
+            >. Not an official service of, or endorsed by, Stanford University, Elsevier, Scopus or
+            HKU.
           </p>
           <p>
-            Your chosen field or subfield is a comparison, not an official classification. Citation
-            indicators capture only part of research impact and should not be used alone for hiring,
-            promotion, funding or similar decisions. The tool is provided as is, without warranty of
-            accuracy or completeness.
+            Results are calculated estimates from your exports, not official results or confirmation
+            of Top 2% inclusion. The example uses synthetic data. Field and subfield are
+            user-selected comparisons, not official classifications. Snapshot dates, incomplete
+            inputs, record updates and implementation differences may affect accuracy. Do not use
+            citation metrics alone for hiring, promotion or funding decisions.
           </p>
+          <h2>Methodology and reference data</h2>
           <p>
-            Independent open-source tool. Not an official service of, or endorsed by, Stanford
-            University, Elsevier, Scopus or HKU.
-          </p>
-          <h2>Data and licence</h2>
-          <p>
-            Reference data: J. P. A. Ioannidis,
+            J. P. A. Ioannidis,
             <a
               href="https://doi.org/10.17632/btchxktzyw.9"
               target="_blank"
               rel="noopener noreferrer"
               >Updated science-wide author databases of standardized citation indicators, V9</a
-            >, licensed under
+            >. V9 uses the 1 August 2026 Scopus snapshot, with citations through 2025. Our
+            independently implemented calculator uses its normalization parameters; reference values
+            and author comparisons are extracted or transformed from the published dataset.
+            <button type="button" class="footer-method" @click="methodOpen = true">
+              Read our methodology</button
+            >.
+          </p>
+          <h2>Privacy</h2>
+          <p>
+            This application does not upload, collect or persistently store your imported data.
+            Files and calculations stay in your browser; downloads are created on your device. No
+            analytics or tracking is included in the application. Hosting providers may process
+            ordinary connection logs, such as IP addresses. Use only exports you are authorized to
+            access and process under your Scopus subscription or applicable terms.
+          </p>
+          <h2>Licences</h2>
+          <p>
+            Application source code:
+            <a
+              href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based/blob/main/LICENSE"
+              target="_blank"
+              rel="noopener noreferrer"
+              >MIT</a
+            >. Official V9 reference data and its derivatives:
             <a
               href="https://creativecommons.org/licenses/by-nc/3.0/"
               target="_blank"
               rel="noopener noreferrer"
               >CC BY-NC 3.0</a
-            >; values are extracted and transformed for this tool. Method:
+            >, attributed to J. P. A. Ioannidis, for non-commercial use under that licence. The code
+            licence does not grant rights to Scopus exports or override their terms. See
             <a
-              href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000918"
+              href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based/blob/main/THIRD_PARTY_NOTICES.md"
               target="_blank"
               rel="noopener noreferrer"
-              >Ioannidis et al. 2020</a
-            >. Application code: MIT licence.
+              >data attribution and third-party notices</a
+            >. Provided as is, without warranty of accuracy or completeness.
           </p>
         </div>
         <a href="#page-title">Back to top</a>

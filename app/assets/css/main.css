@@ -296,12 +296,6 @@ h1 em {
   line-height: 2;
   color: var(--ui-warning);
 }
-.score-formula {
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--ui-text-muted);
-  font-variant-numeric: tabular-nums;
-}
 .score-terms {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -740,9 +734,6 @@ figcaption {
   }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .score-formula {
-    animation: settle 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
   .score-terms li {
     animation: settle 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
@@ -802,5 +793,62 @@ figcaption {
   .pick-row,
   .site-footer > a {
     display: none;
+  }
+}
+
+/* Change feedback overlays the number, so the value never shifts. */
+.changing-number {
+  position: relative;
+  display: inline-block;
+  font: inherit;
+}
+.number-change {
+  position: absolute;
+  left: 100%;
+  top: 0.04em;
+  height: 1em;
+  width: 0.55em;
+  animation: number-feedback 850ms ease-out both;
+  pointer-events: none;
+}
+.number-change.increase {
+  color: #15803d;
+}
+.number-change.decrease {
+  color: #b91c1c;
+}
+.footer-method {
+  color: var(--ui-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+@keyframes number-feedback {
+  0% {
+    opacity: 0;
+    transform: translateY(0.12em);
+  }
+  20%,
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-0.16em);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .number-change {
+    animation-name: number-feedback-reduced;
+  }
+}
+@keyframes number-feedback-reduced {
+  0%,
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

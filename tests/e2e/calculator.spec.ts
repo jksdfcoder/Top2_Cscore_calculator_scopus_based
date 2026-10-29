@@ -146,10 +146,10 @@ async function fourResultScores(page: Page) {
   const scores = page.locator('#score .score-value')
   await expect(scores).toHaveCount(2)
   const excluding = await scores.allTextContents()
-  await page.getByRole('tab', { name: 'Incl. self-citations', exact: true }).click()
+  await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
   await expect(page.locator('#results')).toContainText('Including self-citations')
   const including = await scores.allTextContents()
-  await page.getByRole('tab', { name: 'Excl. self-citations', exact: true }).click()
+  await page.getByRole('tab', { name: 'Exclude self-citations', exact: true }).click()
   await expect(page.locator('#results')).toContainText('Excluding all-author self-citations')
   return [...excluding, ...including]
 }
@@ -183,7 +183,7 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
 
   const standing = page.locator('#comparison')
   await expect(standing).toContainText('Epidemiology')
-  await page.getByRole('tab', { name: 'Incl. self-citations', exact: true }).click()
+  await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
   await expect(standing).toContainText(`Subfield top 2% line ${top2}`)
   const peer = page.getByRole('slider', { name: 'Compare with a listed author' })
   await peer.focus()
@@ -195,7 +195,7 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
   const track = (await page.locator('.standing-track').boundingBox())!
   await page.mouse.click(track.x + track.width * 0.55, track.y + track.height / 2)
   await expect(peer).not.toHaveAttribute('aria-valuetext', /rank 1 of /)
-  await page.getByRole('tab', { name: 'Excl. self-citations', exact: true }).click()
+  await page.getByRole('tab', { name: 'Exclude self-citations', exact: true }).click()
   expect(await fourResultScores(page)).toEqual(before)
 
   const accessibility = await new AxeBuilder({ page })
@@ -217,7 +217,7 @@ test('export guide and methodology open as dialogs', async ({ page }) => {
   await dialog.getByRole('button', { name: 'What happens to my files?' }).click()
   await expect(dialog).toContainText('not uploaded')
   await page.keyboard.press('Escape')
-  await page.getByRole('button', { name: 'Methodology' }).click()
+  await page.getByRole('button', { name: 'Methodology', exact: true }).click()
   await expect(page.getByRole('dialog')).toContainText('the formula is the same in every field')
   await page.keyboard.press('Escape')
   await expect(page.getByRole('contentinfo')).toContainText('Not an official service of')
@@ -257,7 +257,7 @@ test('standing reveals You only after the bar and peer data are ready', async ({
   await page.addStyleTag({ content: '.standing-fill { animation-duration: 10s !important; }' })
   await page.getByRole('button', { name: 'Try a synthetic example' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
-  await page.getByRole('tab', { name: 'Incl. self-citations', exact: true }).click()
+  await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
   await page.getByRole('button', { name: 'Field', exact: true }).click()
   await page.getByRole('option', { name: 'Public Health & Health Services', exact: true }).click()
   await page.getByRole('button', { name: 'Subfield', exact: true }).click()
@@ -274,13 +274,59 @@ test('standing reveals You only after the bar and peer data are ready', async ({
   await expect(page.getByRole('slider', { name: 'Compare with a listed author' })).toBeVisible()
   await expect(marker.locator(':scope > span')).toBeVisible()
   // A new animation with already-loaded data must also hide You until its end.
-  await page.getByRole('tab', { name: 'Excl. self-citations', exact: true }).click()
+  await page.getByRole('tab', { name: 'Exclude self-citations', exact: true }).click()
   await expect(marker).toHaveCount(0)
   await page
     .locator('.standing-fill')
     .evaluate((element) => element.getAnimations().forEach((a) => a.finish()))
   await expect(marker.locator(':scope > span')).toBeVisible()
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.getByRole('tab', { name: 'Incl. self-citations', exact: true }).click()
+  await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
   await expect(marker.locator(':scope > span')).toBeVisible()
+})
+
+test('score changes briefly show directional arrows and footer separates code from data rights', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Try a synthetic example' }).click()
+  await expect(page.getByRole('status').first()).toContainText('4 of 4')
+  await expect(page.locator('#score .score-formula')).toHaveCount(0)
+  await expect(page.locator('#score .number-change')).toHaveCount(0)
+  // Hold animation time to inspect every changed value deterministically.
+  await page.addStyleTag({ content: '.number-change { animation-play-state: paused !important; }' })
+  const values = page.locator('#score .changing-number')
+  await expect(values).toHaveCount(14)
+  const before = (await values.allTextContents()).map(Number)
+  await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
+  const after = (await values.allTextContents()).map(Number)
+  for (let i = 0; i < before.length; i++) {
+    const arrow = values.nth(i).locator('.number-change')
+    if (before[i] === after[i]) await expect(arrow).toHaveCount(0)
+    else
+      await expect(arrow).toHaveAttribute('data-direction', after[i]! > before[i]! ? 'up' : 'down')
+  }
+  await page.getByRole('tab', { name: 'Exclude self-citations', exact: true }).click()
+  for (let i = 0; i < before.length; i++) {
+    const arrow = values.nth(i).locator('.number-change')
+    if (before[i] !== after[i])
+      await expect(arrow).toHaveAttribute('data-direction', before[i]! > after[i]! ? 'up' : 'down')
+  }
+  await page
+    .locator('#score .number-change')
+    .evaluateAll((arrows) => arrows.forEach((el) => el.getAnimations().forEach((a) => a.finish())))
+  await expect(page.locator('#score .number-change')).toHaveCount(0)
+  const footer = page.getByRole('contentinfo')
+  await expect(footer).toContainText('open-source')
+  await expect(footer).toContainText(
+    'does not upload, collect or persistently store your imported data',
+  )
+  await expect(footer).toContainText('CC BY-NC 3.0')
+  await expect(footer.getByRole('link', { name: 'MIT', exact: true })).toBeVisible()
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
+  await expect
+    .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+    .toBe(true)
 })
