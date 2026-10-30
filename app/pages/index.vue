@@ -95,7 +95,21 @@ async function run() {
   if (score && score.getBoundingClientRect().top > innerHeight - 160) score.scrollIntoView()
 }
 const runId = ref(0)
-watch(analysis, () => runId.value++)
+watch(analysis, async (value) => {
+  runId.value++
+  if (!value?.modes.some((mode) => mode.ready)) return
+  await nextTick()
+  const score = document.getElementById('score')
+  const grid = score?.parentElement
+  // Only a stacked task flow needs to move the newly calculated result into view.
+  if (
+    score &&
+    grid &&
+    getComputedStyle(grid).gridTemplateColumns.split(' ').length === 1 &&
+    score.getBoundingClientRect().top > innerHeight / 2
+  )
+    score.scrollIntoView({ block: 'start' })
+})
 const hasReady = computed(() => analysis.value?.modes.some((m) => m.ready) ?? false)
 const scores = computed(() =>
   (['career', 'single-year'] as const).map((scope) => {
@@ -141,11 +155,9 @@ const latestStatus = computed(() =>
 
       <main>
         <section class="hero" aria-labelledby="page-title">
-          <h1 id="page-title">C-score, <em>calculated on your device.</em></h1>
+          <h1 id="page-title">C-score, <em>on this page.</em></h1>
           <p class="hero-purpose">
-            An independent estimator of author-level citation impact from your Scopus exports.
-            Explore published V9 reference data; this tool does not determine official Top 2%
-            inclusion.
+            Independent estimates from Scopus exports. Not official Top 2% results.
           </p>
           <div class="hero-grid">
             <ol id="import" class="steps">
@@ -157,8 +169,9 @@ const latestStatus = computed(() =>
                     multiple
                     accept=".csv,text/csv"
                     icon="i-lucide-upload"
-                    label="Drop CSV files here"
-                    description="Documents + two Citation overviews · processed only in your browser"
+                    label="Choose CSV files"
+                    description="3 CSVs · processed on your device"
+                    :ui="{ wrapper: 'px-2 py-1' }"
                     :disabled="busy || !mounted"
                     class="file-drop"
                     :class="{ compact: files.length }"
@@ -273,18 +286,36 @@ const latestStatus = computed(() =>
                 <h2 id="score-heading" aria-label="C-score">
                   C-score <span class="estimate-label">Estimate</span>
                 </h2>
-                <UTabs
-                  v-model="selfMode"
-                  :items="selfItems"
-                  :content="false"
-                  size="xs"
-                  aria-label="Self-citation setting"
-                />
+                <div class="self-control">
+                  <span class="self-caption" aria-hidden="true">Self-citations</span>
+                  <UTabs
+                    v-model="selfMode"
+                    :items="selfItems"
+                    :content="false"
+                    size="xs"
+                    aria-label="Self-citation setting"
+                  >
+                    <template #default="{ item }">
+                      <span class="self-label-long">{{ item.label }}</span>
+                      <span class="self-label-short" aria-hidden="true">{{
+                        item.value === 'without-self' ? 'Exclude' : 'Include'
+                      }}</span>
+                    </template>
+                  </UTabs>
+                </div>
               </div>
               <dl :key="runId" class="scores">
                 <div v-for="s in scores" :key="s.scope" class="score">
                   <dt>{{ s.label }}</dt>
                   <dd>
+                    <span
+                      class="score-value"
+                      :class="{ empty: s.state === 'empty', incomplete: s.state === 'incomplete' }"
+                      ><ChangingNumber
+                        :value="s.state === 'ready' ? s.value : undefined"
+                        :fallback="s.state === 'incomplete' ? 'Incomplete' : '—'"
+                    /></span>
+                    <span class="score-note">{{ s.note }}</span>
                     <ol v-if="s.state === 'ready'" class="score-terms">
                       <li
                         v-for="(p, i) in s.parts"
@@ -318,33 +349,23 @@ const latestStatus = computed(() =>
                         </UTooltip>
                       </li>
                     </ol>
-                    <span
-                      class="score-value"
-                      :class="{ empty: s.state === 'empty', incomplete: s.state === 'incomplete' }"
-                      ><ChangingNumber
-                        :value="s.state === 'ready' ? s.value : undefined"
-                        :fallback="s.state === 'incomplete' ? 'Incomplete' : '—'"
-                    /></span>
-                    <span class="score-note">{{ s.note }}</span>
                   </dd>
                 </div>
               </dl>
               <div class="score-foot">
-                <span v-if="isDemo"
-                  >Synthetic example · author ID 123 · not a real researcher’s result</span
-                >
+                <span v-if="isDemo">Synthetic example · not a real researcher’s result</span>
                 <span v-else>Calculated estimate · not an official result</span>
                 <span class="score-links">
-                  <a v-if="hasReady" href="#results">Indicators &amp; comparison ↓</a>
+                  <a v-if="hasReady" href="#results">Compare with V9 ↓</a>
                   <UButton variant="link" size="xs" class="p-0" @click="methodOpen = true"
                     >Methodology</UButton
                   >
                 </span>
               </div>
               <p class="score-context">
-                Combines eligible publications across research areas, not just the selected
-                subfield. Accuracy depends on your Scopus profile, export completeness and citation
-                dates. Citation impact is not a complete assessment of research quality.
+                Combines eligible publications across research areas. Profile errors, incomplete
+                exports and citation dates affect accuracy. Citation impact alone does not measure
+                research quality.
               </p>
             </section>
           </div>
@@ -485,7 +506,8 @@ const latestStatus = computed(() =>
             <p class="footer-description">
               A personal, open-source research project. Calculated estimates, not official
               Stanford/Elsevier results. Not affiliated with or endorsed by Stanford University or
-              Elsevier. Imported files are processed locally in your browser.
+              Elsevier. Imported files are processed locally in your browser. Do not use citation
+              metrics alone for hiring, promotion or funding decisions.
             </p>
             <div class="footer-links">
               <p>

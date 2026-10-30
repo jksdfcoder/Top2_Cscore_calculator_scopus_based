@@ -87,10 +87,10 @@ const autoplay = import.meta.client && !matchMedia('(prefers-reduced-motion: red
             />
           </li>
           <li>
-            Drop all three CSV files into step 1, keeping their original names and contents. The
-            same files support both career and single-year estimates when the required citation
-            years are present. Check that the profile includes your papers and excludes namesakes’
-            papers before exporting; this tool cannot verify publication ownership.
+            Add all three CSV files in step 1, keeping their original names and contents. The same
+            files support both career and single-year estimates when the required citation years are
+            present. Check that the profile includes your papers and excludes namesakes’ papers
+            before exporting; this tool cannot verify publication ownership.
           </li>
         </ol>
         <p class="muted">

@@ -24,3 +24,17 @@ sampled listed-author points without); do not extrapolate to first place or inve
 Show percentile bands only with self-citations and explicitly explain their absence without.
 The derived top-2% threshold is a historical benchmark, not an eligibility decision. Methods
 explain both official selection routes and incomplete verification of the V9 production pipeline.
+
+
+## Portrait refinement — 30 October 2026
+
+Narrow layouts prioritize the import task and then the two score values, followed by their six
+contributions. A completed stacked calculation (including demo) scrolls the score into view.
+Self-citation tabs show concise Exclude/Include text alongside a Self-citations label, while
+retaining full accessible names. Essential scope, data-quality, non-official and research-quality
+limits remain visible in short sentences. Technical interpolation details are expandable.
+The comparison controls precede the radar in DOM order. A named results container pairs the two
+regions only above 48rem of available width; wide layout places the radar to the left. A nested
+comparison container pairs the field selectors above 28rem, otherwise they stack. Score columns
+wrap when their minimum readable width no longer fits, including larger user text. Touch controls
+have 44px minimum height; the reference track permits vertical page panning and horizontal dragging.

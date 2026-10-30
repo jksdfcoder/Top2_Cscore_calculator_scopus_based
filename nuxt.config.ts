@@ -1,3 +1,6 @@
+const description =
+  'Estimate career and single-year c-scores from your Scopus CSV exports. Local processing and exploratory V9 comparisons; not official rankings or Top 2% confirmation.'
+
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-29',
   modules: ['@nuxt/ui'],
@@ -20,11 +23,10 @@ export default defineNuxtConfig({
               },
             ]
           : []),
-        {
-          name: 'description',
-          content:
-            'Estimate career and single-year c-scores from your Scopus CSV exports. Local processing and exploratory V9 comparisons; not official rankings or Top 2% confirmation.',
-        },
+        { name: 'description', content: description },
+        { property: 'og:title', content: 'C-score calculator · Independent estimates' },
+        { property: 'og:description', content: description },
+        { property: 'og:type', content: 'website' },
       ],
     },
   },

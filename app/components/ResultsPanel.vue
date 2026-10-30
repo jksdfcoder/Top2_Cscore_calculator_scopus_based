@@ -203,6 +203,7 @@ const fineLabels = computed(() => {
 
 // Thumb tracks the pointer 1:1, keeping the grab offset; a track press jumps there first.
 let grabOffset = 0
+let pendingTouch: { x: number; y: number } | null = null
 function moveTo(clientX: number) {
   const box = track.value!.getBoundingClientRect()
   const r = (clientX - grabOffset - box.left) / box.width
@@ -210,18 +211,33 @@ function moveTo(clientX: number) {
 }
 function grab(event: PointerEvent) {
   if (!track.value || !peers.value.length) return
-  track.value.setPointerCapture(event.pointerId)
-  dragging.value = true
   const thumb = (event.target as HTMLElement).closest('.standing-peer')
   grabOffset = thumb
     ? event.clientX - (thumb.getBoundingClientRect().left + thumb.clientWidth / 2)
     : 0
+  if (event.pointerType === 'touch') {
+    pendingTouch = { x: event.clientX, y: event.clientY }
+    return
+  }
+  track.value.setPointerCapture(event.pointerId)
+  dragging.value = true
   if (!thumb) moveTo(event.clientX)
 }
 function drag(event: PointerEvent) {
+  if (pendingTouch) {
+    const dx = Math.abs(event.clientX - pendingTouch.x)
+    const dy = Math.abs(event.clientY - pendingTouch.y)
+    if (Math.max(dx, dy) < 6) return
+    pendingTouch = null
+    if (dy > dx) return // A vertical swipe scrolls without selecting a reference author.
+    track.value?.setPointerCapture(event.pointerId)
+    dragging.value = true
+  }
   if (dragging.value && track.value) moveTo(event.clientX)
 }
-function release() {
+function release(event: PointerEvent) {
+  if (pendingTouch && event.type === 'pointerup') moveTo(event.clientX)
+  pendingTouch = null
   dragging.value = false
   if (peer.value && standing.value) blockRatio.value = standing.value.ratio(peer.value[0])
 }
@@ -269,71 +285,19 @@ function download(kind: 'json' | 'csv') {
 <template>
   <section id="results" aria-labelledby="results-heading" class="chapter reveal">
     <div class="chapter-head">
-      <h2 id="results-heading">Explore V9 reference data</h2>
+      <h2 id="results-heading">V9 comparison</h2>
       <p>
-        {{ selfLabel(selfMode) }}. Historical reference: citations through 2025 · Scopus snapshot 1
-        August 2026.
+        {{ selfLabel(selfMode) }}.
+        <span class="reference-date"
+          >Published V9 dataset · citations through 2025 · Scopus snapshot 1 Aug 2026</span
+        >
       </p>
     </div>
     <UTabs v-model="scope" :items="tabs" :content="false" class="max-w-sm" />
 
     <div v-if="result" class="result-grid">
-      <div>
-        <h3 class="result-label">What drives it</h3>
-        <div class="legend">
-          <span class="legend-row"
-            ><span class="swatch you" />{{ isDemo ? 'Synthetic estimate' : 'Your estimate' }} ·
-            {{ result.cScore.toFixed(3) }}</span
-          >
-          <span class="legend-row"
-            ><template v-if="peer"
-              ><span class="swatch peer" /><strong>{{ peer[2] }}</strong> · V9 #{{
-                peer[0].toLocaleString('en')
-              }}
-              · {{ peer[1].toFixed(3) }}</template
-            ></span
-          >
-          <span class="legend-row sub">{{ peer?.[3] }}</span>
-        </div>
-        <ContributionChart :result="result" :peer="peerContributions" />
-        <div class="sr-only">
-          <table>
-            <caption>
-              {{
-                scopeLabel(scope)
-              }}
-              metrics,
-              {{
-                selfLabel(selfMode)
-              }}
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">Indicator</th>
-                <th scope="col">Value</th>
-                <th scope="col">Contribution</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="key in metricNames" :key="key">
-                <th scope="row">{{ key }} · {{ metricLabels[key] }}</th>
-                <td>{{ number(result.metrics[key], key === 'Hm' ? 6 : 0) }}</td>
-                <td>{{ result.contributions[key].toFixed(6) }}</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th scope="row">c-score</th>
-                <td></td>
-                <td>{{ result.cScore.toFixed(6) }}</td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-      </div>
-
       <div id="comparison">
-        <h3 class="result-label">Exploratory comparison</h3>
+        <h3 class="result-label">Choose a comparison subfield</h3>
         <div class="pick-row">
           <USelectMenu
             v-model="field"
@@ -352,17 +316,17 @@ function download(kind: 'json' | 'csv') {
         </div>
 
         <p class="comparison-context">
-          Your selected subfield is a comparison choice, not a verified official classification.
-          This comparison does not establish your official rank or Top 2% inclusion.
+          You pick the subfield; it is not a verified official classification. This is not a rank or
+          Top 2% result.
         </p>
         <div v-if="standing" class="reference-summary" aria-live="polite">
-          <p v-if="standing.band"><strong>V9 reference band:</strong> {{ standing.band }}.</p>
-          <p v-else>
-            No published all-author percentile band is available for excluding self-citations.
+          <p v-if="standing.band" class="reference-band">
+            <span>V9 reference band:</span> <strong>{{ standing.band }}</strong>
           </p>
+          <p v-else>No published all-author percentile band for this setting.</p>
           <p v-if="standing.placed.top2 !== null">
-            Derived V9 subfield benchmark (top 2%): {{ standing.placed.top2.toFixed(3) }}. This is a
-            historical reference, not an eligibility test.
+            V9 top 2% benchmark: <strong>{{ standing.placed.top2.toFixed(3) }}</strong> · historical
+            only.
           </p>
           <p v-if="!standing.you">{{ standing.range }}; no personal position is plotted.</p>
         </div>
@@ -458,19 +422,82 @@ function download(kind: 'json' | 'csv') {
             <div class="standing-track empty">Choose a comparison field and subfield</div>
           </div>
         </div>
-        <p class="comparison-context">
-          Reference-author ranks use a log scale. Any estimate marker is interpolated within
-          available reference points for illustration only; it is not a calculated personal rank. No
-          position is plotted beyond those points. Including-self bands use published all-author
-          percentiles; excluding-self positions use sampled listed authors and cover only the listed
-          range.
+        <p v-if="standing" class="comparison-context marker-context">
+          Illustrative position, not a personal rank.
+          {{
+            selfMode === 'with-self'
+              ? 'Published percentile benchmarks.'
+              : 'Listed-author sample only.'
+          }}
         </p>
+        <details class="comparison-details">
+          <summary>How this comparison works</summary>
+          <p>
+            Reference ranks use a log scale. An estimate marker is interpolated only between
+            available reference points; it is not a calculated personal rank. No position is
+            extrapolated. Including-self bands use published benchmarks for authors with at least
+            five papers. Excluding-self positions use sampled listed authors and cover only the
+            listed range. A historical benchmark does not confirm official inclusion.
+          </p>
+        </details>
         <p class="fine-print">
-          Drag or click to compare with a sampled V9 listed author; arrow keys step one author.
-          <a :href="data?.dataset" target="_blank" rel="noopener noreferrer">V9 data</a>,
-          {{ data?.license }}. Listed-author ranks are historical; they do not rank your imported
-          profile.
+          Drag the marker to compare with listed V9 authors.
+          <a :href="data?.dataset" target="_blank" rel="noopener noreferrer">V9 data</a> ·
+          {{ data?.license }}.
         </p>
+      </div>
+      <div class="indicator-view">
+        <h3 class="result-label">Six score components</h3>
+        <div class="legend">
+          <span class="legend-row"
+            ><span class="swatch you" />{{ isDemo ? 'Synthetic estimate' : 'Your estimate' }} ·
+            {{ result.cScore.toFixed(3) }}</span
+          >
+          <span class="legend-row"
+            ><template v-if="peer"
+              ><span class="swatch peer" /><strong>{{ peer[2] }}</strong> · V9 #{{
+                peer[0].toLocaleString('en')
+              }}
+              · {{ peer[1].toFixed(3) }}</template
+            ></span
+          >
+          <span class="legend-row sub">{{ peer?.[3] }}</span>
+        </div>
+        <ContributionChart :result="result" :peer="peerContributions" />
+        <div class="sr-only">
+          <table>
+            <caption>
+              {{
+                scopeLabel(scope)
+              }}
+              metrics,
+              {{
+                selfLabel(selfMode)
+              }}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Indicator</th>
+                <th scope="col">Value</th>
+                <th scope="col">Contribution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="key in metricNames" :key="key">
+                <th scope="row">{{ key }} · {{ metricLabels[key] }}</th>
+                <td>{{ number(result.metrics[key], key === 'Hm' ? 6 : 0) }}</td>
+                <td>{{ result.contributions[key].toFixed(6) }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row">c-score</th>
+                <td></td>
+                <td>{{ result.cScore.toFixed(6) }}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
     <UAlert
@@ -489,7 +516,9 @@ function download(kind: 'json' | 'csv') {
       <UButton variant="ghost" color="neutral" @click="download('csv')"
         >Download metrics CSV</UButton
       >
-      <span class="muted">Estimates created on your device. No titles or author IDs included.</span>
+      <span class="muted"
+        >Downloads are created on your device and contain no titles or author IDs.</span
+      >
     </div>
   </section>
 </template>

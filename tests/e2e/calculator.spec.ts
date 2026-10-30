@@ -21,9 +21,7 @@ test('one import produces four modes, downloads a private report, then clears', 
   await page.getByRole('button', { name: 'Confirm author & calculate' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
   await expect(page.locator('#score')).toContainText('1.144')
-  await expect(page.locator('.hero-purpose')).toContainText(
-    'does not determine official Top 2% inclusion',
-  )
+  await expect(page.locator('.hero-purpose')).toContainText('Not official Top 2% results')
   await expect(page.locator('#score .score-context')).toBeVisible()
   await expect(page.locator('#score .score-context')).toContainText('across research areas')
   await expect(page.locator('#score')).toContainText('1.394')
@@ -147,7 +145,7 @@ test('synthetic example and result table pass accessibility checks', async ({ pa
   await page.getByRole('button', { name: 'Try a synthetic example' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
   await expect(
-    page.getByText('Synthetic example · author ID 123 · not a real researcher’s result', {
+    page.getByText('Synthetic example · not a real researcher’s result', {
       exact: true,
     }),
   ).toBeVisible()
@@ -218,9 +216,9 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
   await expect(standing.locator('.standing-marker.you')).toHaveCount(0)
   await expect(standing).toContainText('no personal position is plotted')
   await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
-  await expect(standing).toContainText(`Derived V9 subfield benchmark (top 2%): ${top2}`)
+  await expect(standing).toContainText(`V9 top 2% benchmark: ${top2}`)
   await expect(standing.locator('.reference-summary')).toContainText('V9 reference band:')
-  await expect(standing).toContainText('it is not a calculated personal rank')
+  await expect(standing.locator('.marker-context')).toContainText('not a personal rank')
   const peer = page.getByRole('slider', { name: 'Compare with a listed author' })
   await peer.focus()
   await page.keyboard.press('Home')
@@ -281,7 +279,7 @@ test('clearing while a demo is fetching cancels the old request intent', async (
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
   release()
   await expect(
-    page.getByText('Synthetic example · author ID 123 · not a real researcher’s result', {
+    page.getByText('Synthetic example · not a real researcher’s result', {
       exact: true,
     }),
   ).toHaveCount(0)

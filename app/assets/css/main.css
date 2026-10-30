@@ -266,7 +266,7 @@ h1 em {
 }
 .scores {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.25rem), 1fr));
   gap: 1rem;
   flex: 1;
   align-content: center;
@@ -538,7 +538,7 @@ h1 em {
   border-radius: 0.5rem;
   background: var(--ui-bg-elevated);
   cursor: pointer;
-  touch-action: none;
+  touch-action: pan-y;
   user-select: none;
 }
 .standing-track.empty {
@@ -847,12 +847,6 @@ figcaption {
     align-items: center;
   }
 }
-@media (min-width: 60rem) {
-  .result-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-    gap: clamp(3rem, 6vw, 6rem);
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -962,4 +956,204 @@ figcaption {
 }
 .reference-summary p + p {
   margin-top: 0.5rem;
+}
+
+/* The task reflows with its own available width, including large-text settings. */
+#results {
+  container: results / inline-size;
+}
+.result-grid {
+  grid-template-areas: 'comparison' 'chart';
+}
+.result-grid > * {
+  min-width: 0;
+}
+.indicator-view {
+  grid-area: chart;
+}
+#comparison {
+  grid-area: comparison;
+  container: comparison / inline-size;
+}
+.pick-row {
+  grid-template-columns: minmax(0, 1fr);
+}
+.pick-row button {
+  min-height: 2.75rem;
+}
+@container comparison (min-width: 28rem) {
+  .pick-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.self-control {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.self-caption,
+.self-label-short {
+  display: none;
+}
+.score dd {
+  display: flex;
+  flex-direction: column;
+}
+.score-terms {
+  margin-top: 0.85rem;
+}
+.score-panel {
+  scroll-margin-top: 1rem;
+}
+.reference-date {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}
+.reference-band span {
+  display: block;
+  font-size: 0.8125rem;
+}
+.reference-band strong {
+  display: block;
+  font-size: 1.375rem;
+  line-height: 1.3;
+  color: var(--ui-text);
+  font-weight: 500;
+}
+.reference-summary {
+  margin-bottom: 1.25rem;
+}
+.marker-context {
+  margin: 0.5rem 0;
+}
+.comparison-details {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--ui-text-muted);
+}
+.comparison-details summary {
+  cursor: pointer;
+  padding: 0.625rem 0;
+  color: var(--ui-primary);
+}
+.comparison-details p {
+  padding: 0.5rem 0;
+}
+.self-control [role='tab'] {
+  min-height: 2.75rem;
+}
+
+@container (max-width: 51.999rem) {
+  .hero-grid {
+    gap: 1.5rem;
+  }
+  .score-panel {
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+  .score-panel-head {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .self-control {
+    justify-content: space-between;
+  }
+  .self-caption {
+    display: inline;
+    font-size: 0.8125rem;
+    color: var(--ui-text-muted);
+  }
+  .self-label-short {
+    display: inline;
+  }
+  .self-label-long {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .score-value {
+    font-size: clamp(2.5rem, 12cqi, 4rem);
+  }
+  .score-value.incomplete {
+    font-size: 1.125rem;
+  }
+  .score-context {
+    margin-top: 0;
+    padding-top: 0.75rem;
+  }
+  .score-links {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+  }
+  .score-links a,
+  .score-links button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+  .step-links {
+    gap: 0.25rem 1rem;
+  }
+  .step-links button {
+    min-height: 2.75rem;
+    text-align: left;
+  }
+  .author-row > button {
+    min-height: 2.75rem;
+  }
+}
+@container results (max-width: 47.999rem) {
+  .chapter-head {
+    margin-bottom: 1.25rem;
+  }
+  .chapter-head h2 {
+    font-size: 2rem;
+  }
+  .chapter-head p {
+    font-size: 0.9375rem;
+  }
+  .result-grid {
+    margin-top: 1.5rem;
+    gap: 2rem;
+  }
+  .result-label {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    color: var(--ui-text);
+  }
+  .chart-canvas {
+    height: 280px;
+  }
+}
+
+@container results (min-width: 48rem) {
+  .result-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    grid-template-areas: 'chart comparison';
+    gap: clamp(2rem, 4cqi, 4rem);
+  }
+}
+@media (max-width: 40rem) {
+  .hero {
+    min-height: auto;
+    padding: 1.5rem 0 2rem;
+  }
+  .hero h1 {
+    margin-bottom: 1.25rem;
+  }
+  .hero-purpose {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+  .chapter {
+    padding-block: 2.5rem;
+  }
 }
