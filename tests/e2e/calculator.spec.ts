@@ -106,8 +106,18 @@ test('private input is not transmitted or persisted and narrow layout fits', asy
   ).toBe(true)
   expect(JSON.stringify(requests)).not.toContain(canary)
   expect(
-    await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length })),
-  ).toEqual({ local: 0, session: 0 })
+    await page.evaluate(async () => ({
+      local: localStorage.length,
+      session: sessionStorage.length,
+      databases: (await indexedDB.databases()).length,
+      caches: (await caches.keys()).length,
+      serviceWorkers: (await navigator.serviceWorker.getRegistrations()).length,
+    })),
+  ).toEqual({ local: 0, session: 0, databases: 0, caches: 0, serviceWorkers: 0 })
+  await page.getByRole('button', { name: 'Clear all data' }).click()
+  await expect(page.locator('#results')).toHaveCount(0)
+  await expect(page.getByRole('status').first()).toContainText('No files selected')
+  await expect(page.locator('body')).not.toContainText(canary)
   await page.setViewportSize({ width: 390, height: 844 })
   await expect
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
@@ -220,7 +230,7 @@ test('export guide and methodology open as dialogs', async ({ page }) => {
   await page.getByRole('button', { name: 'Methodology', exact: true }).click()
   await expect(page.getByRole('dialog')).toContainText('the formula is the same in every field')
   await page.keyboard.press('Escape')
-  await expect(page.getByRole('contentinfo')).toContainText('Not an official service of')
+  await expect(page.getByRole('contentinfo')).toContainText('Not affiliated with or endorsed by')
 })
 
 test('clearing while a demo is fetching cancels the old request intent', async ({ page }) => {
@@ -318,7 +328,8 @@ test('score changes briefly show directional arrows and footer separates code fr
     .evaluateAll((arrows) => arrows.forEach((el) => el.getAnimations().forEach((a) => a.finish())))
   await expect(page.locator('#score .number-change')).toHaveCount(0)
   const footer = page.getByRole('contentinfo')
-  await expect(footer).toContainText('open-source')
+  await expect(footer).toContainText('A personal, open-source research project')
+  await expect(footer).not.toContainText('HKU')
   const notice = footer.locator('details')
   await expect(notice).not.toHaveAttribute('open')
   await notice.locator('summary').focus()

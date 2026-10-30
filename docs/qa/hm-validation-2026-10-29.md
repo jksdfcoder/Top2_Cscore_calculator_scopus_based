@@ -4,7 +4,7 @@
 
 ## 获取和计算
 
-使用用户授权的现有 Scopus 登录会话，通过界面的 Export all → CSV 和 Citation overview → Export 下载。没有调用 Scopus API、SciVal 或编写网站爬虫。机构访问显示 HKU Libraries；这里是浏览器导出权限，未使用 HKU API。新原始 CSV、带账户标识的操作截图和逐篇诊断均留在仓库外部 `../docs/research/hm-validation-2026-10-29/`。
+使用用户授权的现有 Scopus 登录会话，通过界面的 Export all → CSV 和 Citation overview → Export 下载。没有调用 Scopus API、SciVal 或编写网站爬虫。验证使用授权的订阅访问；通过浏览器官方导出功能获取，未使用机构 API。新原始 CSV、带账户标识的操作截图和逐篇诊断均留在仓库外部 `../docs/research/hm-validation-2026-10-29/`。
 
 - Schreiber, Michael：Scopus ID 22998421900，Chemnitz，387 篇，与官方 np6025 相同。一个文献 CSV + 两种自引设置的 2001–2025 和 1996–2021 窗口，共五个文件。重叠年度逐篇核对一致；只取 1996–2025，排除 <1996 和 >2025。
 - Jumper, John M.：Scopus ID 36717725300，DeepMind，32 篇，与官方 np6025 相同。最早论文 2010 年；文献和两种自引窗口，共三个文件。逐篇 <2001 均为零，能证明 career 的早期覆盖。

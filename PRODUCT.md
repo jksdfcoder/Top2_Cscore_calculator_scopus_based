@@ -3,6 +3,10 @@
 ## Platform
 Web, static single page. This is a task interface for researchers using their own Scopus exports.
 
+## Ownership
+
+A personal open-source project maintained independently by jksdfcoder, not on behalf of any university, employer or organization. Source attribution and comparison-author affiliations do not indicate project ownership.
+
 ## Confirmed requirements
 Users import files once and calculate career and single-year c-scores, both with and without all-author self-citations when supplied. Processing remains on their device. No scraping, institutional API, login or remote storage. The user explicitly chose one page, restrained layout, and reuse of existing components. Nuxt 4 and Nuxt UI 4 are the agreed starting stack.
 

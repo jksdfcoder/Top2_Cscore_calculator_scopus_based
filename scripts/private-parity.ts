@@ -20,7 +20,9 @@ const a = analyze(files, ['57226848754'], ref)
 const expected = JSON.parse(readFileSync(join(directory, 'validation-report.json'), 'utf8')).results
 for (const m of a.modes) {
   if (!m.result)
-    throw new Error(`${m.scope}/${m.selfMode} blocked: ${JSON.stringify(m.issues.slice(0, 4))}`)
+    throw new Error(
+      `${m.scope}/${m.selfMode} blocked: ${[...new Set(m.issues.map((issue) => issue.code))].join(', ')}`,
+    )
   const key = `${m.scope === 'career' ? 'career_2025' : 'singleyr_2025'}_${m.selfMode === 'with-self' ? 'inc' : 'exc'}`
   for (const [k, v] of Object.entries(m.result.metrics))
     if (Math.abs(v - expected[key].metrics[k]) > 1e-10) throw new Error(`${key} ${k}: ${v} differs`)

@@ -438,7 +438,7 @@ const latestStatus = computed(() =>
         <div class="disclaimer">
           <div class="footer-overview">
             <p class="footer-description">
-              Independent, open-source research tool. Calculated estimates, not official
+              A personal, open-source research project. Calculated estimates, not official
               Stanford/Elsevier results. Imported files stay in your browser.
             </p>
             <div class="footer-links">
@@ -483,8 +483,9 @@ const latestStatus = computed(() =>
                 target="_blank"
                 rel="noopener noreferrer"
                 >View the source on GitHub</a
-              >. Not an official service of, or endorsed by, Stanford University, Elsevier, Scopus
-              or HKU.
+              >. Independently developed and maintained by an individual, not on behalf of any
+              university, employer or organization. Not affiliated with or endorsed by Stanford
+              University or Elsevier.
             </p>
             <p>
               Results are calculated estimates from your exports, not official results or

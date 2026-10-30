@@ -1,6 +1,10 @@
 # C-score calculator
 
+A personal, independently maintained open-source project by jksdfcoder. It is not operated on behalf of any university, employer or organization. References to Stanford, Elsevier and Scopus identify the methodology and data sources, not project ownership or endorsement.
+
 A single-page, local-first calculator for personal Scopus CSV exports. Built with Nuxt 4, Nuxt UI, TypeScript, Papa Parse and ECharts. No account, backend, institutional API key, scraping, analytics or browser persistence.
+
+Privacy and security boundaries, review findings and safe reporting: [SECURITY.md](SECURITY.md).
 
 ## Run
 
