@@ -211,6 +211,7 @@ const latestStatus = computed(() =>
                       size="sm"
                       :class="{ 'p-0': files.length }"
                       aria-label="How to export three files from Scopus"
+                      :disabled="!mounted"
                       @click="guideOpen = true"
                       >How to export</UButton
                     >
@@ -387,7 +388,7 @@ const latestStatus = computed(() =>
                   size="lg"
                   block
                   trailing-icon="i-lucide-arrow-down"
-                  >Compare with V9 reference data</UButton
+                  >Compare with published data</UButton
                 >
               </template>
             </section>

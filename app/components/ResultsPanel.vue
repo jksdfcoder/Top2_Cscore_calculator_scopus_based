@@ -127,6 +127,13 @@ const standing = computed(() => {
   points.sort((a, b) => b[0] - a[0])
   const position = illustrativePosition(c, points)
   const you = position === null ? null : { rank: position }
+  // Outside the reference points: mark the edge of the range, never a position beyond it.
+  const edge =
+    you || !points.length
+      ? null
+      : c < points.at(-1)![0]
+        ? { rank: points.at(-1)![1], text: 'below all listed →' }
+        : { rank: points[0]![1], text: '← above all listed' }
   const range = points.length
     ? c > points[0]![0]
       ? 'Above the available reference range'
@@ -141,7 +148,22 @@ const standing = computed(() => {
   const minors = majors
     .flatMap((d) => [2, 3, 4, 5, 6, 7, 8, 9].map((m) => m * d))
     .filter((r) => r < count)
-  return { sub, count, c, placed, top2Rank, ratio, at, align, you, range, band, majors, minors }
+  return {
+    sub,
+    count,
+    c,
+    placed,
+    top2Rank,
+    ratio,
+    at,
+    align,
+    you,
+    edge,
+    range,
+    band,
+    majors,
+    minors,
+  }
 })
 
 const blockRatio = ref(0)
@@ -282,11 +304,12 @@ function download(kind: 'json' | 'csv') {
 <template>
   <section id="results" aria-labelledby="results-heading" class="chapter reveal">
     <div class="chapter-head">
-      <h2 id="results-heading">V9 comparison</h2>
+      <h2 id="results-heading">Compare with published data</h2>
       <p>
         {{ selfLabel(selfMode) }}.
         <span class="reference-date"
-          >Published V9 dataset · citations through 2025 · Scopus snapshot 1 Aug 2026</span
+          >Stanford/Elsevier science-wide author database, version 9 (V9) · citations through 2025 ·
+          Scopus snapshot 1 Aug 2026</span
         >
       </p>
     </div>
@@ -401,6 +424,17 @@ function download(kind: 'json' | 'csv') {
               <span :style="standing.align(standing.you.rank)"
                 >{{ isDemo ? 'Synthetic estimate' : 'Your estimate' }}
                 {{ standing.c.toFixed(3) }}</span
+              >
+            </span>
+            <span
+              v-if="showYou && standing.edge"
+              class="standing-marker edge"
+              :class="{ faded: dragging }"
+              :style="{ left: standing.at(standing.edge.rank) }"
+            >
+              <span :style="standing.align(standing.edge.rank)"
+                >{{ isDemo ? 'Synthetic estimate' : 'Your estimate' }} {{ standing.c.toFixed(3) }} ·
+                {{ standing.edge.text }}</span
               >
             </span>
             <span class="standing-marker top2" :style="{ left: standing.at(standing.top2Rank) }">

@@ -641,6 +641,16 @@ h1 em {
   bottom: 0;
   background: var(--color-gold-500);
 }
+.standing-marker.edge {
+  top: 0;
+  height: calc(var(--label) + var(--track));
+  color: var(--color-gold-700);
+}
+.standing-marker.edge::before {
+  top: 1rem;
+  bottom: 0;
+  background: repeating-linear-gradient(var(--color-gold-500) 0 4px, transparent 4px 7px);
+}
 .standing-marker.faded > span {
   opacity: 0.2;
 }
@@ -731,8 +741,7 @@ figcaption {
   flex-wrap: wrap;
   gap: 0.25rem 1.5rem;
 }
-.footer-links p,
-.footer-links p + p {
+.disclaimer .footer-links p {
   margin: 0;
 }
 @container (min-width: 48rem) {

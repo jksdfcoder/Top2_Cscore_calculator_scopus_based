@@ -43,8 +43,12 @@ One clear next action at each stage. Before import, a solid gold "Try a syntheti
 outline "How to export" sit under the file picker (most social-media visitors have no export at
 hand); once files are added they fall back to links. Before calculation the score card is a
 one-line preview, centred when the desktop grid stretches it. After calculation the card ends with
-a single full-width "Compare with V9 reference data" button below the visible limits. Comparison
+a single full-width "Compare with published data" button below the visible limits. Comparison
 uses one searchable subfield picker grouped by field (typing a field name lists its subfields);
 the bar area is not reserved until a subfield is chosen. Component values show numbers only.
 Global link colour applies only to plain links (`a:not(:where([data-slot]))`), never to Nuxt UI
 buttons rendered as anchors.
+
+Outside the reference points the bar shows a dashed gold edge marker ("below all listed →" or
+"← above all listed") at the end of the range, never an extrapolated position. The comparison
+heading names the source in full once: Stanford/Elsevier science-wide author database, version 9.

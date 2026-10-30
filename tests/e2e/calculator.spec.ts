@@ -211,6 +211,7 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
   await expect(standing).toContainText('not a verified official classification')
   await expect(standing).toContainText('No published all-author percentile band')
   await expect(standing.locator('.standing-marker.you')).toHaveCount(0)
+  await expect(standing.locator('.standing-marker.edge')).toContainText('below all listed')
   await expect(standing).toContainText('no personal position is plotted')
   await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
   await expect(standing).toContainText(`V9 top 2% benchmark: ${top2}`)
