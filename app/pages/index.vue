@@ -436,39 +436,43 @@ const latestStatus = computed(() =>
 
       <footer class="site-footer">
         <div class="disclaimer">
-          <p>
-            Independent, open-source research tool. Calculated estimates, not official
-            Stanford/Elsevier results. Imported files stay in your browser.
-          </p>
-          <p>
-            <a
-              href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based"
-              target="_blank"
-              rel="noopener noreferrer"
-              >GitHub</a
-            >
-            · Code:
-            <a
-              href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based/blob/main/LICENSE"
-              target="_blank"
-              rel="noopener noreferrer"
-              >MIT</a
-            >
-          </p>
-          <p class="reference-licence">
-            <a
-              href="https://doi.org/10.17632/btchxktzyw.9"
-              target="_blank"
-              rel="noopener noreferrer"
-              >V9 reference data</a
-            >:
-            <a
-              href="https://creativecommons.org/licenses/by-nc/3.0/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >CC BY-NC 3.0</a
-            >
-          </p>
+          <div class="footer-overview">
+            <p class="footer-description">
+              Independent, open-source research tool. Calculated estimates, not official
+              Stanford/Elsevier results. Imported files stay in your browser.
+            </p>
+            <div class="footer-links">
+              <p>
+                <a
+                  href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub</a
+                >
+                · Code:
+                <a
+                  href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based/blob/main/LICENSE"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >MIT</a
+                >
+              </p>
+              <p class="reference-licence">
+                <a
+                  href="https://doi.org/10.17632/btchxktzyw.9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >V9 reference data</a
+                >:
+                <a
+                  href="https://creativecommons.org/licenses/by-nc/3.0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >CC BY-NC 3.0</a
+                >
+              </p>
+            </div>
+          </div>
           <DataNotice>
             <h2>About this open-source tool</h2>
             <p>
