@@ -10,7 +10,6 @@ Use Nuxt UI controls and the system sans stack. Scores use tabular numerals: 3 d
 
 Short disclaimers sit where they matter: "Calculated estimate · not an official result" under the score, local processing in the drop zone, "does not confirm official inclusion" under the bar, and the full limitations, attribution and licences as unabridged small print in the page footer. Under each score, the calculation plays formula, then six labelled contributions (indicator, value, bar), then the total.
 
-
 ## Interpretation review — 30 October 2026
 
 The approved reference-comparison refinement takes precedence over the earlier standing-bar copy.
@@ -25,7 +24,6 @@ Show percentile bands only with self-citations and explicitly explain their abse
 The derived top-2% threshold is a historical benchmark, not an eligibility decision. Methods
 explain both official selection routes and incomplete verification of the V9 production pipeline.
 
-
 ## Portrait refinement — 30 October 2026
 
 Narrow layouts prioritize the import task and then the two score values, followed by their six
@@ -38,3 +36,15 @@ regions only above 48rem of available width; wide layout places the radar to the
 comparison container pairs the field selectors above 28rem, otherwise they stack. Score columns
 wrap when their minimum readable width no longer fits, including larger user text. Touch controls
 have 44px minimum height; the reference track permits vertical page panning and horizontal dragging.
+
+## Flow pass — 30 October 2026
+
+One clear next action at each stage. Before import, a solid gold "Try a synthetic example" and an
+outline "How to export" sit under the file picker (most social-media visitors have no export at
+hand); once files are added they fall back to links. Before calculation the score card is a
+one-line preview, centred when the desktop grid stretches it. After calculation the card ends with
+a single full-width "Compare with V9 reference data" button below the visible limits. Comparison
+uses one searchable subfield picker grouped by field (typing a field name lists its subfields);
+the bar area is not reserved until a subfield is chosen. Component values show numbers only.
+Global link colour applies only to plain links (`a:not(:where([data-slot]))`), never to Nuxt UI
+buttons rendered as anchors.

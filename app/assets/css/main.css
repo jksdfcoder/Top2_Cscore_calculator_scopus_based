@@ -55,7 +55,7 @@ body {
   background: var(--color-gold-200);
   color: var(--color-forest-950);
 }
-a {
+a:not(:where([data-slot])) {
   color: var(--ui-primary);
   text-underline-offset: 0.2em;
 }
@@ -63,7 +63,7 @@ button.text-secondary:hover {
   color: var(--ui-secondary);
   text-decoration: underline;
 }
-a:hover,
+a:not(:where([data-slot])):hover,
 p a,
 li a {
   text-decoration: underline;
@@ -329,12 +329,11 @@ h1 em {
   color: var(--ui-text);
   font-variant-numeric: tabular-nums;
 }
-.score-terms i {
-  display: block;
-  height: 2px;
-  margin-top: 0.15rem;
-  background: var(--ui-primary);
-  transform-origin: left;
+.score-placeholder {
+  margin: auto 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ui-text-muted);
 }
 .score-note {
   font-size: 0.8rem;
@@ -690,14 +689,10 @@ figcaption {
   gap: 0.75rem;
   margin-top: 2rem;
 }
-.pick-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+.subfield-pick {
+  width: 100%;
+  min-height: 2.75rem;
   margin-bottom: 1rem;
-}
-.pick-row > * {
-  min-width: 0;
 }
 .fine-print {
   max-width: 68ch;
@@ -860,8 +855,7 @@ figcaption {
 @media print {
   .site-header,
   .hero .steps,
-  .chapter-actions,
-  .pick-row {
+  .chapter-actions {
     display: none;
   }
 }
@@ -974,17 +968,6 @@ figcaption {
 #comparison {
   grid-area: comparison;
   container: comparison / inline-size;
-}
-.pick-row {
-  grid-template-columns: minmax(0, 1fr);
-}
-.pick-row button {
-  min-height: 2.75rem;
-}
-@container comparison (min-width: 28rem) {
-  .pick-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 .self-control {
   display: flex;

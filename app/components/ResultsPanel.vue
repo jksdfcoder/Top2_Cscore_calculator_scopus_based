@@ -24,19 +24,18 @@ const tabs = [
   { label: 'Single year · 2025', value: 'single-year' },
 ]
 const data = ref<ComparisonData | null>(null)
-const field = ref<string>()
 const subfieldName = ref<string>()
 onMounted(async () => {
   data.value = (await import('../../public/reference/v9/comparison.json')).default
 })
-watch(field, () => {
-  subfieldName.value = undefined
-})
-const fieldNames = computed(() => data.value?.scopes.career.fields.map((f) => f.name) ?? [])
-const subfieldNames = computed(
-  () =>
-    data.value?.scopes.career.subfields.filter((s) => s.field === field.value).map((s) => s.name) ??
-    [],
+// One searchable list grouped by field; typing a field name also matches its subfields.
+const subfieldGroups = computed(() =>
+  (data.value?.scopes.career.fields ?? []).map((f) => [
+    { type: 'label' as const, label: f.name, value: '', field: f.name },
+    ...data
+      .value!.scopes.career.subfields.filter((s) => s.field === f.name)
+      .map((s) => ({ label: s.name, value: s.name, field: f.name })),
+  ]),
 )
 
 const result = computed(
@@ -58,7 +57,7 @@ const peerFile = ref<({ count: number } & Record<SelfMode, PeerRow[]>) | null>(n
 const peersLoading = ref(false)
 const barFinished = ref(false)
 watch(
-  [scope, field, subfieldName, selfMode],
+  [scope, subfieldName, selfMode],
   () => {
     barFinished.value =
       import.meta.client && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -108,9 +107,7 @@ const compact = (rank: number) =>
   rank >= 1000 ? `${Math.round(rank / 100) / 10}k`.replace('.0k', 'k') : String(Math.round(rank))
 
 const standing = computed(() => {
-  const sub = data.value?.scopes[scope.value].subfields.find(
-    (s) => s.field === field.value && s.name === subfieldName.value,
-  )
+  const sub = data.value?.scopes[scope.value].subfields.find((s) => s.name === subfieldName.value)
   if (!data.value || !sub || !result.value) return null
   const count = sub.authors
   const c = result.value.cScore
@@ -298,22 +295,18 @@ function download(kind: 'json' | 'csv') {
     <div v-if="result" class="result-grid">
       <div id="comparison">
         <h3 class="result-label">Choose a comparison subfield</h3>
-        <div class="pick-row">
-          <USelectMenu
-            v-model="field"
-            :items="fieldNames"
-            :disabled="!data"
-            placeholder="Comparison field"
-            aria-label="Comparison field"
-          />
-          <USelectMenu
-            v-model="subfieldName"
-            :items="subfieldNames"
-            :disabled="!field"
-            placeholder="Comparison subfield"
-            aria-label="Comparison subfield"
-          />
-        </div>
+        <USelectMenu
+          v-model="subfieldName"
+          :items="subfieldGroups"
+          value-key="value"
+          :filter-fields="['label', 'field']"
+          :search-input="{ placeholder: 'Type a subfield or field…' }"
+          :disabled="!data"
+          placeholder="Search subfields, e.g. Epidemiology"
+          aria-label="Comparison subfield"
+          size="lg"
+          class="subfield-pick"
+        />
 
         <p class="comparison-context">
           You pick the subfield; it is not a verified official classification. This is not a rank or
@@ -330,7 +323,7 @@ function download(kind: 'json' | 'csv') {
           </p>
           <p v-if="!standing.you">{{ standing.range }}; no personal position is plotted.</p>
         </div>
-        <div class="standing-area">
+        <div v-if="subfieldName" class="standing-area">
           <div v-if="standing" class="standing">
             <div
               ref="track"
@@ -419,7 +412,7 @@ function download(kind: 'json' | 'csv') {
             </span>
           </div>
           <div v-else class="standing">
-            <div class="standing-track empty">Choose a comparison field and subfield</div>
+            <div class="standing-track empty">Loading reference authors…</div>
           </div>
         </div>
         <p v-if="standing" class="comparison-context marker-context">

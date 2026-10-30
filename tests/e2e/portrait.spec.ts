@@ -37,14 +37,10 @@ test('portrait prioritizes scores and comparison controls without hiding key lim
     await expect
       .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
       .toBe(true)
-    const field = await page
-      .getByRole('button', { name: 'Comparison field', exact: true })
-      .boundingBox()
     const subfield = await page
       .getByRole('button', { name: 'Comparison subfield', exact: true })
       .boundingBox()
-    expect(Math.round(field!.height)).toBeGreaterThanOrEqual(44)
-    if (width <= 430) expect(subfield!.y).toBeGreaterThan(field!.y)
+    expect(Math.round(subfield!.height)).toBeGreaterThanOrEqual(44)
   }
   // A narrow parent on a wide screen must stack too; viewport-only queries would miss this.
   await page.setViewportSize({ width: 1440, height: 1000 })
@@ -68,9 +64,8 @@ test('touch scroll over the reference track does not select an author; horizonta
   await page.goto('/')
   await page.getByRole('button', { name: 'Try a synthetic example' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
-  await page.getByRole('button', { name: 'Comparison field', exact: true }).click()
-  await page.getByRole('option', { name: 'Biomedical Research', exact: true }).click()
   await page.getByRole('button', { name: 'Comparison subfield', exact: true }).click()
+  await page.getByPlaceholder('Type a subfield or field…', { exact: true }).fill('Biophysics')
   await page.getByRole('option', { name: 'Biophysics', exact: true }).click()
   const track = page.locator('.standing-track')
   const slider = page.getByRole('slider', { name: 'Compare with a listed author' })

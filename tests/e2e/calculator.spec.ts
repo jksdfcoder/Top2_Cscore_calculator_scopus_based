@@ -197,14 +197,11 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
   const before = await fourResultScores(page)
   expect(before).toHaveLength(4)
 
-  const field = page.getByRole('button', { name: 'Comparison field', exact: true })
-  await expect(field).toBeEnabled()
-  await field.click()
-  await page.getByPlaceholder('Search…', { exact: true }).fill('Public Health')
-  await page.getByRole('option', { name: 'Public Health & Health Services', exact: true }).click()
   const subfield = page.getByRole('button', { name: 'Comparison subfield', exact: true })
   await expect(subfield).toBeEnabled()
   await subfield.click()
+  // Typing a field name lists that field's subfields.
+  await page.getByPlaceholder('Type a subfield or field…', { exact: true }).fill('Public Health')
   await page.getByRole('option', { name: 'Epidemiology', exact: true }).click()
   await closeOverlays(page)
 
@@ -300,10 +297,8 @@ test('standing reveals You only after the bar and peer data are ready', async ({
   await page.getByRole('button', { name: 'Try a synthetic example' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
   await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
-  await page.getByRole('button', { name: 'Comparison field', exact: true }).click()
-  await page.getByPlaceholder('Search…', { exact: true }).fill('Public Health')
-  await page.getByRole('option', { name: 'Public Health & Health Services', exact: true }).click()
   await page.getByRole('button', { name: 'Comparison subfield', exact: true }).click()
+  await page.getByPlaceholder('Type a subfield or field…', { exact: true }).fill('Epidemiology')
   await page.getByRole('option', { name: 'Epidemiology', exact: true }).click()
   await closeOverlays(page)
   const marker = page.locator('.standing-marker.you')

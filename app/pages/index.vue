@@ -196,17 +196,23 @@ const latestStatus = computed(() =>
                     </li>
                   </ul>
                   <div class="step-links">
-                    <UButton variant="link" size="sm" class="p-0" @click="guideOpen = true"
-                      >How to export three files from Scopus</UButton
-                    >
                     <UButton
-                      variant="link"
+                      :variant="files.length ? 'link' : 'solid'"
                       color="secondary"
                       size="sm"
-                      class="p-0"
+                      :class="{ 'p-0': files.length }"
                       :disabled="busy || !mounted"
                       @click="loadDemo"
                       >Try a synthetic example</UButton
+                    >
+                    <UButton
+                      :variant="files.length ? 'link' : 'outline'"
+                      :color="files.length ? 'primary' : 'neutral'"
+                      size="sm"
+                      :class="{ 'p-0': files.length }"
+                      aria-label="How to export three files from Scopus"
+                      @click="guideOpen = true"
+                      >How to export</UButton
                     >
                     <UButton
                       v-if="busy && !files.length"
@@ -286,7 +292,7 @@ const latestStatus = computed(() =>
                 <h2 id="score-heading" aria-label="C-score">
                   C-score <span class="estimate-label">Estimate</span>
                 </h2>
-                <div class="self-control">
+                <div v-if="analysis" class="self-control">
                   <span class="self-caption" aria-hidden="true">Self-citations</span>
                   <UTabs
                     v-model="selfMode"
@@ -304,69 +310,86 @@ const latestStatus = computed(() =>
                   </UTabs>
                 </div>
               </div>
-              <dl :key="runId" class="scores">
-                <div v-for="s in scores" :key="s.scope" class="score">
-                  <dt>{{ s.label }}</dt>
-                  <dd>
-                    <span
-                      class="score-value"
-                      :class="{ empty: s.state === 'empty', incomplete: s.state === 'incomplete' }"
-                      ><ChangingNumber
-                        :value="s.state === 'ready' ? s.value : undefined"
-                        :fallback="s.state === 'incomplete' ? 'Incomplete' : '—'"
-                    /></span>
-                    <span class="score-note">{{ s.note }}</span>
-                    <ol v-if="s.state === 'ready'" class="score-terms">
-                      <li
-                        v-for="(p, i) in s.parts"
-                        :key="p.k"
-                        :style="{ animationDelay: `${200 + i * 90}ms` }"
-                      >
-                        <UTooltip
-                          :text="metricDescriptions[p.k]"
-                          :delay-duration="200"
-                          :ui="{
-                            content: 'h-auto max-w-72 whitespace-normal',
-                            text: 'whitespace-normal',
-                          }"
-                        >
-                          <button
-                            type="button"
-                            class="score-term"
-                            :aria-label="`${p.k}: ${metricLabels[p.k]}, normalized contribution ${p.v.toFixed(3)}`"
-                          >
-                            {{ p.k }} <b><ChangingNumber :value="p.v" /></b>
-                            <i :style="{ width: `${p.v * 100}%` }" />
-                          </button>
-                          <template #content>
-                            <div class="max-w-72 whitespace-normal">
-                              <p>{{ metricDescriptions[p.k] }}</p>
-                              <p class="mt-1 text-muted">
-                                Shown here as a normalized c-score contribution.
-                              </p>
-                            </div>
-                          </template>
-                        </UTooltip>
-                      </li>
-                    </ol>
-                  </dd>
-                </div>
-              </dl>
-              <div class="score-foot">
-                <span v-if="isDemo">Synthetic example · not a real researcher’s result</span>
-                <span v-else>Calculated estimate · not an official result</span>
-                <span class="score-links">
-                  <a v-if="hasReady" href="#results">Compare with V9 ↓</a>
-                  <UButton variant="link" size="xs" class="p-0" @click="methodOpen = true"
-                    >Methodology</UButton
-                  >
-                </span>
-              </div>
-              <p class="score-context">
-                Combines eligible publications across research areas. Profile errors, incomplete
-                exports and citation dates affect accuracy. Citation impact alone does not measure
-                research quality.
+              <p v-if="!analysis" class="score-placeholder">
+                Your career and single-year c-scores appear here.
+                <UButton variant="link" size="xs" class="p-0" @click="methodOpen = true"
+                  >Methodology</UButton
+                >
               </p>
+              <template v-else>
+                <dl :key="runId" class="scores">
+                  <div v-for="s in scores" :key="s.scope" class="score">
+                    <dt>{{ s.label }}</dt>
+                    <dd>
+                      <span
+                        class="score-value"
+                        :class="{
+                          empty: s.state === 'empty',
+                          incomplete: s.state === 'incomplete',
+                        }"
+                        ><ChangingNumber
+                          :value="s.state === 'ready' ? s.value : undefined"
+                          :fallback="s.state === 'incomplete' ? 'Incomplete' : '—'"
+                      /></span>
+                      <span class="score-note">{{ s.note }}</span>
+                      <ol v-if="s.state === 'ready'" class="score-terms">
+                        <li
+                          v-for="(p, i) in s.parts"
+                          :key="p.k"
+                          :style="{ animationDelay: `${200 + i * 90}ms` }"
+                        >
+                          <UTooltip
+                            :text="metricDescriptions[p.k]"
+                            :delay-duration="200"
+                            :ui="{
+                              content: 'h-auto max-w-72 whitespace-normal',
+                              text: 'whitespace-normal',
+                            }"
+                          >
+                            <button
+                              type="button"
+                              class="score-term"
+                              :aria-label="`${p.k}: ${metricLabels[p.k]}, normalized contribution ${p.v.toFixed(3)}`"
+                            >
+                              {{ p.k }} <b><ChangingNumber :value="p.v" /></b>
+                            </button>
+                            <template #content>
+                              <div class="max-w-72 whitespace-normal">
+                                <p>{{ metricDescriptions[p.k] }}</p>
+                                <p class="mt-1 text-muted">
+                                  Shown here as a normalized c-score contribution.
+                                </p>
+                              </div>
+                            </template>
+                          </UTooltip>
+                        </li>
+                      </ol>
+                    </dd>
+                  </div>
+                </dl>
+                <div class="score-foot">
+                  <span v-if="isDemo">Synthetic example · not a real researcher’s result</span>
+                  <span v-else>Calculated estimate · not an official result</span>
+                  <span class="score-links">
+                    <UButton variant="link" size="xs" class="p-0" @click="methodOpen = true"
+                      >Methodology</UButton
+                    >
+                  </span>
+                </div>
+                <p class="score-context">
+                  Combines eligible publications across research areas. Profile errors, incomplete
+                  exports and citation dates affect accuracy. Citation impact alone does not measure
+                  research quality.
+                </p>
+                <UButton
+                  v-if="hasReady"
+                  to="#results"
+                  size="lg"
+                  block
+                  trailing-icon="i-lucide-arrow-down"
+                  >Compare with V9 reference data</UButton
+                >
+              </template>
             </section>
           </div>
         </section>
