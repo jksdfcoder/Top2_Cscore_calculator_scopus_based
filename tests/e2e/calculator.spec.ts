@@ -366,3 +366,30 @@ test('score components explain their indicators on hover and keyboard focus', as
   await page.getByRole('button', { name: /^Hm:/ }).first().focus()
   await expect(page.getByRole('tooltip')).toContainText(definitions.Hm)
 })
+
+test('footer disclosure expands and returns smoothly with visible reference attribution', async ({
+  page,
+}) => {
+  await page.goto('/')
+  await expect(page.getByRole('heading', { name: 'C-score', exact: true })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Back to top' })).toHaveCount(0)
+  const footer = page.getByRole('contentinfo')
+  await expect(
+    footer.getByRole('link', { name: 'V9 reference data', exact: true }),
+  ).toHaveAttribute('href', 'https://doi.org/10.17632/btchxktzyw.9')
+  const summary = footer.locator('summary')
+  await summary.scrollIntoViewIfNeeded()
+  const before = await page.evaluate(() => window.scrollY)
+  const notice = footer.locator('details')
+  const closedHeight = await notice.evaluate((el) => el.getBoundingClientRect().height)
+  await summary.click()
+  await expect.poll(() => notice.evaluate((el) => el.style.height)).toBe('')
+  await expect(notice).toHaveAttribute('open', '')
+  expect(await notice.evaluate((el) => el.getBoundingClientRect().height)).toBeGreaterThan(
+    closedHeight + 100,
+  )
+  expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(before)
+  await summary.click()
+  await expect(notice).not.toHaveAttribute('open')
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeCloseTo(before, 0)
+})

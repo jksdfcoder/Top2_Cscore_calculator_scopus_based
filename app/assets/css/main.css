@@ -748,8 +748,14 @@ figcaption {
   outline: 2px solid var(--ui-primary);
   outline-offset: 4px;
 }
-.data-notice[open] summary {
-  margin-bottom: 1rem;
+.data-notice {
+  overflow-anchor: none;
+}
+.data-notice-content {
+  padding-top: 1rem;
+}
+.reference-licence {
+  color: var(--ui-text);
 }
 .skip-link {
   position: fixed;
@@ -830,8 +836,7 @@ figcaption {
   .site-header,
   .hero .steps,
   .chapter-actions,
-  .pick-row,
-  .site-footer > a {
+  .pick-row {
     display: none;
   }
 }

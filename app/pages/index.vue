@@ -141,7 +141,7 @@ const latestStatus = computed(() =>
 
       <main>
         <section class="hero" aria-labelledby="page-title">
-          <h1 id="page-title">Your c-score, <em>calculated on your device.</em></h1>
+          <h1 id="page-title">C-score, <em>calculated on your device.</em></h1>
           <div class="hero-grid">
             <ol id="import" class="steps">
               <li class="step" :class="{ done: files.length }">
@@ -265,7 +265,7 @@ const latestStatus = computed(() =>
 
             <section id="score" class="score-panel" aria-labelledby="score-heading">
               <div class="score-panel-head">
-                <h2 id="score-heading">Your c-score</h2>
+                <h2 id="score-heading">C-score</h2>
                 <UTabs
                   v-model="selfMode"
                   :items="selfItems"
@@ -454,7 +454,14 @@ const latestStatus = computed(() =>
               rel="noopener noreferrer"
               >MIT</a
             >
-            · V9 reference data:
+          </p>
+          <p class="reference-licence">
+            <a
+              href="https://doi.org/10.17632/btchxktzyw.9"
+              target="_blank"
+              rel="noopener noreferrer"
+              >V9 reference data</a
+            >:
             <a
               href="https://creativecommons.org/licenses/by-nc/3.0/"
               target="_blank"
@@ -462,8 +469,7 @@ const latestStatus = computed(() =>
               >CC BY-NC 3.0</a
             >
           </p>
-          <details class="data-notice">
-            <summary>Data use, privacy &amp; licences</summary>
+          <DataNotice>
             <h2>About this open-source tool</h2>
             <p>
               An independent, open-source c-score calculator, provided in a personal capacity for
@@ -538,9 +544,8 @@ const latestStatus = computed(() =>
               >. Provided “as is”, without warranty to the extent permitted by law. Verify results
               before relying on them.
             </p>
-          </details>
+          </DataNotice>
         </div>
-        <a href="#page-title">Back to top</a>
       </footer>
     </div>
   </div>
