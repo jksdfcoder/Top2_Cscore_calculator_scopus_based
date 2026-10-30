@@ -736,6 +736,21 @@ figcaption {
 .disclaimer p + p {
   margin-top: 0.5rem;
 }
+.data-notice {
+  margin-top: 0.75rem;
+}
+.data-notice summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--ui-text);
+}
+.data-notice summary:focus-visible {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: 4px;
+}
+.data-notice[open] summary {
+  margin-bottom: 1rem;
+}
 .skip-link {
   position: fixed;
   left: 1rem;

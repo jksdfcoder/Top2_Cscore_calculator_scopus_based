@@ -436,70 +436,109 @@ const latestStatus = computed(() =>
 
       <footer class="site-footer">
         <div class="disclaimer">
-          <h2>About this open-source tool</h2>
           <p>
-            An independent, open-source c-score calculator, provided in a personal capacity.
+            Independent, open-source research tool. Calculated estimates, not official
+            Stanford/Elsevier results. Imported files stay in your browser.
+          </p>
+          <p>
             <a
               href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based"
               target="_blank"
               rel="noopener noreferrer"
-              >View the source on GitHub</a
-            >. Not an official service of, or endorsed by, Stanford University, Elsevier, Scopus or
-            HKU.
-          </p>
-          <p>
-            Results are calculated estimates from your exports, not official results or confirmation
-            of Top 2% inclusion. The example uses synthetic data. Field and subfield are
-            user-selected comparisons, not official classifications. Snapshot dates, incomplete
-            inputs, record updates and implementation differences may affect accuracy. Do not use
-            citation metrics alone for hiring, promotion or funding decisions.
-          </p>
-          <h2>Methodology and reference data</h2>
-          <p>
-            J. P. A. Ioannidis,
-            <a
-              href="https://doi.org/10.17632/btchxktzyw.9"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Updated science-wide author databases of standardized citation indicators, V9</a
-            >. V9 uses the 1 August 2026 Scopus snapshot, with citations through 2025. Our
-            independently implemented calculator uses its normalization parameters; reference values
-            and author comparisons are extracted or transformed from the published dataset.
-            <button type="button" class="footer-method" @click="methodOpen = true">
-              Read our methodology</button
-            >.
-          </p>
-          <h2>Privacy</h2>
-          <p>
-            This application does not upload, collect or persistently store your imported data.
-            Files and calculations stay in your browser; downloads are created on your device. No
-            analytics or tracking is included in the application. Hosting providers may process
-            ordinary connection logs, such as IP addresses. Use only exports you are authorized to
-            access and process under your Scopus subscription or applicable terms.
-          </p>
-          <h2>Licences</h2>
-          <p>
-            Application source code:
+              >GitHub</a
+            >
+            · Code:
             <a
               href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based/blob/main/LICENSE"
               target="_blank"
               rel="noopener noreferrer"
               >MIT</a
-            >. Official V9 reference data and its derivatives:
+            >
+            · V9 reference data:
             <a
               href="https://creativecommons.org/licenses/by-nc/3.0/"
               target="_blank"
               rel="noopener noreferrer"
               >CC BY-NC 3.0</a
-            >, attributed to J. P. A. Ioannidis, for non-commercial use under that licence. The code
-            licence does not grant rights to Scopus exports or override their terms. See
-            <a
-              href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based/blob/main/THIRD_PARTY_NOTICES.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              >data attribution and third-party notices</a
-            >. Provided as is, without warranty of accuracy or completeness.
+            >
           </p>
+          <details class="data-notice">
+            <summary>Data use, privacy &amp; licences</summary>
+            <h2>About this open-source tool</h2>
+            <p>
+              An independent, open-source c-score calculator, provided in a personal capacity for
+              personal, non-commercial research and informational use.
+              <a
+                href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View the source on GitHub</a
+              >. Not an official service of, or endorsed by, Stanford University, Elsevier, Scopus
+              or HKU.
+            </p>
+            <p>
+              Results are calculated estimates from your exports, not official results or
+              confirmation of Top 2% inclusion. The example uses synthetic data. Field and subfield
+              are user-selected comparisons, not official classifications. Snapshot dates,
+              incomplete inputs, record updates and implementation differences may affect accuracy.
+              Do not use citation metrics alone for hiring, promotion or funding decisions.
+            </p>
+            <h2>Methodology and reference data</h2>
+            <p>
+              J. P. A. Ioannidis,
+              <a
+                href="https://doi.org/10.17632/btchxktzyw.9"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Updated science-wide author databases of standardized citation indicators, V9</a
+              >. V9 uses the 1 August 2026 Scopus snapshot, with citations through 2025. Our
+              independently implemented calculator uses its normalization parameters; reference
+              values and author comparisons are extracted or transformed from the published dataset.
+              <button type="button" class="footer-method" @click="methodOpen = true">
+                Read our methodology</button
+              >.
+            </p>
+            <h2>Privacy</h2>
+            <p>
+              This application does not upload, collect or persistently store your imported data.
+              Files and calculations stay in your browser; downloads are created on your device. No
+              analytics or tracking is included in the application. Hosting providers may process
+              ordinary connection logs, such as IP addresses. Use only exports you are authorized to
+              access and process under your Scopus subscription or applicable terms.
+            </p>
+            <h2>Licences</h2>
+            <p>
+              Application source code:
+              <a
+                href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based/blob/main/LICENSE"
+                target="_blank"
+                rel="noopener noreferrer"
+                >MIT</a
+              >. Official V9 reference data and its derivatives:
+              <a
+                href="https://creativecommons.org/licenses/by-nc/3.0/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >CC BY-NC 3.0</a
+              >, attributed to J. P. A. Ioannidis, for non-commercial use under that licence. The
+              code licence does not grant rights to third-party data or override their terms. Only
+              import data you are authorized to use, and follow your institution’s subscription
+              agreement and applicable data-provider terms, including the
+              <a
+                href="https://www.elsevier.com/legal/elsevier-website-terms-and-conditions/elsevier-scopus-terms-and-conditions"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Scopus terms</a
+              >. Changes to the V9 reference data are documented in the repository. See
+              <a
+                href="https://github.com/jksdfcoder/Top2_Cscore_calculator_scopus_based/blob/main/THIRD_PARTY_NOTICES.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                >data attribution and third-party notices</a
+              >. Provided “as is”, without warranty to the extent permitted by law. Verify results
+              before relying on them.
+            </p>
+          </details>
         </div>
         <a href="#page-title">Back to top</a>
       </footer>

@@ -319,11 +319,19 @@ test('score changes briefly show directional arrows and footer separates code fr
   await expect(page.locator('#score .number-change')).toHaveCount(0)
   const footer = page.getByRole('contentinfo')
   await expect(footer).toContainText('open-source')
+  const notice = footer.locator('details')
+  await expect(notice).not.toHaveAttribute('open')
+  await notice.locator('summary').focus()
+  await page.keyboard.press('Enter')
+  await expect(notice).toHaveAttribute('open', '')
+  await expect(notice.getByRole('heading', { name: 'Privacy', exact: true })).toBeVisible()
+  await expect(notice).toContainText('personal, non-commercial research')
+  await expect(notice.getByRole('link', { name: 'Scopus terms', exact: true })).toBeVisible()
   await expect(footer).toContainText(
     'does not upload, collect or persistently store your imported data',
   )
   await expect(footer).toContainText('CC BY-NC 3.0')
-  await expect(footer.getByRole('link', { name: 'MIT', exact: true })).toBeVisible()
+  await expect(footer.getByRole('link', { name: 'MIT', exact: true }).first()).toBeVisible()
   await page.setViewportSize({ width: 390, height: 844 })
   await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
   await expect
