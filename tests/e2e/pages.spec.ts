@@ -18,7 +18,7 @@ test('Pages project path loads the calculator, demo, and author comparisons', as
       badAssets.push(path)
   })
   await page.goto(prefix)
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Your c-score')
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('C-score')
   await page.getByRole('button', { name: 'Try a synthetic example' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
   await page.getByRole('button', { name: 'Field', exact: true }).click()
