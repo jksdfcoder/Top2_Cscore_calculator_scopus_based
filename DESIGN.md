@@ -9,3 +9,18 @@ Palette: light warm gray content column (`#f3f3f0`) on a barely deeper page edge
 Use Nuxt UI controls and the system sans stack. Scores use tabular numerals: 3 decimals in the hero, 6 in the breakdown table. Only the score panel is a card. Do not add a sidebar, gradients, decorative cards or icons beside headings. Graphical data always has an equivalent table. Warnings name the missing input and the next action.
 
 Short disclaimers sit where they matter: "Calculated estimate · not an official result" under the score, local processing in the drop zone, "does not confirm official inclusion" under the bar, and the full limitations, attribution and licences as unabridged small print in the page footer. Under each score, the calculation plays formula, then six labelled contributions (indicator, value, bar), then the total.
+
+
+## Interpretation review — 30 October 2026
+
+The approved reference-comparison refinement takes precedence over the earlier standing-bar copy.
+Use “Explore V9 reference data” and “Comparison field/subfield”. Display author-level scope,
+input/snapshot limitations and the distinction from research quality beside the score. Show
+“Estimate” in the score heading and label synthetic examples explicitly. Classification and
+non-inclusion warnings remain visible above the reference graph. Historical listed-author ranks
+are labelled V9; never display an interpolated personal integer rank. Interpolate illustrative
+positions only between available reference points (published percentile points with self-citations,
+sampled listed-author points without); do not extrapolate to first place or invent a zero endpoint.
+Show percentile bands only with self-citations and explicitly explain their absence without.
+The derived top-2% threshold is a historical benchmark, not an eligibility decision. Methods
+explain both official selection routes and incomplete verification of the V9 production pipeline.

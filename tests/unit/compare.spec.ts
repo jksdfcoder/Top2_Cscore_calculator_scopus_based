@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { compare, percentileBand, type ComparisonData } from '../../app/lib/cscore'
+import {
+  compare,
+  illustrativePosition,
+  percentileBand,
+  type ComparisonData,
+} from '../../app/lib/cscore'
 import data from '../../public/reference/v9/comparison.json'
 
 const reference = data as ComparisonData
@@ -33,5 +38,26 @@ describe('official subfield comparison', () => {
     expect(r.top2Gap).toBeCloseTo(3.5 - epi.top2['without-self']!, 12)
     expect(r.top100k).toBe(reference.scopes.career.top100k['without-self'])
     expect(r.band).toBeNull()
+  })
+})
+
+describe('illustrative reference positions', () => {
+  const points: [number, number][] = [
+    [4, 10],
+    [2, 1000],
+  ]
+  it('does not invent a first place or a zero-score endpoint outside the reference range', () => {
+    expect(illustrativePosition(5, points)).toBeNull()
+    expect(illustrativePosition(0, points)).toBeNull()
+    expect(illustrativePosition(3, [])).toBeNull()
+  })
+  it('interpolates only between available points and preserves their endpoints', () => {
+    expect(illustrativePosition(3, points)).toBeCloseTo(100)
+    expect(illustrativePosition(4, points)).toBeCloseTo(10)
+    expect(illustrativePosition(2, points)).toBeCloseTo(1000)
+    expect(points).toEqual([
+      [4, 10],
+      [2, 1000],
+    ])
   })
 })

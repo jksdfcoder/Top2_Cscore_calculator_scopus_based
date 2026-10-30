@@ -928,3 +928,38 @@ figcaption {
     opacity: 0;
   }
 }
+
+/* Interpretation stays visible beside the result it qualifies. */
+.hero-purpose {
+  max-width: 72ch;
+  margin: -0.75rem 0 1.75rem;
+  font-size: 0.9375rem;
+  color: var(--ui-text-muted);
+}
+.estimate-label {
+  margin-left: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--ui-text-muted);
+}
+.score-context,
+.comparison-context,
+.reference-summary {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ui-text-muted);
+}
+.score-context {
+  border-top: 1px solid var(--ui-border);
+  padding-top: 1rem;
+  margin: 1rem 0 0;
+}
+.comparison-context {
+  margin: 1rem 0;
+}
+.reference-summary {
+  margin: 1rem 0 0.75rem;
+}
+.reference-summary p + p {
+  margin-top: 0.5rem;
+}

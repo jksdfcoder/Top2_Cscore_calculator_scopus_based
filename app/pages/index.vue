@@ -142,6 +142,11 @@ const latestStatus = computed(() =>
       <main>
         <section class="hero" aria-labelledby="page-title">
           <h1 id="page-title">C-score, <em>calculated on your device.</em></h1>
+          <p class="hero-purpose">
+            An independent estimator of author-level citation impact from your Scopus exports.
+            Explore published V9 reference data; this tool does not determine official Top 2%
+            inclusion.
+          </p>
           <div class="hero-grid">
             <ol id="import" class="steps">
               <li class="step" :class="{ done: files.length }">
@@ -265,7 +270,9 @@ const latestStatus = computed(() =>
 
             <section id="score" class="score-panel" aria-labelledby="score-heading">
               <div class="score-panel-head">
-                <h2 id="score-heading">C-score</h2>
+                <h2 id="score-heading" aria-label="C-score">
+                  C-score <span class="estimate-label">Estimate</span>
+                </h2>
                 <UTabs
                   v-model="selfMode"
                   :items="selfItems"
@@ -323,7 +330,9 @@ const latestStatus = computed(() =>
                 </div>
               </dl>
               <div class="score-foot">
-                <span v-if="isDemo">Synthetic example · author ID 123</span>
+                <span v-if="isDemo"
+                  >Synthetic example · author ID 123 · not a real researcher’s result</span
+                >
                 <span v-else>Calculated estimate · not an official result</span>
                 <span class="score-links">
                   <a v-if="hasReady" href="#results">Indicators &amp; comparison ↓</a>
@@ -332,6 +341,11 @@ const latestStatus = computed(() =>
                   >
                 </span>
               </div>
+              <p class="score-context">
+                Combines eligible publications across research areas, not just the selected
+                subfield. Accuracy depends on your Scopus profile, export completeness and citation
+                dates. Citation impact is not a complete assessment of research quality.
+              </p>
             </section>
           </div>
         </section>
@@ -421,14 +435,45 @@ const latestStatus = computed(() =>
             <p>
               The indicators are total citations (NC), h-index (H), coauthorship-adjusted hm-index
               (Hm), and citations to papers as single (NCS), single or first (NCSF), and single,
-              first or last author (NCSFL). Each maxlog is the largest value across all Scopus
-              authors, so the formula is the same in every field. Field and subfield only choose
-              what your score is compared with.
+              first or last author (NCSFL). Each maxlog is a fixed V9 maximum of ln(1 + indicator)
+              across the reference author population, separately for each time scope and
+              self-citation setting. Indicators combine eligible publications across research areas
+              by Scopus Author ID; scores are not split or weighted by subfield. Choosing a
+              comparison subfield does not change your score.
             </p>
             <p>
               Career uses citations received in 1996–2025; single year uses citations received in
               2025. Excluding self-citations removes any citation sharing an author with the cited
-              paper.
+              paper. These are citation-received windows, not publication-year-only filters. Current
+              exports cannot recreate the frozen 1 August 2026 Scopus snapshot used for V9.
+            </p>
+            <p>
+              In the published methodology, the primary subfield is the one with the largest share
+              of an author’s classified papers. We do not reproduce or verify that assignment. A
+              primary subfield may not fully describe an interdisciplinary researcher. Profile
+              merges, splits, missing or misassigned papers and later indexing changes can affect
+              results. Confirm that any combined Author IDs belong to the same person.
+            </p>
+            <p>
+              This is an independent implementation, not a verified reproduction of the complete V9
+              production pipeline. Reference percentiles are available only when including
+              self-citations; excluding-self comparisons use sampled listed authors instead. The
+              published selection uses either the all-science top 100,000 or the top 2% in the
+              primary subfield, with or without self-citations. This tool does not verify either
+              selection route. Do not use citation metrics alone for hiring, promotion or funding.
+              <a
+                href="https://doi.org/10.17632/btchxktzyw.9"
+                target="_blank"
+                rel="noopener noreferrer"
+                >V9 source</a
+              >
+              ·
+              <a
+                href="https://www.elsevier.support/scopus/answer/topcited-scientists-database-faqs"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Official methodology FAQ</a
+              >.
             </p>
           </div>
         </template>
@@ -439,7 +484,8 @@ const latestStatus = computed(() =>
           <div class="footer-overview">
             <p class="footer-description">
               A personal, open-source research project. Calculated estimates, not official
-              Stanford/Elsevier results. Imported files stay in your browser.
+              Stanford/Elsevier results. Not affiliated with or endorsed by Stanford University or
+              Elsevier. Imported files are processed locally in your browser.
             </p>
             <div class="footer-links">
               <p>
@@ -491,8 +537,10 @@ const latestStatus = computed(() =>
               Results are calculated estimates from your exports, not official results or
               confirmation of Top 2% inclusion. The example uses synthetic data. Field and subfield
               are user-selected comparisons, not official classifications. Snapshot dates,
-              incomplete inputs, record updates and implementation differences may affect accuracy.
-              Do not use citation metrics alone for hiring, promotion or funding decisions.
+              incomplete inputs, author-profile merges or splits, misassigned publications, record
+              updates and implementation differences may affect accuracy. Interdisciplinary work may
+              not be fully represented by a single primary subfield. Do not use citation metrics
+              alone for hiring, promotion or funding decisions.
             </p>
             <h2>Methodology and reference data</h2>
             <p>

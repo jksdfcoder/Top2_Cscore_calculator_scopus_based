@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   compare,
+  illustrativePosition,
   createReport,
   metricsCsv,
   metricNames,
@@ -50,7 +51,6 @@ const issue = computed(
 )
 const number = (value: number, places = 0) =>
   value.toLocaleString('en', { maximumFractionDigits: places })
-const signed = (value: number) => `${value >= 0 ? '+' : '−'}${Math.abs(value).toFixed(3)}`
 
 // [subfield rank, c, name, institution, NC, H, Hm, NCS, NCSF, NCSFL]
 type PeerRow = [number, number, string, string, number, number, number, number, number, number]
@@ -121,26 +121,22 @@ const standing = computed(() => {
   const align = (rank: number) => ({
     transform: `translateX(${ratio(rank) < 0.1 ? -4 : ratio(rank) > 0.9 ? -96 : -50}%)`,
   })
-  // Your rank: interpolated in log rank between listed authors, else between the published
-  // all-author percentiles (with self-citations only). Without either, it is not placed.
-  const points: [number, number][] = peers.value.map((p) => [p[1], p[0]])
-  if (selfMode.value === 'with-self')
-    points.push(
-      ...percentiles.map((p): [number, number] => [sub.c[p], (1 - Number(p) / 100) * count]),
-      [0, count],
-    )
+  // Illustration only: interpolate within published reference points, never extrapolate
+  // to #1 or invent a zero-score endpoint. This is not a personal rank estimate.
+  const points: [number, number][] =
+    selfMode.value === 'with-self'
+      ? percentiles.map((p) => [sub.c[p], (1 - Number(p) / 100) * count])
+      : peers.value.map((p) => [p[1], p[0]])
   points.sort((a, b) => b[0] - a[0])
-  const listedFloor = peers.value.at(-1)?.[1] ?? Infinity
-  let you: { rank: number; listed: boolean } | null = null
-  if (points.length && c >= points[0]![0]) you = { rank: 1, listed: true }
-  for (let i = 1; !you && i < points.length; i++) {
-    const [hiC, hiRank] = points[i - 1]!
-    const [loC, loRank] = points[i]!
-    if (c < loC || loRank < hiRank) continue
-    const t = hiC === loC ? 0 : (hiC - c) / (hiC - loC)
-    const rank = Math.exp(Math.log(hiRank) + t * (Math.log(loRank) - Math.log(hiRank)))
-    you = { rank, listed: c >= listedFloor }
-  }
+  const position = illustrativePosition(c, points)
+  const you = position === null ? null : { rank: position }
+  const range = points.length
+    ? c > points[0]![0]
+      ? 'Above the available reference range'
+      : c < points.at(-1)![0]
+        ? 'Below the available reference range'
+        : 'Within the available reference range'
+    : 'No reference position available'
   const band = placed.band
     ?.replace(/^Between the (\w+) and (\w+) percentiles$/, '$1–$2 percentile')
     .replace(/^At or above/, '≥')
@@ -148,7 +144,7 @@ const standing = computed(() => {
   const minors = majors
     .flatMap((d) => [2, 3, 4, 5, 6, 7, 8, 9].map((m) => m * d))
     .filter((r) => r < count)
-  return { sub, count, c, placed, top2Rank, ratio, at, align, you, band, majors, minors }
+  return { sub, count, c, placed, top2Rank, ratio, at, align, you, range, band, majors, minors }
 })
 
 const blockRatio = ref(0)
@@ -187,7 +183,7 @@ const peerContributions = computed(() => {
 })
 const peerText = computed(() =>
   peer.value && standing.value
-    ? `${peer.value[2]}, ${peer.value[3]} · rank ${peer.value[0].toLocaleString('en')} of ${standing.value.count.toLocaleString('en')} · ${peer.value[1].toFixed(3)}`
+    ? `${peer.value[2]}, ${peer.value[3]} · V9 rank ${peer.value[0].toLocaleString('en')} of ${standing.value.count.toLocaleString('en')} · ${peer.value[1].toFixed(3)}`
     : '',
 )
 const track = ref<HTMLElement>()
@@ -258,13 +254,13 @@ function download(kind: 'json' | 'csv') {
           null,
           2,
         )
-      : metricsCsv(props.analysis)
+      : metricsCsv(props.analysis, props.isDemo)
   const url = URL.createObjectURL(
     new Blob([body], { type: kind === 'json' ? 'application/json' : 'text/csv' }),
   )
   const link = document.createElement('a')
   link.href = url
-  link.download = `cscore-v9-${props.isDemo ? 'synthetic-' : ''}results.${kind}`
+  link.download = `cscore-v9-${props.isDemo ? 'synthetic-' : ''}estimates.${kind}`
   link.click()
   URL.revokeObjectURL(url)
 }
@@ -273,8 +269,11 @@ function download(kind: 'json' | 'csv') {
 <template>
   <section id="results" aria-labelledby="results-heading" class="chapter reveal">
     <div class="chapter-head">
-      <h2 id="results-heading">Score and standing.</h2>
-      <p>{{ selfLabel(selfMode) }}.</p>
+      <h2 id="results-heading">Explore V9 reference data</h2>
+      <p>
+        {{ selfLabel(selfMode) }}. Historical reference: citations through 2025 · Scopus snapshot 1
+        August 2026.
+      </p>
     </div>
     <UTabs v-model="scope" :items="tabs" :content="false" class="max-w-sm" />
 
@@ -283,11 +282,12 @@ function download(kind: 'json' | 'csv') {
         <h3 class="result-label">What drives it</h3>
         <div class="legend">
           <span class="legend-row"
-            ><span class="swatch you" />You · {{ result.cScore.toFixed(3) }}</span
+            ><span class="swatch you" />{{ isDemo ? 'Synthetic estimate' : 'Your estimate' }} ·
+            {{ result.cScore.toFixed(3) }}</span
           >
           <span class="legend-row"
             ><template v-if="peer"
-              ><span class="swatch peer" /><strong>{{ peer[2] }}</strong> · #{{
+              ><span class="swatch peer" /><strong>{{ peer[2] }}</strong> · V9 #{{
                 peer[0].toLocaleString('en')
               }}
               · {{ peer[1].toFixed(3) }}</template
@@ -333,24 +333,39 @@ function download(kind: 'json' | 'csv') {
       </div>
 
       <div id="comparison">
-        <h3 class="result-label">Where it stands</h3>
+        <h3 class="result-label">Exploratory comparison</h3>
         <div class="pick-row">
           <USelectMenu
             v-model="field"
             :items="fieldNames"
             :disabled="!data"
-            placeholder="Field"
-            aria-label="Field"
+            placeholder="Comparison field"
+            aria-label="Comparison field"
           />
           <USelectMenu
             v-model="subfieldName"
             :items="subfieldNames"
             :disabled="!field"
-            placeholder="Subfield"
-            aria-label="Subfield"
+            placeholder="Comparison subfield"
+            aria-label="Comparison subfield"
           />
         </div>
 
+        <p class="comparison-context">
+          Your selected subfield is a comparison choice, not a verified official classification.
+          This comparison does not establish your official rank or Top 2% inclusion.
+        </p>
+        <div v-if="standing" class="reference-summary" aria-live="polite">
+          <p v-if="standing.band"><strong>V9 reference band:</strong> {{ standing.band }}.</p>
+          <p v-else>
+            No published all-author percentile band is available for excluding self-citations.
+          </p>
+          <p v-if="standing.placed.top2 !== null">
+            Derived V9 subfield benchmark (top 2%): {{ standing.placed.top2.toFixed(3) }}. This is a
+            historical reference, not an eligibility test.
+          </p>
+          <p v-if="!standing.you">{{ standing.range }}; no personal position is plotted.</p>
+        </div>
         <div class="standing-area">
           <div v-if="standing" class="standing">
             <div
@@ -427,51 +442,34 @@ function download(kind: 'json' | 'csv') {
               :style="{ left: standing.at(standing.you.rank) }"
             >
               <span :style="standing.align(standing.you.rank)"
-                >You {{ standing.c.toFixed(3) }} ·
-                {{
-                  standing.you.listed
-                    ? `≈ #${Math.round(standing.you.rank).toLocaleString('en')}`
-                    : standing.band
-                }}</span
-              >
-            </span>
-            <span v-else-if="showYou" class="standing-marker you no-line" style="left: 100%">
-              <span style="transform: translateX(-100%)"
-                >You {{ standing.c.toFixed(3) }} · below the listed range</span
+                >{{ isDemo ? 'Synthetic estimate' : 'Your estimate' }}
+                {{ standing.c.toFixed(3) }}</span
               >
             </span>
             <span class="standing-marker top2" :style="{ left: standing.at(standing.top2Rank) }">
               <span :style="standing.align(standing.top2Rank)"
-                >Top 2% · #{{ standing.top2Rank.toLocaleString('en')
-                }}<template v-if="standing.placed.top2 !== null">
+                >V9 benchmark<template v-if="standing.placed.top2 !== null">
                   · {{ standing.placed.top2.toFixed(3) }}</template
                 ></span
               >
             </span>
           </div>
           <div v-else class="standing">
-            <div class="standing-track empty">Choose a field and subfield</div>
+            <div class="standing-track empty">Choose a comparison field and subfield</div>
           </div>
         </div>
-        <template v-if="standing">
-          <p class="sr-only">
-            {{ standing.placed.band ?? 'No published percentile for this mode' }} of
-            {{ standing.sub.authors.toLocaleString('en') }} {{ standing.sub.name }} authors.
-            <template v-if="standing.placed.top2 !== null"
-              >Subfield top 2% line {{ standing.placed.top2.toFixed(3) }} ({{
-                signed(standing.placed.top2Gap!)
-              }}).</template
-            >
-            Global top 100,000 line {{ standing.placed.top100k.toFixed(3) }} ({{
-              signed(standing.placed.top100kGap)
-            }}).
-          </p>
-        </template>
+        <p class="comparison-context">
+          Reference-author ranks use a log scale. Any estimate marker is interpolated within
+          available reference points for illustration only; it is not a calculated personal rank. No
+          position is plotted beyond those points. Including-self bands use published all-author
+          percentiles; excluding-self positions use sampled listed authors and cover only the listed
+          range.
+        </p>
         <p class="fine-print">
-          Rank in subfield, log scale. Drag or click to compare with a listed author; arrow keys
-          step one author. Crossing a line does not confirm official inclusion.
+          Drag or click to compare with a sampled V9 listed author; arrow keys step one author.
           <a :href="data?.dataset" target="_blank" rel="noopener noreferrer">V9 data</a>,
-          {{ data?.license }}.
+          {{ data?.license }}. Listed-author ranks are historical; they do not rank your imported
+          profile.
         </p>
       </div>
     </div>
@@ -491,7 +489,7 @@ function download(kind: 'json' | 'csv') {
       <UButton variant="ghost" color="neutral" @click="download('csv')"
         >Download metrics CSV</UButton
       >
-      <span class="muted">Created on your device. No titles or author IDs included.</span>
+      <span class="muted">Estimates created on your device. No titles or author IDs included.</span>
     </div>
   </section>
 </template>

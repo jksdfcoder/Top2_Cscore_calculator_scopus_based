@@ -10,7 +10,7 @@ function update() {
   const series = [
     {
       value: metricNames.map((key) => props.result.contributions[key]),
-      name: 'You',
+      name: 'Calculated estimate',
       lineStyle: { color: '#ad8533', width: 2 },
       itemStyle: { color: '#ad8533' },
       areaStyle: { color: '#ad8533', opacity: 0.16 },
@@ -19,7 +19,7 @@ function update() {
   if (props.peer)
     series.push({
       value: metricNames.map((key) => props.peer![key]),
-      name: 'Listed author',
+      name: 'V9 listed author',
       lineStyle: { color: '#1f4d3c', width: 2, type: 'dashed' } as never,
       itemStyle: { color: '#1f4d3c' },
       areaStyle: { color: '#1f4d3c', opacity: 0 },

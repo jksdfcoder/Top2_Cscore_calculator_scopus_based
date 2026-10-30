@@ -53,3 +53,17 @@ export function compare(
     top100kGap: c - top100k,
   }
 }
+
+// Log-rank coordinates are only an illustration between available reference points.
+// Never extrapolate a personal position beyond the reference range.
+export function illustrativePosition(c: number, points: [number, number][]): number | null {
+  const sorted = [...points].sort((a, b) => b[0] - a[0])
+  for (let i = 1; i < sorted.length; i++) {
+    const [hiC, hiRank] = sorted[i - 1]!
+    const [loC, loRank] = sorted[i]!
+    if (c > hiC || c < loC || loRank < hiRank) continue
+    const t = hiC === loC ? 0 : (hiC - c) / (hiC - loC)
+    return Math.exp(Math.log(hiRank) + t * (Math.log(loRank) - Math.log(hiRank)))
+  }
+  return null
+}

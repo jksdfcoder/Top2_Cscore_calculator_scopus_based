@@ -56,3 +56,15 @@ UI 为 Field → Subfield 选择后显示四种模式的位置；切换不改变
 ## 验证与风险
 
 见 docs/qa/verification.md。独立代码复查已完成并修复未知自引设置、历史桶矛盾和 demo 异步覆盖问题。第二段复查修复：补导入或移除文件不再清空人工匹配决定；指向已不在候选中的 EID 的旧决定会被忽略，该行重新出现可选候选。依赖 audit 在本次检查还有 8 个 low，0 moderate/high/critical；不要为了消警告强制降级 Nuxt。CI 不运行私有数据验证。全量产品计划仍包含未完成任务；不要把阶段复选框全勾上。
+
+
+## 2026-10-30 interpretation review
+
+Visible result notices now distinguish author-level estimates, synthetic demo inputs, historical
+V9 references and official inclusion. Field/subfield choices are exploratory, not verified author
+classifications. Sampled listed-author records are shipped (the older paragraph saying they were
+not implemented is superseded). Personal integer ranks and out-of-range extrapolation were
+removed. Published including-self percentile bands are distinct from sampled excluding-self
+comparisons. Methods and audit JSON describe profile errors, snapshot limitations and responsible
+interpretation. README reflects the current comparison features. This review does not establish
+full parity with the V9 production pipeline.

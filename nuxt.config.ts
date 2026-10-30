@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   icon: { provider: 'server', clientBundle: { scan: true } },
   app: {
     head: {
-      title: 'C-score calculator · Scopus data, explained',
+      title: 'C-score calculator · Independent estimates',
       htmlAttrs: { lang: 'en' },
       meta: [
         { name: 'referrer', content: 'no-referrer' },
@@ -23,7 +23,7 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'Calculate career and single-year citation impact from your own Scopus CSV exports. Transparent methods. Files stay on your device.',
+            'Estimate career and single-year c-scores from your Scopus CSV exports. Local processing and exploratory V9 comparisons; not official rankings or Top 2% confirmation.',
         },
       ],
     },

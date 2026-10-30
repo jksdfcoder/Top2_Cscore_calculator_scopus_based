@@ -29,7 +29,9 @@ Rebuild the official comparison data (needs the V9 Table 1 and Table 2 workbooks
 - Missing years, unknown exclusion settings, ambiguous matches and conflicting overlaps stop affected calculations. Additional historical windows can be added without joining spreadsheets.
 - Synthetic example, built-in export instructions and keyboard-accessible tables.
 
-V9 normalization is fixed. Current Scopus exports are not the official frozen snapshot. The page compares results with official V9 subfield percentiles and derived top-2% / top-100,000 lines (no author-level lists are shipped). The radar shows a user's score contributions, not comparison to official authors.
+V9 normalization is fixed. The author-level c-score combines eligible publications across research areas; choosing a field does not change it. Current exports cannot recreate the frozen V9 Scopus snapshot. Profile merges, splits, misassigned publications and incomplete exports can affect estimates. Citation impact is not a complete assessment of research quality.
+
+Subfields are user-selected reference comparisons, not verified official classifications. Including-self comparisons use published all-author percentile bands. Excluding-self mode has no published all-author percentile band. The page also ships sampled V9 listed-author records for historical radar comparisons and a derived subfield top-2% benchmark. Illustrated positions are interpolated only within available reference points, with no personal integer rank or extrapolation. Neither a comparison band nor crossing a benchmark confirms official inclusion; the published selection also has an all-science top-100,000 route. Key interpretation limits are always visible beside the score and comparison; detailed data terms remain expandable.
 
 ## Verify
 

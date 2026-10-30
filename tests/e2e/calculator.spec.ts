@@ -21,6 +21,11 @@ test('one import produces four modes, downloads a private report, then clears', 
   await page.getByRole('button', { name: 'Confirm author & calculate' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
   await expect(page.locator('#score')).toContainText('1.144')
+  await expect(page.locator('.hero-purpose')).toContainText(
+    'does not determine official Top 2% inclusion',
+  )
+  await expect(page.locator('#score .score-context')).toBeVisible()
+  await expect(page.locator('#score .score-context')).toContainText('across research areas')
   await expect(page.locator('#score')).toContainText('1.394')
   await expect(page.locator('#results')).toContainText('1.143570')
   await page.getByRole('tab', { name: 'Single year · 2025', exact: true }).click()
@@ -35,6 +40,15 @@ test('one import produces four modes, downloads a private report, then clears', 
   expect(report.modes.filter((mode: { ready: boolean }) => mode.ready)).toHaveLength(4)
   expect(text).not.toContain('A synthetic solitary paper')
   expect(report).not.toHaveProperty('authorIds')
+  expect(report.limitations.join(' ')).toContain('no field-specific score')
+  expect(report.limitations.join(' ')).toContain('frozen V9 Scopus snapshot')
+  const csvDownload = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Download metrics CSV' }).click()
+  const csv = await csvDownload
+  expect(csv.suggestedFilename()).toContain('estimates.csv')
+  const csvText = readFileSync((await csv.path())!, 'utf8')
+  expect(csvText).toContain('c_score,result_type')
+  expect(csvText).toContain('calculated_estimate')
   expect(report.files.every((file: { id: string }) => file.id.startsWith('sha256:'))).toBe(true)
   await page.getByRole('button', { name: 'Clear all data' }).click()
   await expect(page.locator('#results')).toHaveCount(0)
@@ -132,7 +146,11 @@ test('synthetic example and result table pass accessibility checks', async ({ pa
   await page.goto('/')
   await page.getByRole('button', { name: 'Try a synthetic example' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
-  await expect(page.getByText('Synthetic example · author ID 123', { exact: true })).toBeVisible()
+  await expect(
+    page.getByText('Synthetic example · author ID 123 · not a real researcher’s result', {
+      exact: true,
+    }),
+  ).toBeVisible()
   const accessibility = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
     .analyze()
@@ -181,11 +199,11 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
   const before = await fourResultScores(page)
   expect(before).toHaveLength(4)
 
-  const field = page.getByRole('button', { name: 'Field', exact: true })
+  const field = page.getByRole('button', { name: 'Comparison field', exact: true })
   await expect(field).toBeEnabled()
   await field.click()
   await page.getByRole('option', { name: 'Public Health & Health Services', exact: true }).click()
-  const subfield = page.getByRole('button', { name: 'Subfield', exact: true })
+  const subfield = page.getByRole('button', { name: 'Comparison subfield', exact: true })
   await expect(subfield).toBeEnabled()
   await subfield.click()
   await page.getByRole('option', { name: 'Epidemiology', exact: true }).click()
@@ -193,8 +211,15 @@ test('J5 compares Epidemiology without changing the four results', async ({ page
 
   const standing = page.locator('#comparison')
   await expect(standing).toContainText('Epidemiology')
+  await expect(standing.locator('.comparison-context').first()).toBeVisible()
+  await expect(standing).toContainText('not a verified official classification')
+  await expect(standing).toContainText('No published all-author percentile band')
+  await expect(standing.locator('.standing-marker.you')).toHaveCount(0)
+  await expect(standing).toContainText('no personal position is plotted')
   await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
-  await expect(standing).toContainText(`Subfield top 2% line ${top2}`)
+  await expect(standing).toContainText(`Derived V9 subfield benchmark (top 2%): ${top2}`)
+  await expect(standing.locator('.reference-summary')).toContainText('V9 reference band:')
+  await expect(standing).toContainText('it is not a calculated personal rank')
   const peer = page.getByRole('slider', { name: 'Compare with a listed author' })
   await peer.focus()
   await page.keyboard.press('Home')
@@ -228,7 +253,11 @@ test('export guide and methodology open as dialogs', async ({ page }) => {
   await expect(dialog).toContainText('not uploaded')
   await page.keyboard.press('Escape')
   await page.getByRole('button', { name: 'Methodology', exact: true }).click()
-  await expect(page.getByRole('dialog')).toContainText('the formula is the same in every field')
+  await expect(page.getByRole('dialog')).toContainText(
+    'scores are not split or weighted by subfield',
+  )
+  await expect(page.getByRole('dialog')).toContainText('not a verified reproduction')
+  await expect(page.getByRole('dialog')).toContainText('all-science top 100,000')
   await page.keyboard.press('Escape')
   await expect(page.getByRole('contentinfo')).toContainText('Not affiliated with or endorsed by')
 })
@@ -250,7 +279,11 @@ test('clearing while a demo is fetching cancels the old request intent', async (
   await page.getByRole('button', { name: 'Confirm author & calculate' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
   release()
-  await expect(page.getByText('Synthetic example · author ID 123', { exact: true })).toHaveCount(0)
+  await expect(
+    page.getByText('Synthetic example · author ID 123 · not a real researcher’s result', {
+      exact: true,
+    }),
+  ).toHaveCount(0)
 })
 
 test('standing reveals You only after the bar and peer data are ready', async ({ page }) => {
@@ -268,9 +301,9 @@ test('standing reveals You only after the bar and peer data are ready', async ({
   await page.getByRole('button', { name: 'Try a synthetic example' }).click()
   await expect(page.getByRole('status').first()).toContainText('4 of 4')
   await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
-  await page.getByRole('button', { name: 'Field', exact: true }).click()
+  await page.getByRole('button', { name: 'Comparison field', exact: true }).click()
   await page.getByRole('option', { name: 'Public Health & Health Services', exact: true }).click()
-  await page.getByRole('button', { name: 'Subfield', exact: true }).click()
+  await page.getByRole('button', { name: 'Comparison subfield', exact: true }).click()
   await page.getByRole('option', { name: 'Epidemiology', exact: true }).click()
   await closeOverlays(page)
   const marker = page.locator('.standing-marker.you')
@@ -283,12 +316,21 @@ test('standing reveals You only after the bar and peer data are ready', async ({
   release()
   await expect(page.getByRole('slider', { name: 'Compare with a listed author' })).toBeVisible()
   await expect(marker.locator(':scope > span')).toBeVisible()
-  // A new animation with already-loaded data must also hide You until its end.
+  await expect(marker).not.toContainText(/≈|#|rank/i)
+  // This synthetic excluding-self score is outside the listed range: do not plot it.
   await page.getByRole('tab', { name: 'Exclude self-citations', exact: true }).click()
   await expect(marker).toHaveCount(0)
   await page
     .locator('.standing-fill')
     .evaluate((element) => element.getAnimations().forEach((a) => a.finish()))
+  await expect(marker).toHaveCount(0)
+  await expect(page.locator('.reference-summary')).toContainText('no personal position is plotted')
+  // Returning to an in-range comparison still waits for the new bar animation.
+  await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
+  await expect(marker).toHaveCount(0)
+  await page
+    .locator('.standing-fill')
+    .evaluate((el) => el.getAnimations().forEach((a) => a.finish()))
   await expect(marker.locator(':scope > span')).toBeVisible()
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.getByRole('tab', { name: 'Include self-citations', exact: true }).click()
